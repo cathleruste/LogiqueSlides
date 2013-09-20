@@ -1,0 +1,793 @@
+\section{Algorithmes séquentiels}
+%\leconwithtoc
+
+\subsection{Fraction}
+
+\begin{frame}{Exemple}
+	Rédiger une marche à suivre détaillée qui explique 
+	comment additionner deux fractions~:
+	
+	\bigskip
+	
+	\cadre{
+		\begin{enumerate}
+			\item Rechercher le dénominateur commun des deux fractions
+			\item Mettre chaque fraction au même dénominateur
+			\item Additionner les numérateurs des deux fractions,
+			 ce qui donne le numérateur de la somme
+			\item Simplifier la fraction obtenue
+		\end{enumerate}
+	}
+		
+	Encore très imprécis. 
+	
+	Un algorithme proche d'un langage
+	de programmation ne devrait mentionner 
+	que les opérations élémentaires
+	de calcul telles que $+$, -, $*$, $/$.
+\end{frame}
+
+\begin{frame}{Exemple plus proche d’un
+		programme écrit dans un langage compréhensible par l’ordinateur}
+	\cadre{
+		\begin{enumerate}
+		\item Prendre connaissance du premier numérateur et du premier dénominateur ;
+		\item Prendre connaissance du second numérateur et du second dénominateur ;
+		\item Multiplier les deux dénominateurs pour obtenir le dénominateur commun ;
+		\item Multiplier le premier numérateur par le second dénominateur
+			et le second numérateur par le premier dénominateur ;
+		\item Additionner ces deux produits pour obtenir le numérateur du résultat ;
+		\item Communiquer ce résultat ainsi que le dénominateur commun.
+		\end{enumerate}
+		}
+\end{frame}
+
+\begin{frame}{Langage}
+	Le français n’est pas adapté à la description de problèmes au contenu
+	mathématique ou scientifique.
+	
+	Ceci dit, le français peut toujours être
+	utilisé dans la formalisation d’une première approche de la résolution
+	d’un problème devant être traduit ensuite en algorithme puis en
+	programme.
+
+\end{frame}
+
+\subsection{Le pseudo-code}
+
+\begin{frame}{Le pseudo-code}
+	français~: trop grande richesse de ce langage en
+	comparaison à la pauvreté (mais aussi la rigueur) 
+	du langage compris par la machine.
+	
+	\bigskip
+	Le \textbf{pseudo-code} ou \textit{Langage de Description des
+	Algorithmes} (LDA en abrégé) est un langage formel et symbolique
+	utilisant :
+
+	\begin{itemize}
+	\item
+		des \textbf{noms symboliques} destinés à représenter les objets sur
+		lesquels s’effectuent des actions ;
+	\item
+		des \textbf{opérateurs symboliques} ou des mots-clés traduisant les
+		opérations primitives exécutables par un exécutant donné ;
+	\item
+		des \textbf{structures de contrôle} types.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Le pseudo-code}
+	Un algorithme \textit{idéal}, appelé \textbf{algorithme
+	général}, exprimé en pseudo-code, devrait se situer à mi-chemin entre
+	la démarche globale exprimée dans un langage naturel (langue française)
+	ou structuré (ordinogramme) et l’algorithme ultime, c’est-à-dire le
+	\textbf{programme}, exprimé en langage de programmation.
+	
+	\bigskip
+	
+	À partir du moment où des conventions sont prises dans un
+	contexte bien déterminé, il convient que \textbf{tous }respectent ces
+	conventions.
+
+\end{frame}
+
+\subsection{Variables et types}
+
+\begin{frame}{Variables et type}
+	\begin{itemize}
+		\item les opérations que l’ordinateur devra exécuter portent
+			sur des éléments qui sont les \textbf{données} du problème
+		\item lorsqu’on attribue un \textbf{nom} et un \textbf{type} 
+			à ces données, on parle	alors de \textbf{variables}
+		\item dans un algorithme, une variable conserve
+			toujours son nom et son type, mais peut changer de \textbf{valeur}
+		\item le \textbf{nom }d’une variable permet de la caractériser et de la
+			reconnaitre
+		\item le \textbf{type} d’une variable décrit la nature de son contenu
+	\end{itemize}
+\end{frame}
+
+\subsection{Les types autorisés}
+
+\begin{frame}{Types autorisés}
+	Dans un premier temps, les seuls \textbf{types} utilisés sont les
+	suivants~:
+	\begin{tabular}{p{1.6cm}|p{11.5cm}}
+	\raggedleft  \textbf{entier} &
+	 pour les nombres entiers\\
+	\raggedleft  \textbf{réel} &
+	 pour les nombres réels\\
+	\raggedleft  \textbf{caractère} &
+	 pour les différentes lettres et caractères \\
+	{~} & (par exemple ceux qui apparaissent sur un \\
+	{~} & clavier~: ‘a’, ‘1’, ‘\#’, etc…)\\
+	\raggedleft  \textbf{chaine} &
+	pour les variables contenant plusieurs
+	caractères\\
+	{~} & ou aucun (la chaine vide) \\
+	{~} &	(par exemple : "Bonjour", "Bonjour le monde",  \\
+	{~} &	"a", "", etc.)
+	\\
+	\raggedleft  \textbf{booléen} &
+	 les variables de ce type ne peuvent valoir que
+	\textbf{vrai} ou \textbf{faux}\\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Exercices}
+	Quel(s) type(s) de données utiliseriez-vous 
+	pour représenter 
+	\begin{itemize}
+		\item une date du calendrier ?
+		\item un moment dans la journée ?
+		\item le prix d'un produit en grande surface ?
+		\item votre nom ?
+		\item vos initiales ?
+		\item votre adresse ?
+	\end{itemize}	
+\end{frame}
+
+\subsection{Déclaration de variables}
+
+\begin{frame}{Déclaration de variables}
+	La déclaration d’une variable est l’instruction 
+	qui définit son nom et son type.
+	\cadre{
+		\begin{pseudo}
+			\Declare{num1, num2}{entiers}
+		\end{pseudo}
+	}
+	
+	\bigskip
+	
+	L’ensemble des instructions de la forme
+
+	\cadre{
+	\begin{pseudo}
+	\Declare{variable1, variable2,\ldots}{type}
+	\end{pseudo}
+	}
+
+	forme la partie d’un algorithme nommée 
+	\textbf{déclaration des variables}. 
+	
+	\bigskip
+	
+	La déclaration des informations apparaitra toujours en
+	début d’algorithme, ou dans un bloc annexe appelé 
+	\textbf{dictionnaire des variables} 
+	ou encore \textbf{dictionnaire des données}.
+\end{frame}
+
+\begin{frame}{Déclaration de variables}
+	Par exemple, pour l’algorithme des fractions, la déclaration des
+	informations pourrait être la suivante :
+
+	\cadre{
+	\begin{pseudo}
+	\Declare{num1, den1, num2, den2, numRes, denRes}{entiers}
+	\end{pseudo}
+	}
+
+	avec la signification suivante :
+
+	\begin{enumerate}
+	\item
+		\textit{num1 (num2)}~: le numérateur 
+		de la première (seconde) fraction ;
+	\item
+		\textit{den1 (den2)}~: le dénominateur 
+		de la première (seconde) fraction ;
+	\item
+		\textit{numRes (denRes)}~:
+		le numérateur (dénominateur) du résultat.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Déclaration de variables}
+	Attention, lors de la déclaration d’une variable, celle-ci n’a pas de
+	valeur ! Nous verrons plus loin que c’est l’instruction
+	d’\textbf{affectation} qui va servir à donner un contenu aux variables
+	déclarées. En logique, nous n’envisageons pas d’\textit{affectation par
+	défaut} consistant à donner une valeur initiale de façon automatique
+	aux variables déclarées (par exemple 0 pour les variables numériques,
+	comme c’est le cas dans certains langages informatiques).
+\end{frame}
+
+\subsection{Comment nommer correctement une variable ?}
+
+\begin{frame}{Comment nommer correctement une variable ?}
+	Un nom 
+	\begin{itemize}
+		\item suffisamment court tout en restant explicite
+		\item qui ne prête pas à confusion
+		\item qui tient compte des limitations imposées par les
+			langages de programmation
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Comment nommer correctement une variable ?}
+	Voici quelques règles et limitations traditionnelles dans les langages
+	de programmation:
+
+	\begin{itemize}
+	\item 
+		Un nom de variable est généralement une suite de caractères
+		alphanumériques d’un seul tenant (pas de caractères blancs) et ne
+		commençant jamais par un chiffre. Ainsi \textit{x1} est
+		correct mais non \textit{1x}. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Comment nommer correctement une variable ?}
+	\begin{itemize}
+	\item 
+		Pour donner un nom composé à une variable, on peut utiliser le «~tiret
+		bas~» ou \textit{underscore} (par ex. premier\_numérateur) mais on
+		déconseille d’utiliser le signe «~–~» qui est plutôt réservé à la
+		soustraction. Ainsi, dans la plupart des langages,
+		\textit{premier-numérateur} serait interprété comme la
+		soustraction des variables \textit{premier} et
+		\textit{numérateur}. (Signalons que le tiret 
+		\textcolor{black}{«~–~»} est autorisé en Cobol, où il récupère son rôle
+		arithmétique s’il est précédé et suivi d’au moins un blanc).
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Comment nommer correctement une variable ?}
+	\begin{itemize}
+	\item 
+		Une alternative à l’utilisation du tiret bas pour l’écriture de noms de
+		variables composés est la notation «~chameau~» (\textit{camelCase} en
+		anglais), qui consiste à mettre une majuscule au début des mots
+		(généralement à partir du deuxième), par exemple
+		\textit{premierNombre} ou
+		\textit{dateNaissance}.
+	\item
+		Les indices et exposants sont proscrits (par ex.
+		\textit{$x_1$},
+		\textit{$z_6$} ou
+		\textit{$m^2$)}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Comment nommer correctement une variable ?}
+	\begin{itemize}	
+	\item
+		Les mots clés du langage sont interdits (par exemple
+		\textbf{for}, \textbf{if}, 
+		\textbf{while }pour Java et Cobol) et on déconseille 
+		d'utiliser les mots-clés du pseudo-code (tels que
+		\textbf{\textsf{lire}}, 
+		\textbf{\textsf{afficher}}, 
+		\textbf{\textsf{pour}}…)
+	\item
+		Certains langages n’autorisent pas les caractères accentués (tels que
+		\textit{à, ç, ê, ø,} etc.) ou les lettres des alphabets non latins
+		(tel que ${\Delta}$) mais d’autres oui ; certains font la distinction
+		entre les minuscules et majuscules, d’autres non. En logique, nous
+		admettons dans noms de variables les caractères accentués du français,
+		par ex. : durée, intérêts, etc.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercices}
+	Déclarer le(s) variable(s) permettant de représenter 
+	\begin{itemize}
+		\item la date d'anniversaire de quelqu'un.
+		\item l'heure de début, l'heure de fin et	l'objet d 'un rendez-vous.
+	\end{itemize}
+\end{frame}
+
+\subsection{Opérateurs et expressions}
+
+\begin{frame}{Opérateurs et expressions}
+	Les opérateurs agissent sur les variables et les constantes pour former
+	des \textbf{expressions}. 
+	
+	Une expression est donc une combinaison
+	\textbf{cohérente} de variables, de constantes et d’opérateurs,
+	éventuellement accompagnés de parenthèses.
+\end{frame}
+
+\begin{frame}{Opérateurs arithmétiques élémentaires}
+	Ce sont les opérateurs binaires bien connus :
+	\begin{tabular}{p{1.6cm}|p{11.5cm}}
+	\raggedleft  \textit{+} & addition\\
+	\raggedleft  \textit{-} & soustraction\\
+	\raggedleft  \textit{*} & multiplication\\
+	\raggedleft  \textit{/} & division réelle\\
+	\raggedleft  \textit{DIV} & division entière\\
+	\raggedleft  \textit{MOD} & reste de la division entière\\		
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Opérateurs arithmétiques élémentaires}
+	Ils agissent sur des variables ou expressions à valeurs entières ou
+	réelles. 
+	
+	Plusieurs opérateurs peuvent être utilisés pour former des
+	expressions plus ou moins complexes, en tenant compte des règles de
+	calcul habituelles, notamment la priorité de la multiplication et de la
+	division sur l’addition et la soustraction. 
+	
+	Il est aussi permis	d’utiliser des parenthèses.
+\end{frame}
+
+\begin{frame}{Fonctions mathématiques complexes}
+	L’élévation à la puissance sera notée \textit{**} ou
+	\textit{\^{}} . 
+	
+	\bigskip
+	
+	Pour la racine carrée d’une variable x nous
+	écrirons  $\sqrt{x}$ \textit{.} Attention, pour ce dernier, de veiller
+	à ne l’utiliser qu’avec un radicant positif !
+
+	\bigskip
+
+	Si nécessaire, on se permettra d'utiliser les autres
+	fonctions mathématiques sous leur forme la plus courante dans la
+	plupart des langages de programmation (exemples~:
+	$sin(x)$, $tan(x)$, $log(x)$, $exp(x)$, ...)
+\end{frame}
+
+\begin{frame}{Fonctions mathématiques complexes}
+	\textbf{Exemple} : 
+	$(-b+\sqrt{(b\ast \ast 2-4\ast a\ast c)})/(2\ast a)$
+	
+	\bigskip
+	
+	Mais on peut aussi accepter la notation mathématique usuelle
+	$\frac{-b+\sqrt{b^{2}-4\ast a\ast c}}{2\ast a}$ 
+	
+	\bigskip
+
+	Pourquoi ne pas avoir écrit «~\textit{4ac}~» et
+	«~\textit{2a}~» ?
+\end{frame}
+
+\begin{frame}{Opérateurs de comparaison}
+
+	Ces opérateurs agissent généralement sur des variables numériques ou des
+	chaines et donnent un résultat booléen.
+
+	\begin{tabular}{p{1.6cm}|p{11.5cm}}
+	\raggedleft  \textit{=} & égal\\
+	\raggedleft  \textit{{\textless}{\textgreater}}
+		ou \textit{${\neq}$} &  différent de\\
+	\raggedleft  \textit{\textless} & (strictement) plus petit que\\
+	\raggedleft  \textit{\textgreater} & (strictement) plus grand que\\
+	\raggedleft  \textit{${\leq}$} & plus petit ou égal\\
+	\raggedleft  \textit{${\geq}$} & plus grand ou égal\\
+	\end{tabular}
+	
+
+	Pour les chaines, c'est l’ordre alphabétique qui
+	détermine le résultat (par exemple
+	\textit{{\textquotedbl}milou{\textquotedbl} {\textless}
+	{\textquotedbl}tintin{\textquotedbl}} est \textbf{vrai} de même que
+	\textit{{\textquotedbl}assembleur{\textquotedbl}
+	}\textit{${\leq}$}\textit{
+	{\textquotedbl}java{\textquotedbl}})
+	
+\end{frame}
+	
+\begin{frame}{Opérateurs logiques}
+
+	Ils agissent sur des expressions booléennes (variables ou expressions à
+	valeurs booléennes) pour donner un résultat du même type.
+
+	\begin{tabular}{p{1.6cm}|p{11.5cm}}
+	\raggedleft  \textit{NON} & négation\\
+	\raggedleft  \textit{ET} & conjonction logique\\
+	\raggedleft  \textit{OU} & disjonction logique\\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Opérateurs logiques}
+	Pour rappel, \textit{cond1 ET cond2} n’est vrai que lorsque
+	les deux conditions sont vraies. 
+	
+	\bigskip
+	
+	\textit{cond1 OU cond2} est
+	toujours vrai, sauf quand les deux conditions sont fausses.
+
+	\bigskip
+	
+	Veillez à mettre des parenthèses dans le cas de combinaisons de ET et de
+	OU : \textit{(cond1 ET cond2) OU cond3} étant différent de
+	\textit{cond1 ET (cond2 OU cond3).} 
+	
+	En cas d'oubli de parenthèses, il faudra se rappeler que
+	\textit{ET} est prioritaire sur le \textit{OU}.
+\end{frame}
+
+\begin{frame}{Opérateurs logiques}
+
+	Pour rappel aussi, pour un booléen \textit{ok}~: 
+	
+	\textit{ok = faux} est équivalent à \textit{NON ok},
+	
+	\textit{ok = vrai} est équivalent à \textit{ok} et 
+	
+	\textit{NON NON ok} est équivalent à \textit{ok}.
+	
+	Dans les trois cas, nous préconiserons la seconde écriture.
+\end{frame}
+
+\begin{frame}{Évaluation complète et court-circuitée}
+
+	On définit deux modes d’évaluation des opérateurs \textit{ET}
+	et \textit{OU} :
+
+	\begin{itemize}
+	\item{l’évaluation \textit{complète}}
+	\item{l’évaluation \textit{court-circuitée}}
+	\end{itemize}
+	Dans le cadre de ce cours, nous opterons pour la deuxième 
+	interprétation.
+	
+	\bigskip
+	
+	Exemple~: considérons	l’expression 
+		{$n {\neq} 0 \ ET \  m/n > 10$}.
+\end{frame}
+		
+\begin{frame}{Manipuler les chaines}
+	Pour les chaines, nous allons introduire quelques notations
+	qui vont nous permettre de les manipuler plus facilement.
+
+	\begin{itemize}
+	\item \textit{long(maChaine)}
+		donne la taille (le nombre de caractères) de la chaine 
+		\textit{maChaine}.
+	\item \textit{car(maChaine,pos)}
+		donne le caractère en position \textit{pos} 
+		(à partir de 1) dans la chaine \textit{maChaine}.
+	\item \textit{concat(maChaine1,maChaine2)}
+		concatène les chaines \textit{maChaine1} 
+		et \textit{maChaine2}.
+		(ex: \textit{concat("Bon","jour")} donne \textit{"Bonjour"})
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Manipuler les caractères}
+
+		Introduisons également quelques notations pour les caractères.
+
+		\begin{itemize}
+		\item \textit{chaine(car)} transforme le caractère \textit{car} en une chaine de taille 1.
+		\item \textit{estLettre(car)} est vrai si le caractère \textit{car} est une lettre
+			(idem pour \textit{estChiffre}, 
+			\textit{estMajuscule}, 
+			\textit{estMinuscule}).
+		\item \textit{majuscule(car)} donne la majuscule de la lettre \textit{car}
+			(idem pour \textit{minuscule}).
+		\item \textit{position(car)} donne la position de \textit{car} dans l'alphabet (ex: \textit{numLettre('E')} donne 5, 
+		idem pour \textit{numLettre('e')}).
+		\item \textit{lettre(num)} l'inverse de la précédente (ex: \textit{lettre(4)} donne le caractère 'D').
+	\end{itemize}
+\end{frame}
+
+\subsection{L’affectation d’une valeur à une variable}
+\begin{frame}{Affectation externe}
+	L’\textbf{affectation externe} est la primitive qui permet de recevoir de
+	l’utilisateur, au moment où l'algorithme se déroule,
+	une ou plusieurs valeur(s) et de les affecter à des variables en
+	mémoire.
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Read liste\_de\_variables\_à\_lire
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Affectation interne }
+	On parle d’affectation interne lorsque la valeur d’une variable est
+	«~calculée~» par l’exécutant de l’algorithme lui-même à partir de
+	données qu’il connait déjà :
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Let nomVariable \Gets expression
+	\end{pseudo}
+	}
+	
+	Par exemple~:
+
+	\cadre{
+	\begin{pseudo}
+	\Let somme \Gets nombre1 + nombre2
+	\Let denRes \Gets den1 * den2
+	\Let cpt \Gets cpt + 1
+	\Let delta \Gets b**2 – 4*a*c
+	\Let test \Gets a < b \RComment pour une variable logique
+	\Let maChaine \Gets "Bon"
+	\Let uneChaine \Gets concat(maChaine, "jour")
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Affectation}
+	Il est de règle que le résultat de l’expression à droite du signe
+	d’affectation ($\gets$) soit de
+	même type que la variable à sa gauche. On tolère certaines exceptions~:
+	\begin{itemize}
+	\item
+		\textit{varEntière}{ $\gets$ }\textit{varRéelle} : 
+		dans ce cas le contenu de la variable sera la valeur \textbf{tronquée}
+		de l’expression réelle. 
+		Par exemple si «~\textit{nb}~» est
+		une variable de type entier, son contenu après l’instruction
+		«~\textit{nb}{ $\gets$ }\textit{$15/4$}~» 
+		sera 3
+	\item 
+		\textit{varRéelle}{ $\gets$ }\textit{varEntière} :
+		ici, il n'y a pas de perte de valeur.
+	\item 
+		\textit{varChaine}{ $\gets$ }\textit{varCaractère} : 
+		
+		équivalent à \textit{varChaine}{ $\gets$ }\textit{chaine(varCaractère)}.
+		
+		Le contraire n'est évidemment pas accepté.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Affectation}
+	\begin{itemize}
+	\item 
+		Seules les variables déclarées peuvent être affectées, que ce soit par
+		l’affectation externe ou interne!
+	\item 
+		Nous ne mélangerons pas la déclaration d’une variable et son
+		affectation interne dans une même ligne de code, donc pas
+		d’instructions hybrides du genre 
+		\textsf{x}{ $\gets$ }\textit{2 : entier} ou encore 
+		\textsf{x~: entier(0)}.
+	\item 
+		Pour l’affectation interne, toutes les variables apparaissant dans
+		l'\textit{expression} doivent avoir été affectées
+		préalablement. Le contraire provoquerait un arrêt de l’algorithme.
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Communication des résultats}
+\begin{frame}{Communication des résultats}
+
+	L’instruction de communication des résultats consiste à donner à
+	l’extérieur (donc à l’utilisateur) la valeur d’un résultat 
+	calculé au cours de l’exécution de l’algorithme. Nous écrirons :
+
+	\cadre{
+	\begin{pseudo}
+	\Write \textit{expression} ou \textit{liste de variables séparées par des virgules}
+	\end{pseudo}
+	}
+
+	qui signifie que la valeur d’une expression (ou celles des différentes
+	variables mentionnées) sera fournie à l’utilisateur (par exemple par un
+	affichage à l’écran ou par impression sur listing via l’imprimante,
+	etc\dots).
+	
+	\bigskip
+	
+	Comme pour l’affectation interne, on ne peut \textit{afficher}
+	que des expressions dont les variables qui la composent ont été 
+	affectées préalablement.
+\end{frame}
+
+\subsection{Structure générale d’un algorithme}
+\begin{frame}{Structure générale d’un algorithme}
+	La traduction d’un algorithme en pseudo-code constituera le contenu d’un
+	\textit{module}. Un module contient donc la solution
+	algorithmique d’un problème donné (ou d’une de ses parties). Sa
+	structure générale sera la suivante :
+
+	\cadre{
+	\begin{pseudo}
+	\Module{nomDuModule}{}{}
+		\Stmt \textit{déclaration des variables et constantes utilisées dans le module}
+		\Stmt \textit{lecture des données}
+		\Stmt \textit{instructions utilisant les données lues}
+		\Stmt \textit{communication des résultats}
+	\EndModule
+	\end{pseudo}
+	}		
+	
+	Comme pour les variables, le nomDuModule devra être approprié au contenu.
+\end{frame}
+
+\begin{frame}{Fraction(suite)}
+	récrivons l’algorithme d’addition de fractions décrit
+	en début de chapitre~:
+
+	\cadre{
+	\begin{pseudo}
+	\Module{additionnerFractions}{}{}
+		\Declare{num1, den1, num2, den2, numRes, denRes}{entiers}
+		\Read num1, den1, num2, den2
+		\Let denRes \Gets den1 * den2
+		\Let numRes \Gets num1*den2 + num2*den1
+		\Write numRes, "/", denRes
+	\EndModule
+	\end{pseudo}
+	}
+	
+	\textbf{Remarque~:}
+	rappelons que la fraction affichée n'est sans doute pas simplifiée. 
+	Nous n'avons pas encore tous les atouts suffisants pour réaliser 
+	cela à ce niveau. Patience !
+\end{frame}
+
+\subsection{Commenter un algorithme}
+\begin{frame}{Commenter un algorithme}
+	On n’insistera jamais assez sur la nécessité de \textbf{documenter} un
+	algorithme en y insérant des \textbf{commentaires} judicieux, clairs et
+	suffisants ! Un commentaire est un texte placé dans
+	l'algorithme et destiné à faciliter au maximum la
+	compréhension d’un algorithme par le lecteur (parfois une autre
+	personne, mais aussi souvent l'auteur qui se perd dans
+	son propre texte lorsqu'il s'y replonge après une
+	interruption). Ces commentaires (introduits par
+	«~\textbf{//}~») seront bien entendu ignorés par
+	l’exécutant de l’algorithme.
+\end{frame}
+
+\begin{frame}{Commenter fraction}
+\cadre{
+	\begin{pseudo}
+	\LComment Lit les contenus de 2 fractions et affiche leur somme
+	\Module{additionnerFractions}{}{}
+		\Declare{num1, den1, num2, den2, numRes, denRes}{entiers}
+		\Read num1, den1, num2, den2
+		\Let denRes \Gets den1 * den2
+			\RComment calcul du dénominateur
+		\Let numRes \Gets num1*den2 + num2*den1
+			\RComment calcul du numérateur
+		\LComment la fraction n'est sans doute pas simplifiée
+		\Write numRes, "/", denRes
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Commentaires}
+	Noter qu’un excès de commentaires peut être aussi nuisible qu’un
+	trop-peu pour la compréhension d’un algorithme. Par exemple, un choix
+	judicieux de noms de variables peut s’avérer bien plus efficace que des
+	commentaires superflus. Ainsi, l’instruction
+
+	\cadre{
+	\begin{pseudo}
+	\Let nouveauCapital \Gets ancienCapital * (1 + taux / 100)
+	\end{pseudo}
+	}
+
+	dépourvue de commentaires est bien préférable aux lignes suivantes :
+
+	\cadre{
+	\begin{pseudo}
+	\Let c1 \Gets c0 * (1 + t / 100) 
+	\LComment calcul du nouveau capital
+	\LComment c1 est le nouveau capital, c0 est l’ancien capital, t est le taux
+	\end{pseudo}
+	}
+	
+	Nous prendrons l'habitude de commenter chaque module en précisant ce qu'il fait.
+\end{frame}
+
+\begin{frame}{Constantes}
+
+	Une \textbf{constante} est une information pour laquelle nom, type et
+	valeur sont figés. La liste des constantes utilisées dans un algorithme
+	apparaitra dans la section déclaration des variables sous la forme
+	suivante :
+
+	\cadre{
+	\begin{pseudo}
+	\Stmt \K{constante} PI = 3,14
+	\Stmt \K{constante} ESI 
+		= {\textquotedbl}École Supérieure d’Informatique{\textquotedbl}
+	\end{pseudo}
+	}
+
+	Il est inutile de spécifier leur type, celui-ci
+	étant défini implicitement par la valeur de la constante.
+\end{frame}
+
+\begin{frame}{Énumération}
+
+	Parfois, une variable ne peut prendre qu'un ensemble
+	fixe et fini de valeurs. Par exemple une variable représentant une
+	saison ne peut prendre que quatre valeurs (HIVER, PRINTEMPS, ÉTÉ,
+	AUTOMNE). On va l'indiquer grâce à
+	l'énumération qui introduit un \textbf{nouveau type}
+	de donnée.
+
+	\cadre{
+	\begin{pseudo}
+	\Stmt \K{énumération} Saison \{ HIVER, PRINTEMPS, ÉTÉ, AUTOMNE \}
+	\end{pseudo}
+	}
+
+	Il y a deux avantages à cela : une indication claire des possibilités de
+	la variable lors de la déclaration et une lisibilité du code grâce à
+	l'utilisation des valeurs explicites.
+\end{frame}
+
+\begin{frame}{Énumération~: exemple}
+	Par exemple, 
+		
+	\cadre{
+		\begin{pseudo}
+			\LComment Lit une saison et affiche sa particularité
+			\Module{particularitéSaisonnière}{}{}
+				\Decl uneSaison : Saison
+				\Read uneSaison
+				\RComment on lira la valeur HIVER ou PRINTEMPS ou ÉTÉ ou AUTOMNE
+				\If{uneSaison = HIVER}
+					\Write "il neige"
+				\Else
+					\If{uneSaison = PRINTEMPS}
+						\Write "les fleurs poussent"
+					\Else
+						\If{uneSaison = ÉTÉ}
+							\Write "le soleil brille"
+						\Else
+							\Write "les feuilles tombent"
+						\EndIf
+					\EndIf
+				\EndIf
+			\EndModule
+		\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Lien avec les entiers}
+	Dans l'exemple ci dessus, on lit une Saison mais souvent,
+	si on travaille avec les Mois par exemple,
+	on disposera plutôt d'un entier. Il faut pouvoir
+	convertir les valeurs. Chaque langage de programmation propose sa
+	propre technique; nous allons adopter la syntaxe suivante :
+
+	\cadre{
+	\begin{pseudo}
+	\Stmt Saison(3) 
+		\RComment donne l'énumération de la saison numéro 3 (on commence à 1);
+		\LComment donne ÉTÉ dans notre exemple.
+	\Stmt position(uneSaison)
+		\RComment donne l'entier associé à une saison;
+		\LComment si on a lu HIVER comme valeur pour uneSaison, 
+		\LComment donne la valeur 1.
+	\end{pseudo}
+	}
+\end{frame}
