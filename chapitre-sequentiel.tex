@@ -43,25 +43,28 @@
 \end{frame}
 
 \begin{frame}{Langage}
-	Le français n’est pas adapté à la description de problèmes au contenu
-	mathématique ou scientifique.
+	français~: 
+	\begin{itemize}
+	\item 
+		peut toujours être
+		utilisé dans la formalisation d’une première 
+		approche de la résolution
+		d’un problème.
 	
-	Ceci dit, le français peut toujours être
-	utilisé dans la formalisation d’une première approche de la résolution
-	d’un problème devant être traduit ensuite en algorithme puis en
-	programme.
-
+	\item
+		trop grande richesse de ce langage en
+		comparaison à la pauvreté (mais aussi la rigueur) 
+		du langage compris par la machine.
+	
+	\end{itemize}
 \end{frame}
 
 \subsection{Le pseudo-code}
 
 \begin{frame}{Le pseudo-code}
-	français~: trop grande richesse de ce langage en
-	comparaison à la pauvreté (mais aussi la rigueur) 
-	du langage compris par la machine.
 	
 	\bigskip
-	Le \textbf{pseudo-code} ou \textit{Langage de Description des
+	Le \textbf{pseudo-code} ou \textbf{Langage de Description des
 	Algorithmes} (LDA en abrégé) est un langage formel et symbolique
 	utilisant :
 
@@ -77,34 +80,19 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Le pseudo-code}
-	Un algorithme \textit{idéal}, appelé \textbf{algorithme
-	général}, exprimé en pseudo-code, devrait se situer à mi-chemin entre
-	la démarche globale exprimée dans un langage naturel (langue française)
-	ou structuré (ordinogramme) et l’algorithme ultime, c’est-à-dire le
-	\textbf{programme}, exprimé en langage de programmation.
-	
-	\bigskip
-	
-	À partir du moment où des conventions sont prises dans un
-	contexte bien déterminé, il convient que \textbf{tous }respectent ces
-	conventions.
-
-\end{frame}
-
 \subsection{Variables et types}
 
 \begin{frame}{Variables et type}
 	\begin{itemize}
 		\item les opérations que l’ordinateur devra exécuter portent
-			sur des éléments qui sont les \textbf{données} du problème
+			sur des éléments qui sont les \textbf{données} du problème~;
 		\item lorsqu’on attribue un \textbf{nom} et un \textbf{type} 
-			à ces données, on parle	alors de \textbf{variables}
+			à ces données, on parle	alors de \textbf{variables}~;
 		\item dans un algorithme, une variable conserve
-			toujours son nom et son type, mais peut changer de \textbf{valeur}
-		\item le \textbf{nom }d’une variable permet de la caractériser et de la
-			reconnaitre
-		\item le \textbf{type} d’une variable décrit la nature de son contenu
+			toujours son nom et son type, mais peut changer de \textbf{valeur}~;
+		\item le \textbf{nom} d’une variable permet de la caractériser et de la
+			reconnaitre~;
+		\item le \textbf{type} d’une variable décrit la nature de son contenu.
 	\end{itemize}
 \end{frame}
 
@@ -113,6 +101,9 @@
 \begin{frame}{Types autorisés}
 	Dans un premier temps, les seuls \textbf{types} utilisés sont les
 	suivants~:
+	
+	\bigskip
+	
 	\begin{tabular}{p{1.6cm}|p{11.5cm}}
 	\raggedleft  \textbf{entier} &
 	 pour les nombres entiers\\
@@ -135,7 +126,7 @@
 	\end{tabular}
 \end{frame}
 
-\begin{frame}{Exercices}
+\begin{frame}{Exercice}
 	Quel(s) type(s) de données utiliseriez-vous 
 	pour représenter 
 	\begin{itemize}
@@ -171,17 +162,23 @@
 
 	forme la partie d’un algorithme nommée 
 	\textbf{déclaration des variables}. 
-	
-	\bigskip
-	
-	La déclaration des informations apparaitra toujours en
-	début d’algorithme, ou dans un bloc annexe appelé 
-	\textbf{dictionnaire des variables} 
-	ou encore \textbf{dictionnaire des données}.
 \end{frame}
 
 \begin{frame}{Déclaration de variables}
-	Par exemple, pour l’algorithme des fractions, la déclaration des
+	La déclaration des informations apparaitra toujours 
+	\begin{itemize}
+	\item 
+	en \textbf{début} d’algorithme, 
+	\item
+	ou dans un bloc annexe appelé 
+	\textbf{dictionnaire des variables} 
+	\item
+	ou encore \textbf{dictionnaire des données}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Déclaration de variables~: exemple}
+	Pour l’algorithme des fractions, la déclaration des
 	informations pourrait être la suivante :
 
 	\cadre{
@@ -192,7 +189,7 @@
 
 	avec la signification suivante :
 
-	\begin{enumerate}
+	\begin{itemize}
 	\item
 		\textit{num1 (num2)}~: le numérateur 
 		de la première (seconde) fraction ;
@@ -202,35 +199,42 @@
 	\item
 		\textit{numRes (denRes)}~:
 		le numérateur (dénominateur) du résultat.
-	\end{enumerate}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Déclaration de variables}
-	Attention, lors de la déclaration d’une variable, celle-ci n’a pas de
-	valeur ! Nous verrons plus loin que c’est l’instruction
-	d’\textbf{affectation} qui va servir à donner un contenu aux variables
-	déclarées. En logique, nous n’envisageons pas d’\textit{affectation par
-	défaut} consistant à donner une valeur initiale de façon automatique
-	aux variables déclarées (par exemple 0 pour les variables numériques,
-	comme c’est le cas dans certains langages informatiques).
+	\begin{itemize}
+	\item
+	Lors de la déclaration d’une variable, celle-ci n’a pas de
+	valeur ! 
+	\item
+	Ce sera l’instruction d’\textbf{affectation} 
+	qui va servir à donner un contenu aux variables
+	déclarées. 
+	\item
+	En logique, nous n’envisageons pas d’\textit{affectation par
+	défaut}
+	\end{itemize}
 \end{frame}
 
 \subsection{Comment nommer correctement une variable ?}
 
 \begin{frame}{Comment nommer correctement une variable ?}
-	Un nom 
+	Un nom de variable
 	\begin{itemize}
-		\item suffisamment court tout en restant explicite
-		\item qui ne prête pas à confusion
-		\item qui tient compte des limitations imposées par les
+		\item est suffisamment court tout en restant explicite
+		\item ne prête pas à confusion
+		\item tient compte des limitations imposées par les
 			langages de programmation
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Comment nommer correctement une variable ?}
-	Voici quelques règles et limitations traditionnelles dans les langages
+	Quelques règles et limitations traditionnelles dans les langages
 	de programmation:
 
+	\bigskip
+	
 	\begin{itemize}
 	\item 
 		Un nom de variable est généralement une suite de caractères
@@ -243,52 +247,50 @@
 \begin{frame}{Comment nommer correctement une variable ?}
 	\begin{itemize}
 	\item 
-		Pour donner un nom composé à une variable, on peut utiliser le «~tiret
-		bas~» ou \textit{underscore} (par ex. premier\_numérateur) mais on
+		Pour donner un nom composé à une variable, on peut utiliser le 
+		\textit{underscore} (par ex. premier\_numérateur) mais on
 		déconseille d’utiliser le signe «~–~» qui est plutôt réservé à la
-		soustraction. Ainsi, dans la plupart des langages,
-		\textit{premier-numérateur} serait interprété comme la
-		soustraction des variables \textit{premier} et
-		\textit{numérateur}. (Signalons que le tiret 
-		\textcolor{black}{«~–~»} est autorisé en Cobol, où il récupère son rôle
-		arithmétique s’il est précédé et suivi d’au moins un blanc).
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Comment nommer correctement une variable ?}
-	\begin{itemize}
+		soustraction. 
+	
+	\bigskip
+	
 	\item 
 		Une alternative à l’utilisation du tiret bas pour l’écriture de noms de
 		variables composés est la notation «~chameau~» (\textit{camelCase} en
 		anglais), qui consiste à mettre une majuscule au début des mots
-		(généralement à partir du deuxième), par exemple
+		(à partir du deuxième), par exemple
 		\textit{premierNombre} ou
 		\textit{dateNaissance}.
+		\end{itemize}
+	\end{frame}
+
+\begin{frame}{Comment nommer correctement une variable ?}
+	\begin{itemize}
+
 	\item
 		Les indices et exposants sont proscrits (par ex.
 		\textit{$x_1$},
 		\textit{$z_6$} ou
 		\textit{$m^2$)}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Comment nommer correctement une variable ?}
-	\begin{itemize}	
+		
+	\bigskip
+	
 	\item
-		Les mots clés du langage sont interdits (par exemple
-		\textbf{for}, \textbf{if}, 
-		\textbf{while }pour Java et Cobol) et on déconseille 
-		d'utiliser les mots-clés du pseudo-code (tels que
+		On n'utilisera pas non plus les 
+		mots-clés du langage/pseudo-code (tels que
 		\textbf{\textsf{lire}}, 
 		\textbf{\textsf{afficher}}, 
 		\textbf{\textsf{pour}}…)
+		
+	\bigskip
+	
 	\item
 		Certains langages n’autorisent pas les caractères accentués (tels que
 		\textit{à, ç, ê, ø,} etc.) ou les lettres des alphabets non latins
 		(tel que ${\Delta}$) mais d’autres oui ; certains font la distinction
 		entre les minuscules et majuscules, d’autres non. En logique, nous
 		admettons dans noms de variables les caractères accentués du français,
-		par ex. : durée, intérêts, etc.
+		par ex~: durée, intérêts, etc.
 	\end{itemize}
 \end{frame}
 
@@ -296,7 +298,7 @@
 	Déclarer le(s) variable(s) permettant de représenter 
 	\begin{itemize}
 		\item la date d'anniversaire de quelqu'un.
-		\item l'heure de début, l'heure de fin et	l'objet d 'un rendez-vous.
+		\item l'heure de début, l'heure de fin et	l'objet d'un rendez-vous.
 	\end{itemize}
 \end{frame}
 
@@ -306,6 +308,8 @@
 	Les opérateurs agissent sur les variables et les constantes pour former
 	des \textbf{expressions}. 
 	
+	\bigskip
+	
 	Une expression est donc une combinaison
 	\textbf{cohérente} de variables, de constantes et d’opérateurs,
 	éventuellement accompagnés de parenthèses.
@@ -313,6 +317,9 @@
 
 \begin{frame}{Opérateurs arithmétiques élémentaires}
 	Ce sont les opérateurs binaires bien connus :
+	
+	\bigskip
+	
 	\begin{tabular}{p{1.6cm}|p{11.5cm}}
 	\raggedleft  \textit{+} & addition\\
 	\raggedleft  \textit{-} & soustraction\\
@@ -321,36 +328,51 @@
 	\raggedleft  \textit{DIV} & division entière\\
 	\raggedleft  \textit{MOD} & reste de la division entière\\		
 	\end{tabular}
-\end{frame}
-
-\begin{frame}{Opérateurs arithmétiques élémentaires}
+	
+	\bigskip
+	
 	Ils agissent sur des variables ou expressions à valeurs entières ou
 	réelles. 
 	
-	Plusieurs opérateurs peuvent être utilisés pour former des
-	expressions plus ou moins complexes, en tenant compte des règles de
-	calcul habituelles, notamment la priorité de la multiplication et de la
-	division sur l’addition et la soustraction. 
+\end{frame}
+
+\begin{frame}{Opérateurs arithmétiques élémentaires}
+	\begin{itemize}
+		\item
+		Plusieurs opérateurs peuvent être utilisés pour former des
+		expressions plus ou moins complexes, en tenant compte des règles de
+		calcul habituelles, notamment la priorité de la multiplication et de la
+		division sur l’addition et la soustraction. 
+		
+	\bigskip
 	
-	Il est aussi permis	d’utiliser des parenthèses.
+		\item
+		Il est aussi permis	d’utiliser des parenthèses.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Fonctions mathématiques complexes}
+	\begin{itemize}
+	\item
 	L’élévation à la puissance sera notée \textit{**} ou
 	\textit{\^{}} . 
 	
 	\bigskip
 	
-	Pour la racine carrée d’une variable x nous
-	écrirons  $\sqrt{x}$ \textit{.} Attention, pour ce dernier, de veiller
+	\item
+	La racine carrée d’une variable x s'écrira
+	$\sqrt{x}$ \textit{.} 
+	
+	Attention, pour ce dernier, de veiller
 	à ne l’utiliser qu’avec un radicant positif !
 
 	\bigskip
-
-	Si nécessaire, on se permettra d'utiliser les autres
-	fonctions mathématiques sous leur forme la plus courante dans la
-	plupart des langages de programmation (exemples~:
-	$sin(x)$, $tan(x)$, $log(x)$, $exp(x)$, ...)
+	
+	\item
+	On se permettra d'utiliser les autres
+	fonctions mathématiques sous leur forme la plus courante
+	(exemples~:	$sin(x)$, $tan(x)$, $log(x)$, $exp(x)$, ...)
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Fonctions mathématiques complexes}
@@ -360,7 +382,9 @@
 	\bigskip
 	
 	Mais on peut aussi accepter la notation mathématique usuelle
+	\begin{center}
 	$\frac{-b+\sqrt{b^{2}-4\ast a\ast c}}{2\ast a}$ 
+	\end{center}
 	
 	\bigskip
 
@@ -370,8 +394,10 @@
 
 \begin{frame}{Opérateurs de comparaison}
 
-	Ces opérateurs agissent généralement sur des variables numériques ou des
+	Ils agissent sur des variables numériques ou des
 	chaines et donnent un résultat booléen.
+
+	\bigskip
 
 	\begin{tabular}{p{1.6cm}|p{11.5cm}}
 	\raggedleft  \textit{=} & égal\\
@@ -383,6 +409,7 @@
 	\raggedleft  \textit{${\geq}$} & plus grand ou égal\\
 	\end{tabular}
 	
+	\bigskip
 
 	Pour les chaines, c'est l’ordre alphabétique qui
 	détermine le résultat (par exemple
@@ -396,8 +423,10 @@
 	
 \begin{frame}{Opérateurs logiques}
 
-	Ils agissent sur des expressions booléennes (variables ou expressions à
-	valeurs booléennes) pour donner un résultat du même type.
+	Ils agissent sur des expressions booléennes 
+	pour donner un résultat du même type.
+	
+	\bigskip
 
 	\begin{tabular}{p{1.6cm}|p{11.5cm}}
 	\raggedleft  \textit{NON} & négation\\
@@ -407,34 +436,41 @@
 \end{frame}
 
 \begin{frame}{Opérateurs logiques}
-	Pour rappel, \textit{cond1 ET cond2} n’est vrai que lorsque
+	\begin{itemize}
+	\item
+	\textbf{cond1 ET cond2} n’est vrai que lorsque
 	les deux conditions sont vraies. 
 	
-	\bigskip
-	
-	\textit{cond1 OU cond2} est
+	\item
+	\textbf{cond1 OU cond2} est
 	toujours vrai, sauf quand les deux conditions sont fausses.
 
-	\bigskip
+	\item
+	Parenthèser dans le cas de combinaisons de ET et de
+	OU : 
 	
-	Veillez à mettre des parenthèses dans le cas de combinaisons de ET et de
-	OU : \textit{(cond1 ET cond2) OU cond3} étant différent de
-	\textit{cond1 ET (cond2 OU cond3).} 
+	\textbf{(cond1 ET cond2) OU cond3} étant différent de
 	
-	En cas d'oubli de parenthèses, il faudra se rappeler que
-	\textit{ET} est prioritaire sur le \textit{OU}.
+	\textbf{cond1 ET (cond2 OU cond3).} 
+	
+	\item
+	En cas d'oubli de parenthèses,
+	\textbf{\textit{ET} est prioritaire sur le \textit{OU}}.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Opérateurs logiques}
 
-	Pour rappel aussi, pour un booléen \textit{ok}~: 
+	Pour un booléen \textit{ok}~: 
 	
-	\textit{ok = faux} est équivalent à \textit{NON ok},
-	
-	\textit{ok = vrai} est équivalent à \textit{ok} et 
-	
-	\textit{NON NON ok} est équivalent à \textit{ok}.
-	
+	\begin{itemize}
+	\item
+	\textbf{ok = faux} est équivalent à \textbf{NON ok},
+	\item
+	\textbf{ok = vrai} est équivalent à \textbf{ok} et 
+	\item
+	\textbf{NON NON ok} est équivalent à \textbf{ok}.
+	\end{itemize}
 	Dans les trois cas, nous préconiserons la seconde écriture.
 \end{frame}
 
@@ -486,7 +522,7 @@
 			\textit{estMinuscule}).
 		\item \textit{majuscule(car)} donne la majuscule de la lettre \textit{car}
 			(idem pour \textit{minuscule}).
-		\item \textit{position(car)} donne la position de \textit{car} dans l'alphabet (ex: \textit{numLettre('E')} donne 5, 
+		\item \textit{numLettre(car)} donne la position de \textit{car} dans l'alphabet (ex: \textit{numLettre('E')} donne 5, 
 		idem pour \textit{numLettre('e')}).
 		\item \textit{lettre(num)} l'inverse de la précédente (ex: \textit{lettre(4)} donne le caractère 'D').
 	\end{itemize}
@@ -521,6 +557,8 @@
 	\end{pseudo}
 	}
 	
+	\bigskip
+	
 	Par exemple~:
 
 	\cadre{
@@ -545,6 +583,7 @@
 		\textit{varEntière}{ $\gets$ }\textit{varRéelle} : 
 		dans ce cas le contenu de la variable sera la valeur \textbf{tronquée}
 		de l’expression réelle. 
+		
 		Par exemple si «~\textit{nb}~» est
 		une variable de type entier, son contenu après l’instruction
 		«~\textit{nb}{ $\gets$ }\textit{$15/4$}~» 
@@ -583,24 +622,22 @@
 \subsection{Communication des résultats}
 \begin{frame}{Communication des résultats}
 
-	L’instruction de communication des résultats consiste à donner à
-	l’extérieur (donc à l’utilisateur) la valeur d’un résultat 
-	calculé au cours de l’exécution de l’algorithme. Nous écrirons :
-
 	\cadre{
 	\begin{pseudo}
 	\Write \textit{expression} ou \textit{liste de variables séparées par des virgules}
 	\end{pseudo}
 	}
 
-	qui signifie que la valeur d’une expression (ou celles des différentes
+	\bigskip
+	
+	signifie que la valeur d’une expression (ou celles des différentes
 	variables mentionnées) sera fournie à l’utilisateur (par exemple par un
 	affichage à l’écran ou par impression sur listing via l’imprimante,
 	etc\dots).
 	
 	\bigskip
 	
-	Comme pour l’affectation interne, on ne peut \textit{afficher}
+	Comme pour l’affectation interne, on ne peut \code{afficher}
 	que des expressions dont les variables qui la composent ont été 
 	affectées préalablement.
 \end{frame}
@@ -608,10 +645,19 @@
 \subsection{Structure générale d’un algorithme}
 \begin{frame}{Structure générale d’un algorithme}
 	La traduction d’un algorithme en pseudo-code constituera le contenu d’un
-	\textit{module}. Un module contient donc la solution
-	algorithmique d’un problème donné (ou d’une de ses parties). Sa
-	structure générale sera la suivante :
-
+	\code{module}. 
+	
+	\bigskip
+	
+	Un \code{module} contient donc la solution
+	algorithmique d’un problème donné (ou d’une de ses parties). 
+	
+	\bigskip
+	
+	Sa structure générale sera la suivante :
+	
+	\bigskip
+	
 	\cadre{
 	\begin{pseudo}
 	\Module{nomDuModule}{}{}
@@ -623,13 +669,17 @@
 	\end{pseudo}
 	}		
 	
+	\bigskip
+	
 	Comme pour les variables, le nomDuModule devra être approprié au contenu.
 \end{frame}
 
 \begin{frame}{Fraction(suite)}
-	récrivons l’algorithme d’addition de fractions décrit
+	Réécrivons l’algorithme d’addition de fractions décrit
 	en début de chapitre~:
 
+	\bigskip
+	
 	\cadre{
 	\begin{pseudo}
 	\Module{additionnerFractions}{}{}
@@ -642,8 +692,11 @@
 	\end{pseudo}
 	}
 	
+	\bigskip
+	
 	\textbf{Remarque~:}
 	rappelons que la fraction affichée n'est sans doute pas simplifiée. 
+	
 	Nous n'avons pas encore tous les atouts suffisants pour réaliser 
 	cela à ce niveau. Patience !
 \end{frame}
@@ -652,12 +705,20 @@
 \begin{frame}{Commenter un algorithme}
 	On n’insistera jamais assez sur la nécessité de \textbf{documenter} un
 	algorithme en y insérant des \textbf{commentaires} judicieux, clairs et
-	suffisants ! Un commentaire est un texte placé dans
+	suffisants ! 
+	
+	\bigskip
+	
+	Un \code{commentaire} est un texte placé dans
 	l'algorithme et destiné à faciliter au maximum la
 	compréhension d’un algorithme par le lecteur (parfois une autre
 	personne, mais aussi souvent l'auteur qui se perd dans
 	son propre texte lorsqu'il s'y replonge après une
-	interruption). Ces commentaires (introduits par
+	interruption). 
+	
+	\bigskip
+	
+	Ces commentaires (introduits par
 	«~\textbf{//}~») seront bien entendu ignorés par
 	l’exécutant de l’algorithme.
 \end{frame}
@@ -684,7 +745,11 @@
 	Noter qu’un excès de commentaires peut être aussi nuisible qu’un
 	trop-peu pour la compréhension d’un algorithme. Par exemple, un choix
 	judicieux de noms de variables peut s’avérer bien plus efficace que des
-	commentaires superflus. Ainsi, l’instruction
+	commentaires superflus. 
+	
+	\bigskip
+	
+	Ainsi, l’instruction
 
 	\cadre{
 	\begin{pseudo}
@@ -692,8 +757,12 @@
 	\end{pseudo}
 	}
 
+	\bigskip
+	
 	dépourvue de commentaires est bien préférable aux lignes suivantes :
 
+	\bigskip
+	
 	\cadre{
 	\begin{pseudo}
 	\Let c1 \Gets c0 * (1 + t / 100) 
@@ -702,16 +771,22 @@
 	\end{pseudo}
 	}
 	
+	\bigskip
+	
 	Nous prendrons l'habitude de commenter chaque module en précisant ce qu'il fait.
 \end{frame}
 
 \begin{frame}{Constantes}
 
-	Une \textbf{constante} est une information pour laquelle nom, type et
-	valeur sont figés. La liste des constantes utilisées dans un algorithme
+	Une \code{constante} est une information pour laquelle nom, type et
+	valeur sont figés. 
+	
+	La liste des constantes utilisées dans un algorithme
 	apparaitra dans la section déclaration des variables sous la forme
 	suivante :
 
+	\bigskip
+	
 	\cadre{
 	\begin{pseudo}
 	\Stmt \K{constante} PI = 3,14
@@ -720,6 +795,8 @@
 	\end{pseudo}
 	}
 
+	\bigskip
+	
 	Il est inutile de spécifier leur type, celui-ci
 	étant défini implicitement par la valeur de la constante.
 \end{frame}
@@ -730,15 +807,19 @@
 	fixe et fini de valeurs. Par exemple une variable représentant une
 	saison ne peut prendre que quatre valeurs (HIVER, PRINTEMPS, ÉTÉ,
 	AUTOMNE). On va l'indiquer grâce à
-	l'énumération qui introduit un \textbf{nouveau type}
+	l'\code{enumeration} qui introduit un \textbf{nouveau type}
 	de donnée.
 
+	\bigskip
+	
 	\cadre{
 	\begin{pseudo}
 	\Stmt \K{énumération} Saison \{ HIVER, PRINTEMPS, ÉTÉ, AUTOMNE \}
 	\end{pseudo}
 	}
 
+	\bigskip
+	
 	Il y a deux avantages à cela : une indication claire des possibilités de
 	la variable lors de la déclaration et une lisibilité du code grâce à
 	l'utilisation des valeurs explicites.
@@ -775,10 +856,14 @@
 \begin{frame}{Lien avec les entiers}
 	Dans l'exemple ci dessus, on lit une Saison mais souvent,
 	si on travaille avec les Mois par exemple,
-	on disposera plutôt d'un entier. Il faut pouvoir
-	convertir les valeurs. Chaque langage de programmation propose sa
-	propre technique; nous allons adopter la syntaxe suivante :
+	on disposera plutôt d'un entier. 
+	
+	Il faut pouvoir	convertir les valeurs. 
+	
+	Nous allons adopter la syntaxe suivante :
 
+	\bigskip
+	
 	\cadre{
 	\begin{pseudo}
 	\Stmt Saison(3) 

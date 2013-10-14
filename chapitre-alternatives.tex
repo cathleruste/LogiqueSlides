@@ -1,0 +1,312 @@
+\section{Alternatives}
+%\leconwithtoc
+
+\subsection{si - alors - sinon}
+
+\begin{frame}{si - alors}
+	Cette structure permet d'exécuter une partie de code ou
+	une autre en fonction de la valeur de vérité d'une
+	condition.
+	
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\If{condition}
+		\LComment instructions à réaliser si la condition est VRAIE
+	\EndIf
+	\end{pseudo}
+	}
+	
+	\bigskip
+	
+	La \code{condition} 
+	\begin{itemize}
+	\item
+	est une expression délivrant un résultat booléen
+	(\textbf{vrai} ou \textbf{faux})~; 
+	\item
+	associe des variables,
+	constantes, expressions arithmétiques, au moyen des opérateurs logiques
+	ou de comparaison~; 
+	\item
+	peut être réduite à
+	une seule variable booléenne.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{si - alors - sinon}
+	\cadre{
+		\begin{pseudo}
+		\If{condition}
+			\LComment instructions à réaliser si la condition est VRAIE
+		\Else
+			\LComment instructions à réaliser si la condition est FAUSSE
+		\EndIf
+		\end{pseudo}
+	}
+
+	\bigskip
+	
+	Dans cette structure, une et une seule des deux séquences est exécutée.
+
+\end{frame}
+
+\begin{frame}{Exemple : Signe d'un nombre}
+	Écrire un algorithme qui affiche si un nombre lu est positif (zéro inclus)
+	ou strictement négatif.
+	
+	\bigskip
+	
+	\cadre{
+		\begin{pseudo}
+		\LComment Lit un nombre et affiche si ce nombre est positif (zéro inclus)
+		ou strictement négatif
+		\Module{signeNombre}{}{}
+			\Decl nb : entier
+			\Read nb
+			\If{nb < 0}
+				\Write "le nombre", nb, " est négatif"
+			\Else
+				\Write "le nombre", nb, " est positif ou nul"
+			\EndIf
+		\EndModule
+		\end{pseudo}
+	}
+
+\end{frame}
+
+\begin{frame}{Exercice : Signe d'un nombre (amélioré)}
+	Écrire un algorithme qui dit si un nombre lu est positif, 
+	négatif ou nul.
+\end{frame}
+
+\subsection{L'indentation}
+
+\begin{frame}{L'indentation}
+	Dans l’écriture de tout algorithme, on veillera à \textbf{indenter}
+	correctement les lignes de codes afin de faciliter sa lecture ; cela
+	veut dire que :
+
+	\begin{itemize}
+		\item {
+		Les \textbf{balises} encadrant toute structure de contrôle devront être
+		parfaitement à la verticale l’une de l’autre : \textit{module}
+		et \textit{fin} \textit{module~}; \textit{si}
+		[, \textit{sinon}] et \textit{fin}
+		\textit{si~}; (c'est vrai aussi pour celles que nous allons voir plus tard~:
+		\textit{selon que}; \textit{tant que}; 
+		\textit{faire jusqu'à ce que~}; \textit{pour})}
+		\item {
+		Les lignes situées entre toute paire de balises devront être décalées
+		d'une tabulation vers la droite.}
+		\item {
+		On pensera aussi à tracer une \textbf{ligne verticale} entre le début et la
+		fin d'une structure de contrôle afin de mieux la
+		délimiter encore (surtout lorsqu'on travaille sur papier). }
+	\end{itemize}
+
+\end{frame}
+
+\subsection{selon que}
+
+\begin{frame}{selon que}
+	Avec ces structures, plusieurs branches d'exécution
+	sont disponibles. 
+	
+	\bigskip
+	
+	L'ordinateur choisit la branche à
+	exécuter en fonction de la valeur d'une variable 
+	(ou parfois d'une expression) ou de
+	la condition qui est vraie.
+\end{frame}
+
+\begin{frame}{selon que (version avec listes de valeurs)}
+	\cadre{
+		\begin{pseudo}
+		\Switch{(variable(/expression) \K{vaut}}
+			\Case{liste\_1 de valeurs séparées par des virgules }
+				\LComment instructions lorsque la valeur est dans liste\_1
+			\Case{liste\_2 de valeurs séparées par des virgules }
+				\LComment instructions lorsque la valeur est dans liste\_2
+				
+			\dots
+			\Case{liste\_n de valeurs séparées par des virgules }
+				\LComment instructions lorsque la valeur est dans liste\_n
+			\Case{\K{autres }}
+				\LComment instructions lorsque la valeur de l'expression
+				\LComment ne se trouve dans aucune des listes précédentes
+		\EndSwitch
+		\end{pseudo}
+	}
+	
+	\bigskip
+	
+	Noter que le cas \textit{autres} est facultatif.
+\end{frame}
+
+\begin{frame}{selon que (version avec listes de valeurs)}
+	\begin{itemize}
+	\item
+	Dans ce type de structure, comme pour la structure
+	\textit{si-alors-sinon}, une seule des séquences d’instructions
+	sera exécutée. 
+	\item
+	On veillera à ne pas faire apparaitre une même valeur
+	dans plusieurs listes. 
+	\item
+	Cette structure est une simplification
+	d’écriture de plusieurs alternatives imbriquées. 
+	\item
+	Elle est équivalente à~:
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{selon que (version avec listes de valeurs)}
+	\cadre{
+	\begin{pseudo}
+	\If{variable/expression = une des valeurs de la liste\_1}
+		\LComment instructions lorsque la valeur est dans liste\_1
+	\Else
+		\If{variable/expression = une des valeurs de la liste\_2}
+			\LComment instructions lorsque la valeur est dans liste\_2
+		\Else
+			
+			\dots
+			\If{variable/expression = une des valeurs de la liste\_n}
+				\LComment instructions lorsque la valeur est dans liste\_n
+			\Else
+				\LComment instructions lorsque la valeur de l'expression
+				\LComment ne se trouve dans aucune des listes précédentes
+			\EndIf
+		\EndIf
+	\EndIf
+	\end{pseudo}
+	}
+
+\end{frame}
+
+\begin{frame}{selon que (version avec conditions)}
+	\cadre{
+		\begin{pseudo}
+		\Switch{}
+			\Case{condition\_1 }
+				\LComment instructions lorsque la condition\_1 est vraie
+			\Case{condition\_2 }
+				\LComment instructions lorsque la condition\_2 est vraie
+			
+			\dots
+			\Case{condition\_n }
+				\LComment instructions lorsque la condition\_n est vraie
+			\Case{\K{autres }}
+				\LComment instructions à exécuter quand aucune
+				\LComment des conditions précédentes n’est vérifiée
+		\EndSwitch
+		\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{selon que (version avec conditions)}
+	\begin{itemize}
+	\item
+	Comme précédemment, une et une seule des séquences d’instructions est
+	exécutée. 
+	\item
+	On veillera à ce que les conditions ne se «~recouvrent~» pas,
+	c’est-à-dire que deux d’entre-elles ne soient jamais vraies
+	simultanément. 
+	\item
+	C'est équivalent à~:
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{selon que (version avec conditions)}
+	\cadre{
+	\begin{pseudo}
+		\If{condition\_1}
+			\LComment instructions lorsque la condition\_1 est vraie
+		\Else
+			\If{condition\_2}
+				\LComment instructions lorsque la condition\_2 est vraie
+			\Else
+				
+				\dots
+				\If{condition\_n}
+					\LComment instructions lorsque la condition\_n est vraie
+				\Else
+					\LComment instructions à exécuter quand aucune
+					\LComment des conditions précédentes n’est vérifiée
+				\EndIf
+			\EndIf
+		\EndIf
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple : Jour de la semaine en clair}
+	Écrire un algorithme qui lit un jour de la semaine sous forme
+	d'un nombre entier (1 pour lundi, \dots, 7 pour
+	dimanche) et qui affiche en clair ce jour de la semaine.
+\end{frame}
+
+\begin{frame}{Exemple : Jour de la semaine en clair}
+	\cadre{
+	\begin{pseudo}
+	\LComment Lit un nombre entre 1 et 7 et affiche en clair le jour de la semaine correspondant.
+	\Module{jourSemaine}{}{}
+	\Decl jour : entier
+	\Read jour
+		\Switch{jour \K{vaut}}
+			\Stmt 1 : \K{afficher} "lundi"
+			\Stmt 2 : \K{afficher} "mardi"
+			\Stmt 3 : \K{afficher} "mercredi"
+			\Stmt 4 : \K{afficher} "jeudi"
+			\Stmt 5 : \K{afficher} "vendredi"
+			\Stmt 6 : \K{afficher} "samedi"
+			\Stmt 7 : \K{afficher} "dimanche"
+		\EndSwitch
+	\EndModule
+	\end{pseudo}
+	}
+
+\end{frame}
+
+\begin{frame}{Exemple : Nombre de jours (avec énumération)}
+	Reprendre l'algorithme qui affiche le nombre de jours
+	dans un mois en utilisant une énumération.
+\end{frame}
+
+\begin{frame}{Exemple : Nombre de jours (avec énumération)}
+	\cadre{
+	\begin{pseudo}
+	\footnotesize
+	\Stmt \K{énumération} Mois \{JANVIER, FÉVRIER, MARS, AVRIL, MAI, JUIN, JUILLET, AOÛT, SEPTEMBRE, OCTOBRE, NOVEMBRE, DÉCEMBRE\}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple : Nombre de jours (avec énumération)}
+	\cadre{
+	\begin{pseudo}
+	\LComment Lit un Mois et affiche le nombre de jours correspondant
+	\LComment (en ne tenant pas compte des années bissextiles).
+	\Module{nbJours}{}{}
+		\Decl unMois : Mois
+		\Read unMois
+		\RComment on lira la valeur JANVIER ou FÉVRIER ou MARS ou ... ou DÉCEMBRE
+		\Switch{unMois \K{vaut}}
+			\Case{JANVIER, MARS, MAI, JUILLET, AOÛT, OCTOBRE, DÉCEMBRE}
+				\Write 31
+			\Case{AVRIL, JUIN, SEPTEMBRE, NOVEMBRE}
+				\Write 30
+			\Case{FÉVRIER} \Comment{on ne tient pas compte ici des années bissextiles}
+				\Write 28
+			\Case{\K{autre}}
+				\Write "Mois invalide"
+		\EndSwitch
+	\EndModule
+	\end{pseudo}
+	}
+
+\end{frame}

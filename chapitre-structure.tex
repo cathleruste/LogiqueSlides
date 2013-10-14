@@ -1,0 +1,341 @@
+\section{Les variables structurées}
+%\leconwithtoc
+
+\subsection{Le type structuré}
+
+\begin{frame}{types simple et structuré}
+	\begin{itemize}
+		\item
+		Les variables de \code{types}
+		dits «~\code{simples}~» ne peuvent
+		contenir qu’une seule valeur à la fois  
+		(entier, réel, booléen, caractère, chaine).
+		
+		\bigskip
+	
+		\item
+		Cependant, certains types
+		d’information consistent en un 
+		regroupement de plusieurs données
+		élémentaires.
+		\begin{itemize}
+			\item 
+				une \textbf{date} est composée de trois éléments (le jour, le mois,
+				l’année);
+			\item {
+				un \textbf{moment} de la journée est un triple d’entiers (heures,
+				minutes, secondes)}
+			\item {
+				la localisation d’un \textbf{point} dans un plan nécessite 
+				deux coordonnées cartésiennes (l’abscisse \textit{x} et
+				l’ordonnée \textit{y}) ou polaires (le rayon \textit{r} et l’angle
+				\textit{$\theta $})}
+			\item {
+				une \textbf{adresse }est composée de plusieurs données}
+		\end{itemize}
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{type structuré}
+	Pour stocker et manipuler de tels ensembles de données, nous utiliserons
+	des \textbf{types structurés} ou \textbf{structures}.
+	
+	\bigskip
+	
+	\cadre{
+	Une \code{structure} est donc un ensemble
+	fini d’éléments pouvant être de types distincts. Chaque élément de cet
+	ensemble, appelé \code{champ} de la structure, possède un nom unique.
+	}
+	
+	\bigskip
+	
+	Noter qu’un champ d’une structure peut lui-même être une structure. 
+	
+	Par	exemple, une \textbf{carte d’identité} inclut parmi ses informations
+	une \textbf{date} de naissance, l’\textbf{adresse} de son
+	propriétaire (cachée dans la puce électronique!),\dots
+\end{frame}
+
+\subsection{Définition d'une structure}
+
+\begin{frame}{Définition}
+	La définition d’un type structuré adoptera le modèle suivant~:
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Struct{NomDeLaStructure}
+		\Decl nomChamp1~: type1
+		\Decl nomChamp2~: type2
+		\Decl \dots
+		\Decl nomChampN~: typeN
+	\EndStruct
+	\end{pseudo}
+	}
+
+	\bigskip
+	
+	\textit{nomChamp1}, \dots, \textit{nomChampN }
+	sont les noms des différents champs de la structure, 
+	et \textit{type1}, \dots, \textit{typeN} 
+	les types de ces champs. 
+	
+	\bigskip
+	
+	Ces types sont 
+	\begin{itemize}
+	\item
+	soit les types «~simples~» étudiés
+	précédemment (entier, réel, booléen, caractère, chaine) 
+	\item
+	soit d’autres
+	types structurés dont la structure aura été préalablement définie.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple}
+	Pour exemple, nous définissons ci-dessous trois
+	types structurés que nous utiliserons souvent par la suite~:
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Struct{Date}
+		\Decl jour~: entier
+		\Decl mois~: entier
+		\Decl année~: entier
+	\EndStruct
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple}
+	\cadre{
+	\begin{pseudo}
+	\Struct{Moment}
+		\Decl heure~: entier
+		\Decl minute~: entier
+		\Decl seconde~: entier
+	\EndStruct
+	\end{pseudo}
+	}
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Struct{Point}
+		\Decl x~: réel
+		\Decl y~: réel
+	\EndStruct
+	\end{pseudo}
+	}
+
+\end{frame}
+
+\subsection{Déclaration d’une variable de type structuré}
+
+\begin{frame}{Exemple}
+	Une fois un type structuré défini, la
+	déclaration de variables de ce type est identique à celle des variables
+	simples. 
+	
+	\bigskip
+	
+	Par exemple~:
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Decl anniversaire, jourJ~: Date
+	\Decl départ, arrivée, unMoment~: Moment
+	\Decl a, b, centreGravité~: Point
+	\end{pseudo}
+	}
+\end{frame}
+
+\subsection{Utilisation des variables de type structuré}
+
+\begin{frame}{Utilisation d'un champ}
+	Pour accéder à l’un des champs d’une variable structurée, il faut mentionner
+	le nom de ce champ ainsi que celui de la variable dont il fait partie.
+	
+	\bigskip
+	
+	Nous utiliserons la notation «~pointée~»~:
+	
+	\bigskip
+
+	\cadre{
+	\begin{pseudo}
+	\Stmt nomVariable.nomChamp
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple}	
+	\cadre{
+	\begin{pseudo}
+	\Let anniversaire.jour \Gets 15
+	\Let anniversaire.mois \Gets 10
+	\Let anniversaire.année \Gets 2014
+	\Let arrivée.heure \Gets départ.heure + 2
+	\Let centreGravité.x \Gets (a.x + b.x) / 2
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Utilisation globale}
+		On peut cependant, dans certains cas, utiliser
+	une variable structurée de manière globale (c’est-à-dire d’une façon
+	qui agit simultanément sur chacun de ses champs). 
+	
+	\bigskip
+	
+	Le cas le plus
+	courant est l’affectation interne entre deux variables structurées de
+	même type, par exemple~:
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Let arrivée \Gets départ
+	\end{pseudo}
+	}
+
+	\bigskip
+	
+	qui résume les trois instructions suivantes~:
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Let arrivée.heure \Gets départ.heure
+	\Let arrivée.minute \Gets départ.minute
+	\Let arrivée.seconde \Gets départ.seconde
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Paramètre d'un module}
+	Une variable structurée peut aussi être le
+	paramètre d’un module, et un module peut également renvoyer une
+	«~valeur~» de type structuré. 
+	
+	\bigskip
+	
+	Par exemple, l’entête d’un module
+	renvoyant le nombre de secondes écoulées entre une heure de départ et
+	d’arrivée serait~:
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\ModuleSign{nbSecondesEcoulées}{ départ\In, arrivée\In~: Moment}{entier}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Lire et afficher}
+	On pourra aussi lire ou afficher une variable structurée.
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Read unMoment
+	\Write unMoment
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Comparaison}
+	On ne peut pas utiliser les opérateurs de comparaison ({\textless}, {\textgreater}) pour
+	comparer des variables structurées. 
+	
+	\bigskip
+	
+	En effet, s’il est naturel de vouloir comparer des dates ou des moments,
+	comment définir une relation d’ordre avec les points du plan ou avec
+	des cartes d’identités ?
+
+	\bigskip
+	
+	Si le besoin de comparer des variables
+	structurées se fait sentir, il faudra dans ce cas écrire des modules de
+	comparaison adaptés aux structures utilisées.
+\end{frame}
+
+\begin{frame}{Assignation globale}
+	Par facilité d'écriture, on peut assigner tous les champs en une 
+	fois via des «~\{\}~». 
+	
+	\bigskip
+	
+	Exemple~:
+
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\Let anniversaire \Gets \{1, 9, 1989\}
+	\end{pseudo}
+	}
+\end{frame}
+
+\subsection{Exemple d’algorithme}
+
+\begin{frame}{Exemple}	
+	Le module ci-dessous reçoit en paramètre deux dates ; 
+	
+	la valeur renvoyée est 
+	\begin{itemize}
+	\item
+	–1 si la première date est antérieure à la deuxième, 
+	\item
+	0 si les deux	dates sont identiques 
+	\item
+	1 si la première date est postérieure à la
+	deuxième.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple}	
+		\cadre{
+	\begin{pseudo}
+	\Module{comparerDates}{date1\In, date2\In~: Date}{entier}
+		\Decl résultat~: entier
+		\Let  résultat \Gets -1
+		\RComment valeur choisie par défaut
+		\If{date1.année ${\geq}$ date2.année}
+			\If{date1.année $>$ date2.année}
+				\Let  résultat \Gets 1
+			\Else \RComment les années sont identiques
+				\If{date1.mois ${\geq}$ date2.mois}
+					\If{date1.mois $>$ date2.mois}
+						\Let  résultat \Gets 1
+					\Else \RComment les années et les mois sont identiques
+						\If{date1.jour ${\geq}$ date2.jour}
+							\If{date1.jour $>$ date2.jour}
+								\Let  résultat \Gets 1
+							\Else \RComment les années, les mois et les jours sont identiques
+								\Let  résultat \Gets 0
+							\EndIf
+						\EndIf
+					\EndIf
+				\EndIf
+			\EndIf
+		\EndIf
+		\Return résultat
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
