@@ -1,0 +1,856 @@
+\section{Tableaux}
+%\leconwithtoc
+
+\subsection{Objectifs}
+
+\begin{frame}{Objectifs}
+	Dans ce chapitre nous étudions les tableaux, 
+	une structure qui peut contenir 
+	plusieurs exemplaires de données similaires.
+\end{frame}
+
+\subsection{Utilité des tableaux}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	Un gérant d’une entreprise commerciale souhaite connaitre l’impact d’une
+		journée de promotion publicitaire sur la vente de dix de ses produits.
+		Pour ce faire, les numéros de ces produits (numérotés de 1 à 10 pour
+		simplifier) ainsi que les quantités vendues pendant cette journée de
+		promotion sont encodés au fur et à mesure de leurs ventes. En fin de
+		journée, le vendeur entrera la valeur 0 pour signaler la fin de
+		l’introduction des données. Ensuite, les statistiques des ventes seront
+		affichées.
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	La démarche générale se décompose en trois parties~:
+
+	\begin{itemize}
+	\item {
+		le traitement de début de journée, qui consiste essentiellement à mettre
+		les compteurs des quantités vendues pour chaque produit à 0}
+		\item {
+		le traitement itératif durant toute la journée~: au fur et à mesure des
+		ventes, il convient de les enregistrer, c’est-à-dire d’ajouter au
+		compteur des ventes d’un produit la quantité vendue de ce produit ; ce
+		traitement itératif s’interrompra lorsque la valeur 0 sera introduite}
+	\item {
+		le traitement final, consistant à communiquer les valeurs des compteurs
+		pour chaque produit.}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+	\LComment Calcule et affiche la quantité vendue de 10 produits.
+	\Module{statistiquesVentesAvecTableau}{}{}
+		\Stmt déclaration
+		\Stmt initialisation
+		\Stmt lecture
+		\Stmt affichage
+	\EndModule
+\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{lecture}
+		\Decl cpt1, cpt2, cpt3, cpt4, cpt5~: entiers
+		\Decl cpt6, cpt7, cpt8, cpt9, cpt10~: entiers
+		\Decl numéroProduit, quantité~: entiers
+		\EndBlock
+		}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{initialisation}
+		\Empty
+		\Let cpt1 \Gets 0
+		\Let cpt2 \Gets 0
+		\Let cpt3 \Gets 0
+		\Let cpt4 \Gets 0
+		\Let cpt5 \Gets 0
+		\Let cpt6 \Gets 0
+		\Let cpt7 \Gets 0
+		\Let cpt8 \Gets 0
+		\Let cpt9 \Gets 0
+		\Let cpt10 \Gets 0
+		\EndBlock
+		}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{lecture}
+		\Write "Introduisez le numéro du produit~:"
+		\Read numéroProduit
+		\While{numéroProduit > 0}
+			\Write "Introduisez la quantité vendue~:"
+			\Read quantité
+			\Switch{numéroProduit \K{vaut}}
+				\Stmt 1~: cpt1 \Gets cpt1 + quantité
+				\Stmt 2~: cpt2 \Gets cpt2 + quantité
+				\Stmt 3~: cpt3 \Gets cpt3 + quantité
+				\Stmt 4~: cpt4 \Gets cpt4 + quantité
+				\Stmt 5~: cpt5 \Gets cpt5 + quantité
+				\Stmt 6~: cpt6 \Gets cpt6 + quantité
+				\Stmt 7~: cpt7 \Gets cpt7 + quantité
+				\Stmt 8~: cpt8 \Gets cpt8 + quantité
+				\Stmt 9~: cpt9 \Gets cpt9 + quantité
+				\Stmt 10~:cpt10 \Gets cpt10 + quantité
+			\EndSwitch
+			\Write "Introduisez le numéro du produit~:"
+			\Read numéroProduit
+		\EndWhile
+		\EndBlock
+		}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{affichage}
+		\Write "quantité vendue de produit 1~:", cpt1
+		\Write "quantité vendue de produit 2~:", cpt2
+		\Write "quantité vendue de produit 3~:", cpt3
+		\Write "quantité vendue de produit 4~:", cpt4
+		\Write "quantité vendue de produit 5~:", cpt5
+		\Write "quantité vendue de produit 6~:", cpt6
+		\Write "quantité vendue de produit 7~:", cpt7
+		\Write "quantité vendue de produit 8~:", cpt8
+		\Write "quantité vendue de produit 9~:", cpt9
+		\Write "quantité vendue de produit 10~:", cpt10
+	\EndBlock
+	}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+		Au lieu d’avoir à manier dix compteurs distincts
+	(\textit{cpt1}, \textit{cpt2}, etc.), nous allons
+	envisager une seule «~grande~» variable \textit{cpt} 
+	compartimentée en dix «~sous-variables~» qui se distingueront 
+	les unes des autres par un indice~: \textit{cpt1} 
+	deviendrait ainsi \textit{cpt[1]}, \textit{cpt2} 
+	deviendrait	\textit{cpt[2]}, et ainsi de suite jusqu’à
+	\textit{cpt10} qui deviendrait \textit{cpt[10]}.
+\end{frame}
+
+%==============
+%\begin{comment}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+
+		\begin{center}
+		\begin{tabular}{m{0.588cm}*{10}{m{1.05cm}}}
+			~ &
+			\centering  \textit{cpt[1]} &
+			\centering  \textit{cpt[2]} &
+			\centering  \textit{cpt[3]} &
+			\centering  \textit{cpt[4]} &
+			\centering  \textit{cpt[5]} &
+			\centering  \textit{cpt[6]} &
+			\centering  \textit{cpt[7]} &
+			\centering  \textit{cpt[8]} &
+			\centering  \textit{cpt[9]} &
+			\centering\arraybslash 
+			\textit{cpt[10]}\\\hhline{~----------}
+			\multicolumn{1}{m{0.588cm}|}{\centering 
+			\textit{cpt}} & 
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~} &
+			\multicolumn{1}{m{1.05cm}|}{~
+			}\\\hhline{~----------}
+		\end{tabular}
+	\end{center}
+		
+	Un des intérêts de cette notation est la possibilité de faire apparaitre
+	une variable entre les crochets, par exemple
+	\textit{cpt[i]}, ce qui permet une grande économie de lignes
+	de code.
+\end{frame}
+
+%\end{comment}
+%============
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	Voici la version avec tableau.
+
+	\cadre{
+	\begin{pseudo}
+	\LComment Calcule et affiche la quantité vendue de 10 produits.
+	\Module{statistiquesVentesAvecTableau}{}{}
+		\Stmt déclaration
+		\Stmt initialisation
+		\Stmt lecture
+		\Stmt affichage
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+	\Block{déclaration}
+		\Decl cpt~: \K{tableau} [1 à 10] d’entiers
+		\Decl i, numéroProduit, quantité~: entiers
+	\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{initialisation}
+		\For{i \K{de} 1 \K{à} 10}
+			\Let cpt[i] \Gets 0
+		\EndFor
+		\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{lecture}
+		\Write "Introduisez le numéro du produit~:"
+		\Read numéroProduit
+		\Empty
+		\While{numéroProduit > 0}
+		\Empty
+			\Write "Introduisez la quantité vendue~:"
+			\Read quantité
+			\Empty
+			\Let cpt[numéroProduit] \Gets cpt[numéroProduit] + quantité
+			\Empty
+			\Write "Introduisez le numéro du produit~:"
+			\Read numéroProduit
+			\Empty
+		\EndWhile
+		\EndBlock
+		}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{affichage}
+		\For{i \K{de} 1 \K{à} 10}
+			\Write "quantité vendue de produit ", i, ": ", cpt[i]
+		\EndFor
+		\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\subsection{Définitions}
+
+\begin{frame}{définitions}
+	Un \textbf{tableau} est une suite d’éléments de même type 
+	portant tous le même nom mais se distinguant 
+	les uns des autres par un indice.
+
+	L’\textbf{indice} est un entier 
+	donnant la position d’un élément dans la suite. 
+	Cet indice varie entre la position du premier élément 
+	et la position du dernier élément, 
+	ces positions correspondant aux bornes de l’indice.
+	Notons qu'il n'y a pas de «~trou~»~: 
+	tous les éléments existent entre le premier et le dernier indice.
+
+\end{frame}
+
+\begin{frame}{définitions}
+	La \textbf{taille} d’un tableau 
+	est le nombre (strictement positif) de ses éléments.
+	Attention ! la taille d’un tableau ne peut pas être modifiée pendant
+	son utilisation.
+
+	Souvent on utilise un tableau plus grand que
+	le nombre utile de ses éléments. 
+	Seule une partie du tableau est utilisée. 
+	On parle alors de taille \textbf{physique}
+	(la taille maximale du tableau) 
+	et de taille \textbf{logique}
+	(le nombre d'éléments effectivement utilisés)
+\end{frame}
+
+\subsection{Notations}
+
+\begin{frame}{notations}
+	Pour déclarer un tableau, on écrit~:
+
+	\cadre{
+	\begin{pseudo}
+	\Decl nomTableau~: \K{tableau} [borneMin à borneMax] de TypeElément
+	\end{pseudo}
+	}
+	
+	où \textit{TypeElément} est le type des éléments que l’on
+	trouvera dans le tableau. 
+	
+	\bigskip
+	
+	Les éléments sont d’un des types élémentaires
+	vus précédemment (entier, réel, booléen, chaine, caractère) ou encore
+	des variables structurées. 
+	
+	\bigskip
+	
+	À ce propos, remarquons aussi
+	qu'un tableau peut être un champ d'une structure. 
+	D'autres possibilités apparaitront lors de l'étude de
+	l'orienté objet.
+
+\end{frame}
+
+\begin{frame}{notations}
+	Les bornes apparaissant dans la déclaration sont 
+	\begin{itemize}
+	\item
+	des constantes ou 
+	\item
+	des paramètres ayant une valeur connue lors de la déclaration. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{notations}
+	Une fois un
+	tableau déclaré, seuls les éléments d’indice compris entre
+	\textit{borneMin} et \textit{borneMax} peuvent
+	être utilisés. 
+	
+	\bigskip
+	
+	Par exemple, si on déclare~:
+
+	\cadre{
+	\begin{pseudo}
+	\Decl tabEntiers~: \K{tableau} [1 à 100] d’entiers
+	\end{pseudo}
+	}
+	
+	\bigskip
+	
+	Il est interdit d’utiliser \textit{tabEntiers[0]} ou
+	\textit{tabEntiers[101]}. De plus, chaque élément
+	\textit{tabEntiers[i]} (avec $1 \leq i \leq 100$) doit
+	être manié avec la même précaution qu’une variable simple, c’est-à-dire
+	qu’on ne peut utiliser un élément du tableau qui n’aurait pas été
+	préalablement affecté ou initialisé.
+\end{frame}
+
+\begin{frame}{notations}
+	Il n'est pas interdit de prendre 0 pour la borne
+	inférieure ou même d'utiliser des bornes négatives
+	(par exemple~: \textit{tabTempératures~: 
+	\textbf{tableau} [-20 à 50] de réels}).
+
+	\bigskip
+	
+	En Java, un tableau est défini par sa taille $n$ et les bornes sont
+	automatiquement $0$ et $n-1$. Ce n'est pas le cas en
+	Logique où on a plus de liberté dans le choix des bornes.
+\end{frame}
+
+\subsection{Tableau statique vs tableau dynamique}
+
+\begin{frame}{Tableau statique vs tableau dynamique}
+	Les tableaux étudiés jusqu'ici sont dit \textbf{statiques}.
+	
+	\begin{itemize}
+	\item
+	Un tableau est dit \textbf{statique} si sa taille 
+	est connue lors de l’écriture du programme
+	\item
+	Un tableau est dit \textbf{dynamique}
+	si sa taille n’est connue qu’à l’exécution du programme (elle est
+	calculée, donnée par l’utilisateur, lue dans un fichier de
+	configuration, fournie par une autre partie du programme, \dots)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Tableau statique vs tableau dynamique~: exemple}
+	\begin{itemize}
+	\item
+		Reprenons l’exemple ci-dessus. 
+		S’il y a toujours exactement 10 produits, 
+		alors on peut utiliser un tableau statique. 
+	\item
+		Dans la pratique, il est probable que ce nombre puisse évoluer 
+		au cours de l’histoire de l’entreprise.
+		
+		On peut au moins demander au gérant le nombre d'articles dans son stock.
+		
+		On utilisera alors un tableau dynamique.
+	\item 
+		Si on désire stocker le chiffre d’affaire d’une entreprise 
+		pour une année donnée, mois par mois, un tableau de
+		taille 12 est suffisant (tableau statique)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Tableau statique vs tableau dynamique~: concrètement, comment choisir~?}
+	Le choix dépend du langage.
+
+	Certains langages (c’est le cas de Cobol) ne permettent 
+	que des tableaux statiques. Dans ce cas, il faudra souvent
+	imposer une \textbf{taille maximale} au tableau. 
+	Il sera également nécessaire d’utiliser une variable 
+	pour retenir la taille utile (ou logique) du tableau, 
+	à savoir la partie du tableau réellement utilisée.
+	Bien sûr cette solution entraine souvent une perte de place mémoire due
+	à une réservation inutilement grande (ou, pire, une saturation du
+	tableau qui n’aura pas été prévu assez grand).
+	
+	\bigskip
+	
+	D'autres, comme Java, n'ont que des tableaux dynamiques. La taille ne doit 
+	pas forcément être connue à la compilation, mais doit être connue à
+	l'exécution. Vous verrez les détails dans votre cours de Java.
+\end{frame}
+
+\begin{frame}{Tableau statique vs tableau dynamique~: exemple statique}
+	Reprenons encore l’exemple de la vente de produits. 
+	
+	Si on ne dispose pas de tableau dynamique, on peut réserver
+	un tableau de taille 1000 par exemple (si on est sûr qu’on ne vendra
+	pas plus de 1000 produits différents) et ajouter une variable entière
+	(\textit{nbProduits}) pour retenir 
+	le nombre exact de produits différents actuellement en vente.
+\end{frame}
+
+\begin{frame}{Tableau statique vs tableau dynamique~: exemple statique}
+	\cadre{
+	\begin{pseudo}
+	\LComment Calcule et affiche la quantité vendue de x produits.
+	\Module{statistiquesVentes}{}{}
+		\Stmt déclaration
+		\Stmt initialisation
+		\Stmt lecture
+		\Stmt affichage
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{déclaration}
+		\Decl cpt~: \K{tableau} [1 à 1000] d’entiers
+		\Decl i, numéroProduit, quantité~: entiers
+		\Decl nbArticles~: entier
+		\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{initialisation}
+		\Read nbArticles
+		\Empty
+		\For{i \K{de} 1 \K{à} nbArticles}
+			\Let cpt[i] \Gets 0
+		\EndFor
+		\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{lecture}
+		\Write "Introduisez le numéro du produit~:"
+		\Read numéroProduit
+		\Empty
+		\While{numéroProduit > 0 ET numéroProduit < nbArticles}
+		\Empty
+			\Write "Introduisez la quantité vendue~:"
+			\Read quantité
+			\Empty
+			\Let cpt[numéroProduit] \Gets cpt[numéroProduit] + quantité
+			\Empty
+			\Write "Introduisez le numéro du produit~:"
+			\Read numéroProduit
+		\EndWhile
+		\EndBlock
+		}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{affichage}
+		\For{i \K{de} 1 \K{à} 10}
+			\Write "quantité vendue de produit ", i, ": ", cpt[i]
+		\EndFor
+		\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+
+\begin{frame}{Tableau statique vs tableau dynamique~: exemple dynamique}
+Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
+	(où la taille n’est pas donnée) de sa création effective~(où on donne
+	la taille)
+
+	\cadre{
+	\begin{pseudo}
+	\Decl nomTableau~: \K{tableau} de TypeElément
+	\LComment Le code peut déterminer ici les bornes
+	\Let nomTableau \Gets \K{nouveau} \K{tableau} [ borneMin à borneMax ] de TypeElément
+	\end{pseudo}
+	}
+	
+	\bigskip
+
+	où \textit{borneMin} et \textit{borneMax} sont des
+	expressions entières quelconques.
+\end{frame}
+
+\begin{frame}{Tableau statique vs tableau dynamique~: exemple dynamique}
+	\cadre{
+	\begin{pseudo}
+	\LComment Calcule et affiche la quantité vendue de 10 produits.
+	\Module{statistiquesVentesAvecTableau}{}{}
+		\Stmt déclaration
+		\Stmt initialisation
+		\Stmt lecture
+		\Stmt affichage
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{déclaration}
+		\Decl cpt~: \K{tableau} d’entiers
+		\Decl i, numéroProduit, quantité~: entiers
+		\Decl nbArticles~: entier
+		\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{initialisation}
+		\Read nbArticles
+		\Let cpt \Gets \K{nouveau} \K{tableau} [1 à nbArticles] d'entiers
+		\Empty
+		\For{i \K{de} 1 \K{à} nbArticles}
+			\Let cpt[i] \Gets 0
+		\EndFor
+	\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{lecture}
+		\Write "Introduisez le numéro du produit~:"
+		\Read numéroProduit
+		\Empty
+		\While{numéroProduit > 0 ET numéroProduit < nbArticles}
+		\Empty
+			\Write "Introduisez la quantité vendue~:"
+			\Read quantité
+			\Empty
+			\Let cpt[numéroProduit] \Gets cpt[numéroProduit] + quantité
+			\Empty
+			\Write "Introduisez le numéro du produit~:"
+			\Read numéroProduit
+			\Empty
+		\EndWhile
+	\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exemple~: Statistiques de vente}
+	\cadre{
+	\begin{pseudo}
+		\Block{affichage}
+		\For{i \K{de} 1 \K{à} 10}
+			\Write "quantité vendue de produit ", i, ": ", cpt[i]
+		\EndFor
+	\EndBlock
+	\end{pseudo}
+	}
+\end{frame}
+
+\subsection{Tableau et paramètres}
+
+\begin{frame}{Tableau et paramètres}
+	Un tableau peut être passé en paramètre à un module mais qu’en est-il de
+	sa taille ? Il serait utile de pouvoir appeler le même module avec des
+	tableaux de tailles différentes. Pour permettre cela, la taille du
+	tableau reçu en paramètre est déclarée avec une variable (qui peut être
+	considéré comme un paramètre entrant).
+\end{frame}
+
+\begin{frame}{Tableau et paramètres~: exemple}
+	\cadre{
+	\begin{pseudo}
+	\Module{brol}{tab\In~: \K{tableau} [1 à n] d'entiers}{}
+		\Write "J’ai reçu un tableau de ", n, " éléments".
+	\EndModule
+	\end{pseudo}
+	}
+	
+	\bigskip
+
+	Ce $n$ va prendre la taille précise du tableau
+	(statique ou dynamique) utilisé à chaque appel et peut être utilisé
+	dans le corps du module. Bien sûr il s’agit là de la taille physique du
+	tableau.
+\end{frame}
+
+\begin{frame}{Tableau et paramètres~: exemple}
+	Si une partie seulement du tableau doit être traitée, il
+	convient de passer également la taille logique en paramètre.
+	
+	\cadre{
+	\begin{pseudo}
+	\Module{brol}{tab\In~: \K{tableau} [1 à n] d'entiers, tailleLogique~: entier}{}
+		\Write "J’ai reçu un tableau rempli de ", tailleLogique, " éléments "
+		\Write "sur ", n, " éléments au total."
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Tableau et paramètres~: exemple}
+	Notons qu’on admet également qu’un module retourne un tableau. 
+	
+	\bigskip
+	
+	\cadre{
+	\begin{pseudo}
+	\LComment Crée un tableau statique d'entiers de taille 10, l'initialise à 0 et le retourne.
+	\Module{créerTableau}{}{tableau [1 à 10] d'entiers}
+		\Decl tab~: \K{tableau} [1 à 10] d'entiers
+		\Decl i~: entier
+		\For{i \K{de} 1 \K{à} 10}
+			\Let tab[i] \Gets 0
+		\EndFor
+		\Return tab
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
+
+
+\begin{frame}{Tableau et paramètres~: exemple}
+	\cadre{
+	\begin{pseudo}	
+	\Module{principalAppelTableau}{}{}
+		\Decl entiers~: \K{tableau} [1 à 10] d'entiers
+		\Decl i~: entier
+		\Empty
+		\Let entiers \Gets créerTableau()
+		\Empty
+		\For{i \K{de} 1 \K{à} 10}
+			\Write entiers[i]
+		\EndFor
+	\EndModule
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Tableau et paramètres~: exemple}
+	Par contre, on ne peut pas lire ou afficher un tableau en une seule
+	instruction; il faut des instructions de lecture ou
+	d'affichage individuelles pour chacun de ses éléments.
+\end{frame}
+
+\subsection{Parcours d'un tableau à une dimension}
+
+\begin{frame}{Parcours d'un tableau à une dimension}
+	Soit le tableau statique \textit{tab} déclaré ainsi
+
+	\bigskip
+
+	\cadre{
+	\begin{pseudo}
+		\Decl tab~: \K{tableau} [1 à n] de T \RComment où \code{T} est un type quelconque
+	\end{pseudo}
+	}
+	
+	\bigskip
+
+	ou soit le tableau dynamique \textit{tab} déclaré ainsi
+	
+	\bigskip
+
+	\cadre{
+	\begin{pseudo}
+		\Decl tab~: \K{tableau} de T \RComment où \code{T} est un type quelconque
+		\Let tab \Gets \K{nouveau} \K{tableau} [1 à n] de T
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension}
+	Envisageons d'abord le parcours complet
+	et voyons ensuite les parcours avec arrêt prématuré.
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours complet}
+	Pour parcourir complètement un tableau, 
+	on peut utiliser la boucle \K{pour}
+	comme dans l'algorithme suivant
+	où \og{}traiter\fg{} va dépendre du problème concret posé~:
+	afficher, modifier, sommer, \dots
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours complet}
+	\cadre{
+	\begin{pseudo}
+		\LComment{Parcours complet d'un tableau via une boucle pour}
+		\LComment Les déclarations sont omises pour ne pas alourdir les algorithmes.
+		\Empty
+		\For{i de 1 à n}
+			\Stmt traiter tab[i]
+		\EndFor
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours avec sortie prématurée}
+	Parfois, on ne doit pas forcément parcourir le tableau jusqu'au bout
+	mais on pourra s'arrêter prématurément si une certaine condition est remplie.
+	
+	\bigskip
+	
+	Par exemple~:
+	\begin{itemize}
+		\item on cherche la présence d'un élément et on vient de le trouver ;
+		\item on vérifie qu'il n'y a pas de $0$ et on vient d'en trouver un.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours avec sortie prématurée}
+	La première étape est de transformer le \K{pour} en \K{tant que}
+	ce qui donne l'algorithme 
+
+	\cadre{
+	\begin{pseudo}
+		\LComment{Parcours complet d'un tableau via une boucle tant-que}
+		\Empty
+		\Let i \Gets 1
+		\While{i $\le$ n}
+			\Stmt traiter tab[i]
+			\Let i \Gets i + 1
+		\EndWhile
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours avec sortie prématurée}
+	On peut à présent introduire le test d'arrêt.
+	
+	Une contrainte est qu'on voudra, à la fin de la boucle, savoir
+	si oui ou non on s'est arrêté prématurément et, si c'est le cas,
+	à quel indice.
+	
+	\bigskip
+
+	Il existe essentiellement deux solutions, avec ou sans variable booléenne.
+	En général, la première solution sera plus claire si le test est court.
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours avec sortie prématurée}
+	\cadre{
+	\begin{pseudo}
+		\LComment{Parcours partiel d'un tableau sans variable booléenne}
+		\Let i \Gets 1
+		\While{i $\le$ n ET \textit{test sur \code{tab[i]} dit que on continue}}
+			\Let i \Gets i + 1
+		\EndWhile
+		\If{i $>$ n}
+			\LComment on est arrivé au bout
+		\Else
+			\LComment arrêt prématuré à l'indice i.
+		\EndIf
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours avec sortie prématurée}
+	On pourrait inverser les deux branches du \K{si-sinon} en inversant le test
+	mais attention à ne pas tester tab[i] car $i$ n'est peut-être pas valide.
+	
+	\cadre{
+	\begin{pseudo}
+		\LComment{Parcours partiel d'un tableau avec variable booléenne}
+		\Let i \Gets 1
+		\Let trouvé \Gets faux
+		\While{i $\le$ n ET NON trouvé}
+			\If{\textit{test sur \code{tab[i]} dit que on a trouvé}}
+				\Let trouvé \Gets vrai
+			\Else
+				\Let i \Gets i + 1
+			\EndIf
+		\EndWhile
+		\LComment tester le booléen pour savoir si arrêt prématuré.
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Parcours d'un tableau à une dimension~: parcours avec sortie prématurée}
+	Attention à bien choisir un nom de booléen adapté au problème
+	et à l'initialiser à la bonne valeur. 
+	
+	\bigskip
+	
+	Par exemple, si la variable s'appelle \textit{continue}
+	\begin{itemize}
+		\item initialiser la variable à \textit{vrai} ;
+		\item le test de la boucle est \textit{(... ET continue)} ;
+		\item mettre la variable à \textit{faux} pour sortir de la boucle.
+	\end{itemize}
+\end{frame}
