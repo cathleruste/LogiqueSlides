@@ -13,28 +13,36 @@
 
 \begin{frame}{Exemple~: Statistiques de vente}
 	Un gérant d’une entreprise commerciale souhaite connaitre l’impact d’une
-		journée de promotion publicitaire sur la vente de dix de ses produits.
-		Pour ce faire, les numéros de ces produits (numérotés de 1 à 10 pour
+	journée de promotion publicitaire sur la vente de dix de ses produits.
+	
+	Pour ce faire, 
+	\begin{itemize}
+		\item
+		les numéros de ces produits (numérotés de 1 à 10 pour
 		simplifier) ainsi que les quantités vendues pendant cette journée de
-		promotion sont encodés au fur et à mesure de leurs ventes. En fin de
-		journée, le vendeur entrera la valeur 0 pour signaler la fin de
-		l’introduction des données. Ensuite, les statistiques des ventes seront
-		affichées.
+		promotion sont encodés au fur et à mesure de leurs ventes. 
+		\item
+		En fin de	journée, le vendeur entrera la valeur 0 pour signaler la fin de
+		l’introduction des données. 
+		\item
+		Ensuite, les statistiques des ventes seront	affichées.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Exemple~: Statistiques de vente}
 	La démarche générale se décompose en trois parties~:
 
 	\begin{itemize}
-	\item {
+		\item {
 		le traitement de début de journée, qui consiste essentiellement à mettre
 		les compteurs des quantités vendues pour chaque produit à 0}
 		\item {
 		le traitement itératif durant toute la journée~: au fur et à mesure des
-		ventes, il convient de les enregistrer, c’est-à-dire d’ajouter au
-		compteur des ventes d’un produit la quantité vendue de ce produit ; ce
-		traitement itératif s’interrompra lorsque la valeur 0 sera introduite}
-	\item {
+		ventes~: les enregistrer, c’est-à-dire d’ajouter au
+		compteur des ventes d’un produit la quantité vendue de ce produit ;
+		
+		ce traitement itératif s’interrompra lorsque la valeur 0 sera introduite}
+		\item {
 		le traitement final, consistant à communiquer les valeurs des compteurs
 		pour chaque produit.}
 	\end{itemize}
@@ -58,10 +66,20 @@
 	\cadre{
 	\begin{pseudo}
 		\scriptsize{
-		\Block{lecture}
-		\Decl cpt1, cpt2, cpt3, cpt4, cpt5~: entiers
-		\Decl cpt6, cpt7, cpt8, cpt9, cpt10~: entiers
+		\Block{déclaration}
+		\Empty
+		\Decl cpt1~: entiers
+		\Decl cpt2~: entiers
+		\Decl cpt3~: entiers
+		\Decl cpt4~: entiers
+		\Decl cpt5~: entiers
+		\Decl cpt6~: entiers
+		\Decl cpt7~: entiers
+		\Decl cpt8~: entiers
+		\Decl cpt9~: entiers
+		\Decl cpt10~: entiers
 		\Decl numéroProduit, quantité~: entiers
+		\Empty
 		\EndBlock
 		}
 	\end{pseudo}
@@ -84,6 +102,7 @@
 		\Let cpt8 \Gets 0
 		\Let cpt9 \Gets 0
 		\Let cpt10 \Gets 0
+		\Empty
 		\EndBlock
 		}
 	\end{pseudo}
@@ -126,6 +145,7 @@
 	\begin{pseudo}
 		\scriptsize{
 		\Block{affichage}
+		\Empty
 		\Write "quantité vendue de produit 1~:", cpt1
 		\Write "quantité vendue de produit 2~:", cpt2
 		\Write "quantité vendue de produit 3~:", cpt3
@@ -136,6 +156,7 @@
 		\Write "quantité vendue de produit 8~:", cpt8
 		\Write "quantité vendue de produit 9~:", cpt9
 		\Write "quantité vendue de produit 10~:", cpt10
+		\Empty
 	\EndBlock
 	}
 	\end{pseudo}
@@ -143,14 +164,18 @@
 \end{frame}
 
 \begin{frame}{Exemple~: Statistiques de vente}
-		Au lieu d’avoir à manier dix compteurs distincts
-	(\textit{cpt1}, \textit{cpt2}, etc.), nous allons
-	envisager une seule «~grande~» variable \textit{cpt} 
+	Au lieu d’avoir dix compteurs distincts
+	(\textit{cpt1}, \textit{cpt2}, etc.), 
+	
+	envisageons une seule «~grande~» variable \textit{cpt} 
 	compartimentée en dix «~sous-variables~» qui se distingueront 
-	les unes des autres par un indice~: \textit{cpt1} 
-	deviendrait ainsi \textit{cpt[1]}, \textit{cpt2} 
-	deviendrait	\textit{cpt[2]}, et ainsi de suite jusqu’à
-	\textit{cpt10} qui deviendrait \textit{cpt[10]}.
+	les unes des autres par un indice~: 
+	
+	\textit{cpt1} deviendrait ainsi \textit{cpt[1]}, 
+	
+	\textit{cpt2} deviendrait	\textit{cpt[2]}, 
+	
+	et ainsi de suite jusqu’à	\textit{cpt10} qui deviendrait \textit{cpt[10]}.
 \end{frame}
 
 %==============
@@ -159,7 +184,7 @@
 \begin{frame}{Exemple~: Statistiques de vente}
 
 		\begin{center}
-		\begin{tabular}{m{0.588cm}*{10}{m{0.75cm}}}
+		\begin{tabular}{m{0.6cm}*{10}{m{0.6cm}}}
 			~ &
 			\centering  \textit{cpt[1]} &
 			\centering  \textit{cpt[2]} &
@@ -172,26 +197,27 @@
 			\centering  \textit{cpt[9]} &
 			\centering\arraybslash 
 			\textit{cpt[10]}\\\hhline{~----------}
-			\multicolumn{1}{m{0.588cm}|}{\centering 
+			\multicolumn{1}{m{0.6cm}|}{\centering 
 			\textit{cpt}} & 
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~} &
-			\multicolumn{1}{m{0.75cm}|}{~
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~} &
+			\multicolumn{1}{m{0.6cm}|}{~
 			}\\\hhline{~----------}
 		\end{tabular}
 	\end{center}
 		
-	Un des intérêts de cette notation est la possibilité de faire apparaitre
-	une variable entre les crochets, par exemple
-	\textit{cpt[i]}, ce qui permet une grande économie de lignes
-	de code.
+	\bigskip
+	
+	Une \textbf{variable} peut apparaitre entre les crochets, 
+	
+	par exemple	\textit{cpt[i]}.
 \end{frame}
 
 %\end{comment}
@@ -276,33 +302,51 @@
 \subsection{Définitions}
 
 \begin{frame}{définitions}
-	Un \textbf{tableau} est une suite d’éléments de même type 
-	portant tous le même nom mais se distinguant 
-	les uns des autres par un indice.
+	Un \textbf{tableau} est 
+	\begin{itemize}
+		\item	une suite d’éléments 
+		\item de même type 
+		\item portant tous le même nom 
+		\item mais se distinguant les uns des autres par un indice.
+	\end{itemize}
 
-	L’\textbf{indice} est un entier 
-	donnant la position d’un élément dans la suite. 
-	Cet indice varie entre la position du premier élément 
-	et la position du dernier élément, 
-	ces positions correspondant aux bornes de l’indice.
+	L’\textbf{indice} est un \textbf{entier}
+	donnant la \textbf{position} d’un élément dans la suite. 
+	
+	\begin{itemize}
+		\item
+		Cet indice varie entre la position du premier élément 
+		et la position du dernier élément, 
+		\item
+		ces positions correspondant aux bornes de l’indice.
+	\end{itemize}
+	
 	Notons qu'il n'y a pas de «~trou~»~: 
 	tous les éléments existent entre le premier et le dernier indice.
-
 \end{frame}
 
 \begin{frame}{définitions}
 	La \textbf{taille} d’un tableau 
 	est le nombre (strictement positif) de ses éléments.
+	
+	\textbf{
 	Attention ! la taille d’un tableau ne peut pas être modifiée pendant
-	son utilisation.
+	son utilisation.}
+\end{frame}
 
-	Souvent on utilise un tableau plus grand que
-	le nombre utile de ses éléments. 
-	Seule une partie du tableau est utilisée. 
-	On parle alors de taille \textbf{physique}
-	(la taille maximale du tableau) 
-	et de taille \textbf{logique}
-	(le nombre d'éléments effectivement utilisés)
+\begin{frame}{définitions}	
+	\begin{itemize}
+		\item
+		Souvent on utilise un tableau plus grand que
+		le nombre utile de ses éléments. 
+		\item
+		Seule une partie du tableau est utilisée. 
+		\item
+		On parle alors de taille \textbf{physique}
+		(la taille maximale du tableau) 
+		et de taille \textbf{logique}
+		(le nombre d'éléments effectivement utilisés)
+	\end{itemize}
 \end{frame}
 
 \subsection{Notations}
@@ -329,6 +373,7 @@
 	
 	À ce propos, remarquons aussi
 	qu'un tableau peut être un champ d'une structure. 
+	
 	D'autres possibilités apparaitront lors de l'étude de
 	l'orienté objet.
 
@@ -345,8 +390,7 @@
 \end{frame}
 
 \begin{frame}{notations}
-	Une fois un
-	tableau déclaré, seuls les éléments d’indice compris entre
+	Une fois un	tableau déclaré, seuls les éléments d’indice compris entre
 	\textit{borneMin} et \textit{borneMax} peuvent
 	être utilisés. 
 	
@@ -363,10 +407,9 @@
 	\bigskip
 	
 	Il est interdit d’utiliser \textit{tabEntiers[0]} ou
-	\textit{tabEntiers[101]}. De plus, chaque élément
-	\textit{tabEntiers[i]} (avec $1 \leq i \leq 100$) doit
-	être manié avec la même précaution qu’une variable simple, c’est-à-dire
-	qu’on ne peut utiliser un élément du tableau qui n’aurait pas été
+	\textit{tabEntiers[101]}. 
+	
+	De plus, on ne peut utiliser un élément du tableau qui n’aurait pas été
 	préalablement affecté ou initialisé.
 \end{frame}
 
@@ -379,8 +422,10 @@
 	\bigskip
 	
 	En Java, un tableau est défini par sa taille $n$ et les bornes sont
-	automatiquement $0$ et $n-1$. Ce n'est pas le cas en
-	Logique où on a plus de liberté dans le choix des bornes.
+	automatiquement $0$ et $n-1$. 
+	
+	Ce n'est pas le cas en Logique où on a plus 
+	de liberté dans le choix des bornes.
 \end{frame}
 
 \subsection{Tableau statique vs tableau dynamique}
@@ -391,7 +436,7 @@
 	\begin{itemize}
 	\item
 	Un tableau est dit \textbf{statique} si sa taille 
-	est connue lors de l’écriture du programme
+	est connue lors de l’écriture du programme~;
 	\item
 	Un tableau est dit \textbf{dynamique}
 	si sa taille n’est connue qu’à l’exécution du programme (elle est
@@ -423,21 +468,30 @@
 \begin{frame}{Tableau statique vs tableau dynamique~: concrètement, comment choisir~?}
 	Le choix dépend du langage.
 
-	Certains langages (c’est le cas de Cobol) ne permettent 
-	que des tableaux statiques. Dans ce cas, il faudra souvent
-	imposer une \textbf{taille maximale} au tableau. 
-	Il sera également nécessaire d’utiliser une variable 
-	pour retenir la taille utile (ou logique) du tableau, 
-	à savoir la partie du tableau réellement utilisée.
-	Bien sûr cette solution entraine souvent une perte de place mémoire due
-	à une réservation inutilement grande (ou, pire, une saturation du
-	tableau qui n’aura pas été prévu assez grand).
-	
-	\bigskip
-	
-	D'autres, comme Java, n'ont que des tableaux dynamiques. La taille ne doit 
-	pas forcément être connue à la compilation, mais doit être connue à
-	l'exécution. Vous verrez les détails dans votre cours de Java.
+	\begin{itemize}
+		\item
+		Certains langages (c’est le cas de Cobol) ne permettent 
+		que des tableaux statiques. 
+		
+		Dans ce cas, il faudra souvent
+		imposer une \textbf{taille maximale} au tableau. 
+		
+		Il sera également nécessaire d’utiliser une variable 
+		pour retenir la taille utile (ou logique) du tableau, 
+		à savoir la partie du tableau réellement utilisée.
+		
+		Bien sûr cette solution entraine souvent une perte de place mémoire due
+		à une réservation inutilement grande (ou, pire, une saturation du
+		tableau qui n’aura pas été prévu assez grand).
+		
+		\item	
+		D'autres, comme Java, n'ont que des tableaux dynamiques. 
+		
+		La taille ne doit pas forcément être connue à la compilation, 
+		mais doit être connue à	l'exécution. 
+		
+		Vous verrez les détails dans votre cours de Java.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Tableau statique vs tableau dynamique~: exemple statique}
@@ -498,7 +552,7 @@
 		\Write "Introduisez le numéro du produit~:"
 		\Read numéroProduit
 		\Empty
-		\While{numéroProduit > 0 ET numéroProduit < nbArticles}
+		\While{numéroProduit > 0 ET numéroProduit $\leq$ nbArticles}
 		\Empty
 			\Write "Introduisez la quantité vendue~:"
 			\Read quantité
@@ -518,7 +572,7 @@
 	\cadre{
 	\begin{pseudo}
 		\Block{affichage}
-		\For{i \K{de} 1 \K{à} 10}
+		\For{i \K{de} 1 \K{à} nbArticles}
 			\Write "quantité vendue de produit ", i, ": ", cpt[i]
 		\EndFor
 		\EndBlock
@@ -528,9 +582,13 @@
 
 
 \begin{frame}{Tableau statique vs tableau dynamique~: exemple dynamique}
-Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
-	(où la taille n’est pas donnée) de sa création effective~(où on donne
-	la taille)
+	Pour déclarer un tableau dynamique, on sépare 
+	\begin{itemize}
+		\item
+		la déclaration du tableau	(où la taille n’est pas donnée) 
+		\item
+		de sa création effective~(où on donne la taille)
+	\end{itemize}
 
 	\cadre{
 	\begin{pseudo}
@@ -549,7 +607,7 @@ Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
 \begin{frame}{Tableau statique vs tableau dynamique~: exemple dynamique}
 	\cadre{
 	\begin{pseudo}
-	\LComment Calcule et affiche la quantité vendue de 10 produits.
+	\LComment Calcule et affiche la quantité vendue de X produits.
 	\Module{statistiquesVentesAvecTableau}{}{}
 		\Stmt déclaration
 		\Stmt initialisation
@@ -594,7 +652,7 @@ Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
 		\Write "Introduisez le numéro du produit~:"
 		\Read numéroProduit
 		\Empty
-		\While{numéroProduit > 0 ET numéroProduit < nbArticles}
+		\While{numéroProduit > 0 ET numéroProduit $\leq$ nbArticles}
 		\Empty
 			\Write "Introduisez la quantité vendue~:"
 			\Read quantité
@@ -614,7 +672,7 @@ Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
 	\cadre{
 	\begin{pseudo}
 		\Block{affichage}
-		\For{i \K{de} 1 \K{à} 10}
+		\For{i \K{de} 1 \K{à} nbArticles}
 			\Write "quantité vendue de produit ", i, ": ", cpt[i]
 		\EndFor
 	\EndBlock
@@ -626,8 +684,12 @@ Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
 
 \begin{frame}{Tableau et paramètres}
 	Un tableau peut être passé en paramètre à un module mais qu’en est-il de
-	sa taille ? Il serait utile de pouvoir appeler le même module avec des
-	tableaux de tailles différentes. Pour permettre cela, la taille du
+	sa taille ? 
+	
+	Il serait utile de pouvoir appeler le même module avec des
+	tableaux de tailles différentes. 
+	
+	Pour permettre cela, la taille du
 	tableau reçu en paramètre est déclarée avec une variable (qui peut être
 	considéré comme un paramètre entrant).
 \end{frame}
@@ -645,8 +707,9 @@ Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
 
 	Ce $n$ va prendre la taille précise du tableau
 	(statique ou dynamique) utilisé à chaque appel et peut être utilisé
-	dans le corps du module. Bien sûr il s’agit là de la taille physique du
-	tableau.
+	dans le corps du module. 
+	
+	Bien sûr il s’agit là de la taille physique du tableau.
 \end{frame}
 
 \begin{frame}{Tableau et paramètres~: exemple}
@@ -703,7 +766,9 @@ Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
 
 \begin{frame}{Tableau et paramètres~: exemple}
 	Par contre, on ne peut pas lire ou afficher un tableau en une seule
-	instruction; il faut des instructions de lecture ou
+	instruction; 
+	
+	il faut des instructions de lecture ou
 	d'affichage individuelles pour chacun de ses éléments.
 \end{frame}
 
@@ -800,6 +865,7 @@ Pour déclarer un tableau dynamique, on sépare la déclaration du tableau
 	\bigskip
 
 	Il existe essentiellement deux solutions, avec ou sans variable booléenne.
+	
 	En général, la première solution sera plus claire si le test est court.
 \end{frame}
 

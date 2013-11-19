@@ -4,45 +4,75 @@
 \subsection{Objectif}
 
 \begin{frame}
-	voyons quelques algorithmes simples pour trier un
-		ensemble d'informations~: recherche des maxima, tri
-		par insertion et tri bulle dans un tableau. 
-		Des algorithmes plus efficaces seront vus
-		en deuxième année.
+	Voyons quelques algorithmes simples pour trier un
+	ensemble d'informations~: 
+	
+	\begin{itemize}
+		\item
+		recherche des maxima, 
+		\item
+		tri	par insertion et 
+		\item
+		tri bulle 
+	\end{itemize}
+	dans un tableau. 
+	
+	\bigskip
+	
+	Des algorithmes plus efficaces seront vus
+	en deuxième année.
 \end{frame}
 
 \subsection{Motivation}
 
-\begin{frame}{Motivation}
-	Une application importante de l’informatique est le tri d’informations.
-	La conception d’algorithmes efficaces pour ce type de traitement s’est
-	imposée avec l’apparition de bases de données de taille importante. On
-	citera par exemple la recherche d’un numéro de téléphone ou une adresse
-	dans la version informatisée des pages blanches, ou de façon plus
-	spectaculaire l’efficacité de certains moteurs de recherche qui
-	permettent de retrouver en quelques secondes des mots clés arbitraires
-	parmi plusieurs millions de pages sur le web.
+\begin{frame}{Motivation~: tri d'informations}
+	\begin{itemize}
+		\item
+		recherche d’un numéro de téléphone ou une adresse
+		dans la version informatisée des pages blanches, 
+		\item
+		efficacité de certains moteurs de recherche qui
+		permettent de retrouver en quelques secondes des mots clés arbitraires
+		parmi plusieurs millions de pages sur le web.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Motivation}
-La recherche efficace d’information implique un tri préalable de
-	celle-ci. En effet, si les données ne sont pas classées ou triées, le
-	seul algorithme possible reviendrait à parcourir entièrement l’ensemble
-	des informations. Pour exemple, il suffit d’imaginer un dictionnaire
-	dans lequel les mots seraient mélangés de façon aléatoire au lieu
-	d’être classés par ordre alphabétique. Pour trouver le moindre mot dans
-	ce dictionnaire, il faudrait à chaque fois le parcourir entièrement !
-	Il est clair que le classement préalable (ordre alphabétique) accélère
-	grandement la recherche.
+	\begin{itemize}
+		\item
+		La recherche efficace d’information implique un tri préalable de
+		celle-ci. 
+		\item
+		En effet, si les données ne sont pas classées ou triées, le
+		seul algorithme possible reviendrait à parcourir entièrement l’ensemble
+		des informations. 
+		\item
+		Il suffit d’imaginer un dictionnaire
+		dans lequel les mots seraient mélangés de façon aléatoire au lieu
+		d’être classés par ordre alphabétique. Pour trouver le moindre mot dans
+		ce dictionnaire, il faudrait à chaque fois le parcourir entièrement !
+		\item
+		Il est clair que le classement préalable (ordre alphabétique) accélère
+		grandement la recherche.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Motivation}
-	Ainsi, recherche et tri sont étroitement liés, et la façon dont les
-	informations sont triées conditionne bien entendu la façon de
-	rechercher l’information (cf. algorithme de recherche dichotomique).
+	Ainsi, 
+	\begin{itemize}
+		\item
+		recherche et tri sont étroitement liés, 
+		\item
+		la façon dont les informations sont triées conditionne 
+		bien entendu la façon de rechercher l’information 
+		(cf. algorithme de recherche dichotomique).
+	\end{itemize}
+	
 	Pour exemple, prenons cette fois-ci un dictionnaire des mots croisés
 	dans lequel les mots sont d’abord regroupés selon leur longueur et
-	ensuite par ordre alphabétique. La façon de rechercher un mot dans ce
+	ensuite par ordre alphabétique. 
+	
+	La façon de rechercher un mot dans ce
 	dictionnaire est bien sûr différente de la recherche dans un
 	dictionnaire usuel. 
 \end{frame}
@@ -52,8 +82,8 @@ La recherche efficace d’information implique un tri préalable de
 	
 	\bigskip
 	
-	Celui-ci a pour
-	but d’organiser un ensemble d’informations qui ne l’est pas \textit{à
+	Celui-ci a pour	but d’organiser un ensemble 
+	d’informations qui ne l’est pas \textit{à
 	priori}. 
 	
 	\bigskip
@@ -65,10 +95,13 @@ La recherche efficace d’information implique un tri préalable de
 	\begin{itemize}
 		\item 
 			D’abord les situations impliquant le classement total d’un ensemble de
-			données «~brutes~», c’est-à-dire complètement désordonnées. Prenons
-			pour exemple les feuilles récoltées en vrac à l’issue d’un examen ; il
-			y a peu de chances que celles-ci soient remises à l’examinateur de
-			manière ordonnée ; celui-ci devra donc procéder au tri de l’ensemble
+			données «~brutes~», c’est-à-dire complètement désordonnées. 
+			
+			Prenons	pour exemple les feuilles récoltées en vrac à l’issue 
+			d’un examen ; il y a peu de chances que celles-ci soient remises 
+			à l’examinateur de	manière ordonnée ; 
+			
+			celui-ci devra donc procéder au tri de l’ensemble
 			des copies, par exemple par ordre alphabétique des noms des étudiants,
 			ou par numéro de groupe etc.
 	\end{itemize}
@@ -79,13 +112,20 @@ La recherche efficace d’information implique un tri préalable de
 		\item 
 			Ensuite les situations où on s’arrange pour ne jamais devoir trier la
 			totalité des éléments d’un ensemble, qui resterait cependant à tout
-			moment ordonné. Imaginons le cas d’une bibliothèque~dont les livres
-			sont rangés par ordre alphabétique des auteurs~: à l’achat d’un nouveau
-			livre, ou au retour de prêt d’un livre, celui-ci est immédiatement
-			rangé à la bonne place. Ainsi, l’ordre global de la bibliothèque est
-			maintenu par la répétition d’une seule opération élémentaire consistant
-			à insérer à la bonne place un livre parmi la collection. C’est la
-			situation que nous considérerions dans le cas d'une structure
+			moment ordonné. 
+			
+			Imaginons le cas d’une bibliothèque dont les livres
+			sont rangés par ordre alphabétique des auteurs~: 
+			\begin{itemize}
+				\item
+				à l’achat d’un nouveau livre, ou au retour de prêt d’un livre, 
+				celui-ci est immédiatement rangé à la bonne place. 
+				\item
+				Ainsi, l’ordre global de la bibliothèque est
+				maintenu par la répétition d’une seule opération élémentaire consistant
+				à insérer à la bonne place un livre parmi la collection. 
+			\end{itemize}
+			C’est la	situation que nous considérerions dans le cas d'une structure
 			où les éléments sont ordonnés.
 	\end{itemize}
 \end{frame}
@@ -94,69 +134,117 @@ La recherche efficace d’information implique un tri préalable de
 	\begin{itemize}
 		\item 
 			Enfin, les situations qui consistent à devoir re-trier des données
-			préalablement ordonnées sur un autre critère. Prenons l’exemple d’un
-			paquet de copies d’examen déjà triées sur l’ordre alphabétique des noms
-			des étudiants, et qu’on veut re-trier cette fois-ci sur les numéros de
-			groupe. Il est clair qu’une méthode efficace veillera à conserver
+			préalablement ordonnées sur un autre critère. 
+			
+			Prenons l’exemple 
+			\begin{itemize}
+				\item
+				d’un paquet de copies d’examen déjà triées sur l’ordre alphabétique des noms
+				des étudiants, 
+				\item
+				et qu’on veut re-trier cette fois-ci sur les numéros de
+				groupe. 
+			\end{itemize}
+			Il est clair qu’une méthode efficace veillera à conserver
 			l’ordre alphabétique déjà présent dans la première situation afin que
 			les copies apparaissent dans cet ordre dans chacun des groupes.
 	\end{itemize}
 \end{frame}
 	
 \begin{frame}{Motivation}
-		Le dernier cas illustre un classement sur une \textbf{clé complexe}
+	Le dernier cas illustre un classement sur une \textbf{clé complexe}
 	(ou \textbf{composée}) impliquant la comparaison de plusieurs champs
-	d’une même structure~: le premier classement se fait sur le numéro de
+	d’une même structure~: 
+	
+	le premier classement se fait sur le numéro de
 	groupe, et à numéro de groupe égal, l’ordre se départage sur le nom de
-	l’étudiant. On dira de cet ensemble qu’il est classé en \textbf{majeur}
+	l’étudiant. 
+	
+	On dira de cet ensemble qu’il est classé en \textbf{majeur}
 	sur le numéro de groupe et en \textbf{mineur} sur le nom d’étudiant.
 \end{frame}
 
 \begin{frame}{Motivation}
-		Notons que certains tris sont dits \textbf{stables} parce
+	Notons que certains tris sont dits \textbf{stables} parce
 	qu'en cas de tri sur une nouvelle clé, l’ordre de la
 	clé précédente est préservé pour des valeurs identiques de la nouvelle
 	clé, ce qui évite de faire des comparaisons sur les deux champs à la
-	fois. Les méthodes nommées \textbf{tri par insertion}, \textbf{tri
+	fois. 
+	
+	\bigskip
+	
+	Les méthodes nommées \textbf{tri par insertion}, \textbf{tri
 	bulle} et \textbf{tri par recherche de minima successifs }(que nous
 	allons aborder dans ce chapitre) sont stables.
 \end{frame}
 
 \begin{frame}{Motivation}
-	Le tri d’un ensemble d’informations n’offre que des avantages. Outre le
-	fait déjà mentionné de permettre une recherche et une obtention rapide
-	de l’information, il permet aussi l’application de traitements
-	algorithmiques efficaces (comme par exemple celui des ruptures que nous
-	verrons plus loin) qui s’avéreraient trop coûteux (en temps, donc en
-	argent !) s’ils s’effectuaient sur des ensembles non triés.
+	Le tri d’un ensemble d’informations n’offre que des avantages. 
+	
+	\begin{itemize}
+		\item
+		Outre le fait déjà mentionné de permettre une recherche et une obtention rapide
+		de l’information, 
+		\item
+		il permet aussi l’application de traitements
+		algorithmiques efficaces (comme par exemple celui des ruptures que nous
+		verrons plus loin) qui s’avéreraient trop coûteux (en temps, donc en
+		argent !) s’ils s’effectuaient sur des ensembles non triés.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Motivation}
-	Certains tris sont évidemment plus performants que d’autres. Le choix
+	Certains tris sont évidemment plus performants que d’autres. 
+	
+	\bigskip
+	
+	Le choix
 	d’un tri particulier dépend de la taille de l’ensemble à trier et de la
 	manière dont il se présente, c’est-à-dire déjà plus ou moins ordonné.
-	La performance quant à elle se juge sur deux critères~: le nombre de
-	tests effectués (comparaisons de valeurs) et le nombre de transferts de
-	valeurs réalisés. 
+	
+	\bigskip
+	
+	La performance quant à elle se juge sur deux critères~: 
+	\begin{itemize}
+		\item
+		le nombre de tests effectués (comparaisons de valeurs) et 
+		\item
+		le nombre de transferts de valeurs réalisés. 
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Motivation}
 	Dans ce chapitre, les algorithmes traiteront du tri dans un
-	\textbf{tableau d’entiers à une }\textbf{dimension}. Toute autre
-	situation peut bien entendu se ramener à celle-ci moyennant la
-	définition de la relation d’ordre propre au type de données utilisé. Ce
-	sera par exemple, l’ordre alphabétique pour les chaines de caractères,
+	\textbf{tableau d’entiers à une dimension}. 
+	
+	\bigskip
+	
+	Toute autre	situation peut bien entendu se ramener à celle-ci moyennant la
+	définition de la relation d’ordre propre au type de données utilisé. 
+	
+	\bigskip
+	
+	Ce sera par exemple, l’ordre alphabétique pour les chaines de caractères,
 	l’ordre chronologique pour des objets \textit{Date} ou
 	\textit{Moment} (que nous verrons
-	plus tard), etc. De plus, le seul ordre envisagé sera l’ordre
-	\textbf{croissant} des données. Plus loin, on envisagera le tri 
+	plus tard), etc.
+	
+	\bigskip
+	
+	De plus, le seul ordre envisagé sera l’ordre
+	\textbf{croissant} des données. 
+	
+	\bigskip
+	
+	Plus loin, on envisagera le tri 
 	d'autres structures de données.
 \end{frame}
 
 \begin{frame}{Motivation}
 	Enfin, dans toutes les méthodes de tri abordées, nous supposerons la
-	taille physique du tableau à trier (notée $n$) égale à sa taille
-	logique, celle-ci n’étant pas modifiée par l’action de tri.
+	\textbf{taille physique} du tableau à trier (notée $n$) \textbf{égale} 
+	à sa \textbf{taille	logique}, 
+	celle-ci n’étant pas modifiée par l’action de tri.
 \end{frame}
 
 \subsection{Tri par insertion}
@@ -168,30 +256,43 @@ La recherche efficace d’information implique un tri préalable de
 
 \begin{frame}{Tri par insertion}
 	Le tableau à trier sera à chaque étape subdivisé en deux sous-tableaux~:
-	le premier cadré à gauche contiendra des éléments déjà ordonnés, et le
-	second, cadré à droite, ceux qu’il reste à insérer dans le sous-tableau
-	trié. Celui-ci verra sa taille s’accroitre au fur et à mesure des
-	insertions, tandis que celle du sous-tableau des éléments non triés
+	\begin{itemize}
+		\item
+		le premier cadré à gauche contiendra des éléments déjà ordonnés, 
+		\item
+		et le	second, cadré à droite, ceux qu’il reste à insérer dans 
+		le sous-tableau	trié. 
+	\end{itemize}
+	
+	Le premier verra sa taille s’accroitre au fur et à mesure des
+	insertions, 
+	
+	tandis que celle du sous-tableau des éléments non triés
 	diminuera progressivement.
 \end{frame}
 
 \begin{frame}{Tri par insertion}
-	Au départ de l’algorithme, le sous-tableau trié est le premier élément
-	du tableau. Comme il ne possède qu’un seul élément, ce sous-tableau est
-	donc bien ordonné ! Chaque étape consiste ensuite à prendre le premier
-	élément du sous-tableau non trié et à l’insérer à la bonne place dans
-	le sous-tableau trié.
+	\begin{itemize}
+		\item
+		Au départ de l’algorithme, le sous-tableau trié est le premier élément
+		du tableau. 
+		
+		Comme il ne possède qu’un seul élément, ce sous-tableau est
+		donc bien ordonné ! 
+		\item
+		Chaque étape consiste ensuite à prendre le premier
+		élément du sous-tableau non trié et à l’insérer à la bonne place dans
+		le sous-tableau trié.
+	\end{itemize}
 \end{frame}
 
-\begin{comment}
 \begin{frame}{Tri par insertion}
 	Prenons comme exemple un tableau \code{tab} de 20 entiers. 
 	
 	Au départ, le	sous-tableau trié est formé du premier élément, 
 	\code{tab[1]} qui vaut 20~:
-
 	\begin{center}
-	\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.47cm}}}
+	\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
 		 1 &
 		 2 &
 		 3 &
@@ -214,914 +315,1508 @@ La recherche efficace d’information implique un tri préalable de
 		 20
 		 \\
 	\end{tabular}
-\end{frame}
-\end{comment}
-
-\begin{frame}{Illustration}
-
-	Montrons par un exemple comment le module
-	\textit{{max3}}
-	peut faire appel au module
-	\textit{{max2}}~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit trois nombres et affiche le maximum des trois.
-	\Module{max3}{}{}
-		\Decl a, b, c, temp, max~: réels
-		\Read a, b, c
-		\Stmt max2( a, b, temp )
-		\Stmt max2( temp, c, max )
-		\Write max
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{Illustration}
-	
-	L’instruction
-	\textit{{max2(a, b,
-	temp)}} se déroule comme suit~:
-	
-	\begin{itemize}
-	\item {
-	{le contenu des variables
-	}\textit{{a}}{
-	et
-	}\textit{{b}}{
-	est affecté aux paramètres d’entrée
-	}\textit{{a}}{
-	et
-	}\textit{{b}}{
-	du module
-	}\textit{{max2}}{,
-	puis ce module peut entrer en action~;}}
-	\item {
-	{à l’issue du module
-	}\textit{{max2}}{,
-	la valeur du paramètre de sortie
-	}\textit{{max}}{
-	est communiquée à la variable
-	}\textit{{temp}}{,
-	qui contient à présent le maximum de
-	}\textit{{a}}{
-	et
-	}\textit{{b}}{.}}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Illustration}
-	
-	L’instruction \textit{max2(temp, c, max)}
-	se déroule comme suit~:
-	
-	\begin{itemize}
-	\item {
-	{le contenu des variables
-	}\textit{{temp}}{
-	et
-	}\textit{{c}}{
-	est affecté aux paramètres d’entrée
-	}\textit{{a}}{
-	et
-	}\textit{{b}}{
-	du module
-	}\textit{{max2}}{,
-	puis ce module peut entrer en action~;}}
-	\item {
-	{à l’issue du module
-	}\textit{{max2}}{,
-	la valeur du paramètre de sortie
-	}\textit{{max}}{
-	est communiquée à la variable
-	}\textit{{max}}{,
-	qui contient à présent le maximum des 3 nombres de départ.}}
-	\end{itemize}
-
-	{Il est évident que la présence de ces deux
-	instructions dans le module
-	}\textit{{max3}}{
-	implique la présence du module
-	}\textit{{max2}}{
-	«~aux alentours~» du premier, c’est-à-dire que ces deux modules doivent
-	se trouver sur le même support d’écriture de
-	l'algorithme complet.}
-\end{frame}
-
-\begin{frame}{Remarques}
-	\begin{itemize}
-	\item {
-	{un paramètre peut être à la fois paramètre
-	d’entrée et de sortie~; on le fait suivre alors de la double flèche
-	}{$\uparrow \downarrow$}{~;}}
-	\item {
-	si tous les paramètres sont en entrée, on peut omettre les flèches;}
-	\item {
-	la présence de ces paramètres n’est pas obligatoire, on peut envisager
-	un module sans paramètre de sortie (par ex. un module qui reçoit en
-	entrée un nombre et dont la seule fonction est de l’afficher à
-	l’écran), ou inversement sans paramètre d’entrée (un module qui simule
-	un lancer de dé, et renvoie en paramètre une valeur aléatoire entre 1
-	et 6)~;}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Remarques}
-	\begin{itemize}
-	\item {
-	{pour appeler correctement un module, il faut
-	fournir des noms de variables, des expressions ou des constantes
-	}{\textbf{en même
-	nombre}}{ et en même ordre que les paramètres
-	du module~;}}
-	\item {
-	en outre, les types des variables doivent correspondre entre l’appel et
-	l’en-tête du module~;}
-	\item {
-	ne peut être affectée à un paramètre d’entrée du module qu’une
-	constante, une expression ou une variable préalablement affectée~;}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Remarques}
-	\begin{itemize}
-	\item {
-	à un paramètre de sortie d’un module doit toujours correspondre une
-	autre variable, jamais une constante ou une expression~;}
-	\item {
-	il faut s’assurer qu’à l’issue du module, tous les paramètres de sortie
-	aient été affectés lors de l’exécution de ce module.}
-	\end{itemize}
+	\begin{supertabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		\multicolumn{1}{|m{0.4cm}|}{\cellcolor{gray!25}20} &
+		{12} &
+		{18} &
+		{17} &
+		{15} &
+		{14} &
+		{15} &
+		{16} &
+		{18} &
+		{17} &
+		{12} &
+		{14} &
+		{16} &
+		{18} &
+		{15} &
+		{15} &
+		{9} &
+		{11} &
+		{11} &
+		{13}\\\hline
+	\end{supertabular}
+	\end{center}
 
 \end{frame}
 
-\subsection{Variables locales}
-
-\begin{frame}{variables locales}
-	\begin{itemize}
-	\item
-	Dans le cadre de ce cours d’algorithmique,
-	nous n’envisagerons que l’utilisation de 
-	\textbf{variables locales}. 
-	\item
-	Toute variable est \textbf{locale} au module 
-	dans lequel elle apparait, ce qui veut dire que son existence
-	est ignorée en dehors de ce module. 
-	\item
-	Nous n’envisageons donc pas ici l’utilisation déconseillée de 
-	\textbf{variables globales} 
-	(variables dont le contenu est reconnu 
-	par tous les modules d’un programme).
-	\item
-	Précisons qu'une variable locale est aussi
-	\textbf{dynamique}, c’est-à-dire qu’un emplacement en mémoire lui est
-	réservé durant l’exécution du module où elle est déclarée. Une fois
-	l’exécution terminée, cet emplacement est récupéré en mémoire.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{variables locales}
-	\begin{itemize}
-	\item
-	Plutôt qu’une restriction, cette propriété est
-	une aide confortable au programmeur~: si, de
-	façon fortuite, des variables appartenant à des modules différents
-	possédaient le même nom, il n’y aurait pas d’interférence entre ces
-	variables, ni confusion possible de leur
-	contenu.
-	\item
-	Notons au passage que les variables déclarées dans l’entête du module ne
-	doivent plus l’être dans la partie «~déclaration de variables~» de ce
-	module. Mais toutes les variables utilisées dans un module doivent être
-	déclarées, soit dans son entête, soit dans sa déclaration. Le
-	non-respect de cette règle provoquerait une erreur d’exécution.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{exemple}
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit trois nombres positifs et affiche le maximum des trois.
-	\Module{max3}{}{}
-		\Decl a, b, c, temp, max~: réels
-		\Stmt lirePositif(a)
-		\Stmt lirePositif(b)
-		\Stmt lirePositif(c)
-		\Stmt max2(a, b, temp)
-		\Stmt max2(temp, c, max)
-		\Write max
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{exemple}
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit un nombre, le sort s'il est positif et sinon lance une erreur.
-	\Module{lirePositif}{a\Out~: réel}{}
-		\Read a
-		\If{a < 0}
-			\Error Le nombre n'est pas positif !
-		\EndIf
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{exemple}
-	\cadre{
-	\begin{pseudo}
-	\LComment Affiche deux nombres et sort le maximum des deux.
-	\Module{max2}{a\In, b\In~: réels, max\Out~: réel}{}
-		\If{a > b}
-			\Let max \Gets a
-		\Else
-			\Let max \Gets b
-		\EndIf
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\subsection{Module renvoyant une valeur}
-
-\begin{frame}{valeur en retour}
-	Un deuxième type de module est le 
-	\textbf{module renvoyant une valeur}. 
-	
-	(On désigne aussi ce type de modules par le terme \textbf{fonction}).
-	
-	\bigskip
-	
-	Son entête est du type suivant~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\ModuleSign{exemple }{var1\In~: type1, var2\In~: type2, \dots, varN\In~: typeN}{typeRes}
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{valeur en retour}
-	Il se distingue du module précédemment étudié par la flèche de renvoi à
-	droite, et possède les particularités suivantes~:
-
-	\begin{itemize}
-	\item {
-		{ce module renvoie
-		}{\textbf{une}}{
-		}{\textbf{valeur}}{
-		}{\textbf{qui n’est pas affectée à une variable
-		de
-		}}{\textbf{sortie~}}{;}}
-	\item {
-		{à droite de la flèche de renvoi ne se trouve
-		donc pas le nom d’un paramètre de sortie, mais le
-		}{\textbf{type}}{ de la
-		valeur renvoyée~;}}
-	\item {
-		\textit{{typeRes}}{
-		est le type de la valeur renvoyée~; 
-		
-		en théorie, ce peut être 
-		\begin{itemize}
-		\item
-		un type
-		simple (entier, réel, booléen, chaine, caractère), 
-		\item
-		un type structuré,
-		\item
-		un tableau 
-		\item
-		ou même un objet (ces types seront vus dans les chapitres 
-		suivants). 
-		\end{itemize}
-		En pratique il conviendra de s’en tenir aux limitations 
-		du langage utilisé~;}}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{valeur en retour}
-	\begin{itemize}
-	\item {
-		\textit{{var1}}{,
-		...,
-		}\textit{{varN}}{
-		sont les paramètres du module (aussi appelés
-		}{\textbf{arguments}}{)
-		; ce sont, le plus souvent, des paramètres d’entrée, les paramètres de
-		sortie }{étant plus rares dans ce type de
-		module~;}}
-	\item {
-		ces arguments deviennent automatiquement des variables locales du module
-		; déclarées dans son en-tête, elles ne doivent plus l’être dans la
-		partie déclarative~;}
-		\end{itemize}
-\end{frame}
-
-\begin{frame}{valeur en retour}
-	\begin{itemize}
-	\item {
-		{la valeur renvoyée est définie à la fin du
-		module via la primitive
-		}\textit{{retourner}}{
-		}\textit{{résultat}}{,
-		où
-		}\textit{{résultat}}{
-		est une variable (ou plus généralement une expression) de type
-		}\textit{{typeRes}}{
-		;}}
-	\item {
-		pour appeler ce type de module, on utilise son nom \textit{comme celui
-		d’une variable} ou dans une expression apparaissant 
-		dans le module appelant, mais jamais à gauche du signe
-		d’affectation.}
-	\end{itemize}
-	
-	\bigskip
-	
-	Comme précédemment, il faut veiller, lors de l’appel de ce 
-	type de module, à ce que le nombre d’arguments ainsi que leur type
-	correspondent à ceux spécifiés dans l’entête.
-\end{frame}
-
-\begin{frame}{exemple}
-	Pour exemple, transformons une fois de plus la
-	dernière version de notre algorithme.
-	
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit trois nombres positifs et affiche le maximum des trois.
-	\Module{max3}{}{}
-		\Decl a, b, c, temp, max~: réels
-		\Let a \Gets lirePositif()
-		\Let b \Gets lirePositif()
-		\Let c \Gets lirePositif()
-		\Let temp \Gets max2(a, b)
-		\Let max  \Gets max2(temp, c)
-		\Write max
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{exemple}
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit un nombre, le retourne s'il est positif et sinon lance une erreur.
-	\Module{lirePositif}{}{réel}
-		\Decl a~: réel
-		\Read a
-		\If{a < 0}
-			\Error Le nombre n'est pas positif !
-		\EndIf
-		\Return a
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{exemple}
-	\cadre{
-	\begin{pseudo}
-	\LComment Affiche deux nombres et retourne le maximum des deux.
-	\Module{max2}{a\In, b\In~: réels}{réel}
-		\Decl max~: réel
-		\If{a > b}
-			\Let max \Gets a
-		\Else
-			\Let max \Gets b
-		\EndIf
-		\Return max
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{exemple}
-	L'écriture avec une valeur de retour permet une
-	écriture plus compacte~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit trois nombres positifs et affiche le maximum des trois.
-	\Module{max3}{}{}
-		\Decl a, b, c, max~: réels
-		\Let a \Gets lirePositif()
-		\Let b \Gets lirePositif()
-		\Let c \Gets lirePositif()
-		\Let max  \Gets max2(max2(a, b), c)
-		\Write max
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-	\bigskip
-	
-\begin{frame}{exemple}
-	ou encore (mais on perd un peu en clarté)~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit trois nombres positifs et affiche le maximum des trois.
-	\Module{max3}{}{}
-		\Decl a, b, c~: réels
-		\Let a \Gets lirePositif()
-		\Let b \Gets lirePositif()
-		\Let c \Gets lirePositif()
-		\Write max2(max2(a, b), c)
-	\EndModule
-	\end{pseudo}
-	}
-
-	\bigskip
-	
-	ou même (et là, ce n'est plus du tout lisible !)~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit trois nombres positifs et affiche le maximum des trois.
-	\Module{max3}{}{}
-		\Write max2(max2(lirePositif(), lirePositif()), lirePositif())
-	\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\subsection{Un exemple complet}
-
-\begin{frame}{Écart entre 2 moments}
-	Étant donné deux moments dans une journée donnés chacun par trois
-	nombres (heure, minute, seconde), 
-	
-	écrire un algorithme qui calcule et
-	affiche le délai écoulé entre ces deux moments en heure(s), minute(s),
-	seconde(s) 
-	
-	sachant que le deuxième moment donné est chronologiquement
-	postérieur au premier.
-\end{frame}
-
-\begin{frame}{Écart entre 2 moments}
-	Le problème n'est pas simple. 
-	
-	\bigskip
-	
-	On pourrait se dire qu'il suffit de soustraire les heures, 
-	les minutes et les secondes.
-
-	\bigskip
-	
-	Ainsi, pour l'écart entre
-	1h22'23'' et
-	3h34'56'', on
-	calcule 3h-1h=2h;
-	34'-22'=12' et
-	56''-23''=33''
-	ce qui donne un écart de
-	2h12'33''.
-
-	\bigskip
-	
-	Mais il s'agit là d'un cas favorable
-	sans résultat négatif. 
-	
-	\bigskip
-	
-	Si une des soustractions est négative, comme par
-	exemple pour l'écart entre
-	1h22'23'' et
-	3h11'12'', de
-	simples soustractions ne suffisent pas.
-\end{frame}
-
-\begin{frame}{Écart entre 2 moments}
-	Rappelons-nous que nous
-	avons déjà écrit des algorithmes proches de ce problème dans les
-	exercices du chapitre sur les algorithmes séquentiels. 
-	
-	\bigskip
-	
-	Plus précisément~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-		\ModuleSign{heuresEnSecondes}{}{}
-		\ModuleSign{secondesEnHeures}{}{}
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{Écart entre 2 moments}
-	L'idée est de tout convertir en
-	secondes car alors la soustraction est simple. 
-	
-	\bigskip
-	
-	Le résultat est alors
-	reconverti en heures-minutes-secondes.
+\begin{frame}{Tri par insertion}
+	L’étape suivante consiste à insérer \code{tab[2]}, qui vaut 12, dans ce sous-tableau, de
+	taille 2~:
 
 	\begin{center}
-	\includegraphics[width=0.8\textwidth]{image/module-conversion}
+	\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+		 1 &
+		 2 &
+		 3 &
+		 4 &
+		 5 &
+		 6 &
+		 7 &
+		 8 &
+		 9 &
+		 10 &
+		 11 &
+		 12 &
+		 13 &
+		 14 &
+		 15 & 
+		 16 &
+		 17 &
+		 18 &
+		 19 &
+		 20
+		 \\
+	\end{tabular}
+	\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		\multicolumn{1}{|m{0.4cm}|}{\cellcolor{gray!25}12} &
+		{\cellcolor{gray!25}20} &
+		{18} &
+		{17} &
+		{15} &
+		{14} &
+		{15} &
+		{16} &
+		{18} &
+		{17} &
+		{12} &
+		{4} &
+		{16} &
+		{18} &
+		{15} &
+		{5} &
+		{19} &
+		{11} &
+		{11} &
+		{13}\\\hline
+	\end{tabular}
 	\end{center}
 \end{frame}
 
-\subsubsection{Conversion en secondes}
+\begin{frame}{Tri par insertion}
+	Ensuite, c’est au tour de \code{tab[3]}, qui vaut 18, d’être inséré~:
 
-\begin{frame}{Écart entre 2 moments}
-	Une des sous-tâches est donc la conversion en secondes
-	d'un moment exprimé en heures-minutes-secondes
-	(h-m-s). 
+	\begin{center}
+	\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+		 1 &
+		 2 &
+		 3 &
+		 4 &
+		 5 &
+		 6 &
+		 7 &
+		 8 &
+		 9 &
+		 10 &
+		 11 &
+		 12 &
+		 13 &
+		 14 &
+		 15 & 
+		 16 &
+		 17 &
+		 18 &
+		 19 &
+		 20
+		 \\
+	\end{tabular}
+	\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{\cellcolor{gray!25}12} &
+		{\cellcolor{gray!25}18} &
+		{\cellcolor{gray!25}20} &
+		{17} &
+		{15} &
+		{14} &
+		{15} &
+		{6} &
+		{18} &
+		{17} &
+		{12} &
+		{14} &
+		{16} &
+		{18} &
+		{15} &
+		{15} &
+		{9} &
+		{11} &
+		{11} &
+		{13}\\\hline
+	\end{tabular}
+	\end{center}
 	
-	\bigskip
-	
-	Il nous faut adapter la solution trouvée pour
-	l'exercice du chapitre sur les algorithmes séquentiels
-	car il n'est pas question ici que les données soient
-	lues ni que le résultat soit écrit~; 
-	
-	\bigskip
-	
-	l'interaction ne
-	se fait pas avec l'utilisateur mais avec le module
-	principal qui va l'utiliser.
+	Et ainsi de suite jusqu’à insertion du dernier élément dans le
+	sous-tableau trié. 
+
 \end{frame}
 
-\begin{frame}{Écart entre 2 moments}
-	La première question à se poser est donc celle des paramètres~:
+\begin{frame}{Tri par insertion~: algorithme}
+	On combine la recherche de la position d’insertion et le décalage
+	concomitant de valeurs.
 
+	\cadre{
+	\begin{pseudo}
+		\LComment Trie le tableau reçu en paramètre (via un tri par insertion).
+		\Module{triInsertion}{tab\InOut~: tableau[1 à n] d’entiers}{}
+			\Decl i, j, valAInsérer~: entiers
+			\For{i \K{de} 2 \K{à} n}
+				\Let valAInsérer \Gets tab[i]
+				\LComment recherche de l’endroit où insérer valAInsérer dans le 
+				\LComment sous-tableau trié et décalage simultané des éléments
+				\Let j \Gets i - 1
+				\While{j ${\geq}$ 1 ET valAInsérer < tab[j]}
+					\Let tab[j+1] \Gets tab[j]
+					\Let j \Gets j – 1
+				\EndWhile
+				\Let tab[j+1] \Gets valAInsérer
+			\EndFor
+		\EndModule
+	\end{pseudo}
+	}
+
+\end{frame}
+
+\subsection{Tri par sélection des minima successifs}
+
+\begin{frame}{Tri par sélection des minima successifs}
+	Dans ce tri, on recherche à chaque étape la plus petite valeur de
+	l’ensemble non encore trié et on peut la placer immédiatement 
+	à sa position	définitive.
+\end{frame}
+
+\begin{frame}{Tri par sélection des minima successifs}
+	Prenons par exemple un tableau de 20 entiers. 
+	
+	La première étape consiste
+	à rechercher la valeur minimale du tableau. Il s’agit de l’élément
+	d’indice 10 et de valeur 17.
+	
+	\begin{center}
+	\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+		 1 &
+		 2 &
+		 3 &
+		 4 &
+		 5 &
+		 6 &
+		 7 &
+		 8 &
+		 9 &
+		 10 &
+		 11 &
+		 12 &
+		 13 &
+		 14 &
+		 15 & 
+		 16 &
+		 17 &
+		 18 &
+		 19 &
+		 20
+		 \\
+	\end{tabular}
+	\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{20} &
+		{52} &
+		{61} &
+		{47} &
+		{82} &
+		{64} &
+		{95} &
+		{66} &
+		{84} &
+		{\cellcolor{gray!25}17} &
+		{32} &
+		{24} &
+		{46} &
+		{48} &
+		{75} &
+		{55} &
+		{19} &
+		{61} &
+		{21} &
+		{30}\\\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Tri par sélection des minima successifs}
+	Celui-ci devrait donc apparaitre en 1\textsuperscript{ère }
+	position du	tableau. 
+	
+	Hors, cette position est occupée par la valeur 20. 
+	
 	\bigskip
 	
+	Comment	procéder dès lors pour ne perdre aucune valeur 
+	et sans faire appel à un second tableau ? 
+	
+	\pause
+	
+	Il suffit d’échanger le
+	contenu des deux éléments d’indices 1 et 10~:
+\end{frame}
+
+\begin{frame}{Tri par sélection des minima successifs}
+		\begin{center}
+	\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+		 1 &
+		 2 &
+		 3 &
+		 4 &
+		 5 &
+		 6 &
+		 7 &
+		 8 &
+		 9 &
+		 10 &
+		 11 &
+		 12 &
+		 13 &
+		 14 &
+		 15 & 
+		 16 &
+		 17 &
+		 18 &
+		 19 &
+		 20
+		 \\
+	\end{tabular}
+	\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{\cellcolor{gray!25}17} &
+		{52} &
+		{61} &
+		{47} &
+		{82} &
+		{64} &
+		{95} &
+		{66} &
+		{84} &
+		{20} &
+		{32} &
+		{24} &
+		{46} &
+		{48} &
+		{75} &
+		{55} &
+		{19} &
+		{61} &
+		{21} &
+		{30}\\\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Tri par sélection des minima successifs}
 	\begin{itemize}
-	\item 
-		Quelles sont les données dont a besoin l'algorithme
-		pour travailler ?
-	\item 
-		Quels résultats fournit-il ?
+		\item
+		Le tableau se subdivise à présent en deux sous-tableaux, 
+		\begin{itemize}
+			\item
+			un sous-tableau	déjà trié (pour le moment réduit au seul élément $tab[1]$) 
+			\item 
+			et le sous-tableau des autres valeurs non encore triées (de l’indice 2 à 20).
+		\end{itemize}
+		\item
+		On recommence ce processus dans ce second sous-tableau~: le minimum est
+		à présent l'élément d’indice 17 et de valeur 19.
+		
+		Celui-ci viendra donc en 2\textsuperscript{ème} position, échangeant sa
+		place avec la valeur 52 qui s’y trouvait~:
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Écart entre 2 moments}
-	Dans notre cas, la réponse est simple~:
-
+\begin{frame}{Tri par sélection des minima successifs}
+	\begin{center}
+	\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+		 1 &
+		 2 &
+		 3 &
+		 4 &
+		 5 &
+		 6 &
+		 7 &
+		 8 &
+		 9 &
+		 10 &
+		 11 &
+		 12 &
+		 13 &
+		 14 &
+		 15 & 
+		 16 &
+		 17 &
+		 18 &
+		 19 &
+		 20
+		 \\
+	\end{tabular}
+	\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{\cellcolor{gray!25}17} &
+		{\cellcolor{gray!25}19} &
+		{61} &
+		{47} &
+		{82} &
+		{64} &
+		{95} &
+		{66} &
+		{84} &
+		{20} &
+		{32} &
+		{24} &
+		{46} &
+		{48} &
+		{75} &
+		{55} &
+		{52} &
+		{61} &
+		{21} &
+		{30}\\\hline
+	\end{tabular}
+	\end{center}
+	
 	\bigskip
 	
+	Le sous-tableau trié est maintenant formé des deux premiers éléments, et
+	le sous-tableau non trié par les 18 éléments suivants. 
+
+\end{frame}
+
+\begin{frame}{Tri par sélection des minima successifs}
 	\begin{itemize}
-	\item {
-		Les données sont le moment à convertir en secondes. 
-		
-		Ce moment est
-		représenté par trois entiers~: les heures, les minutes et les secondes
-		;}
-	\item {
-		Le résultat est le moment converti en secondes. 
-		
-		Il est représenté par un entier.}
+		\item
+		Pour un tableau de taille $n$, 
+		à l’étape $i$ de cet algorithme, on sélectionne donc le minimum du
+		sous-tableau non trié (entre les indices $i$ et $n$). 
+		\item
+		Une	fois le minimum localisé, on l’échange avec l’élément d’indice
+		$i$. 
+		\item
+		À chaque étape, la taille du sous-tableau trié augmente de
+		1 et celle du sous-tableau non trié diminue de 1. 
+		\item
+		L’algorithme s’arrête
+		à la $n$\textsuperscript{ème} étape, lorsque le sous-tableau
+		trié correspond au tableau de départ. 
+		\item
+		En pratique l’arrêt se fait après
+		l’étape $n - 1$, car lorsque le sous-tableau non trié n’est plus
+		que de taille 1, il contient nécessairement le maximum de l’ensemble.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Écart entre 2 moments}
-	Lorsque le résultat est représenté par une seule donnée, on a le choix
-	entre un paramètre en sortie~:
-
-	\bigskip
-	
+\begin{frame}{Tri par sélection des minima successifs~: algorithme}
 	\cadre{
 	\begin{pseudo}
-		\LComment Affiche trois entiers~: des heures, des minutes et des secondes et sort le nombre de secondes correspondant.
-		\ModuleSign{hmsVersSec}{h\In, m\In, s\In, secondes\Out~: entiers}{}
-	\end{pseudo}
-	}
-	
-	\bigskip
-	
-	ou une valeur de retour~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-		\LComment Affiche trois entiers~: des heures, des minutes et des secondes et retourne le nombre de secondes correspondant.
-		\ModuleSign{hmsVersSec}{h\In, m\In, s\In~: entiers}{entier}
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{Écart entre 2 moments}
-		Dans de pareils cas, 
-	on privilégie souvent la valeur de retour car cela
-	facilite l'écriture lors de l'appel.
-
-	\bigskip
-	
-	L'algorithme s'écrit alors~:
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\LComment Affiche trois entiers~: des heures, des minutes et des secondes 
-	\LComment et retourne le nombre de secondes correspondant.
-		\Module{hmsVersSec}{h\In, m\In, s\In~: entiers}{entier}
-			\Decl secondes~: entier \RComment {À déclarer puisque ce n'est pas un paramètre}
-			\Let secondes \Gets  h * 3600 + m * 60 + s
-			\Return secondes
+		\LComment Trie le tableau reçu en paramètre (via un tri par sélection des minima successifs).
+		\Module{triSélectionMinimaSuccessifs}{tab\InOut~: tableau[1 à n] d’entiers}{}
+			\Decl i, indiceMin~: entier
+			\For{i \K{de} 1 \K{à} n – 1}
+			\RComment i correspond à l’étape de l’algorithme
+				\Let indiceMin \Gets positionMin( tab, i, n )
+				\Stmt swap( tab[i], tab[indiceMin] )
+			\EndFor
 		\EndModule
 	\end{pseudo}
 	}
 \end{frame}
 
-\begin{frame}{Écart entre 2 moments}
-	ou de manière équivalente mais plus concise~:
-
-	\bigskip
-	
+\begin{frame}{Tri par sélection des minima successifs~: algorithme}
 	\cadre{
 	\begin{pseudo}
-	\LComment Affiche trois entiers~: des heures, des minutes et des secondes 
-	\LComment et retourne le nombre de secondes correspondant.
-		\Module{hmsVersSec}{h\In, m\In, s\In~: entiers}{entier}
-			\Return h * 3600 + m * 60 + s
+		\LComment Retourne de l’indice du minimum entre les indices début et fin du tableau reçu.
+		\Module{positionMin}{tab\In~: tableau[1 à n] d’entiers, début, fin~: entiers}{entier}
+			\Decl indiceMin, i~: entiers
+			\Let indiceMin \Gets début
+			\For{i \K{de} début+1 \K{à} fin}
+				\If{tab[i] < tab[indiceMin]}
+					\Decl indiceMin \Gets i
+				\EndIf
+			\EndFor
+			\Return indiceMin
 		\EndModule
 	\end{pseudo}
 	}
 \end{frame}
 
-\subsubsection{Conversion en heures-minutes-secondes}
-
-\begin{frame}{Conversion en heures-minutes-secondes}
-	À la fin de notre algorithme, il nous faudra reconvertir un résultat
-	exprimé en secondes sous la forme heures-minutes-secondes. 
-	
-	\bigskip
-	
-	À nouveau,
-	on a déjà résolu ce problème dans le chapitre sur les algorithmes
-	séquentiels. 
-	
-	\bigskip
-	
-	Mais il faut l'adapter à
-	l'usage de paramètres.
-\end{frame}
-
-\begin{frame}{Conversion en heures-minutes-secondes}
-	\begin{itemize}
-	\item {
-		Quelles sont les données ? 
-		
-		Une seule, le moment exprimé en secondes}
-		
-	\bigskip
-	
-	\item {
-		Quels sont les résultats calculés par le module ? 
-		
-		Ce même moment exprimé
-		en heures-minutes-secondes. 
-		
-		Trois entiers sont requis ce qui fait que
-		le choix entre un paramètre en sortie et une valeur de retour ne se
-		pose pas ici~; 
-		
-		impossible d'utiliser une valeur de
-		retour (qui doit être unique)~; 
-		
-		on doit utiliser des paramètres en
-		sortie.}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Conversion en heures-minutes-secondes}
-	Ce qui donne~:
-
-	\bigskip
-	
+\begin{frame}{Tri par sélection des minima successifs~: algorithme}
 	\cadre{
 	\begin{pseudo}
-		\LComment Affiche un nombre de secondes et sort les heures, les minutes et les secondes correspondant.
-		\Module{secVersHMS}{secondes\In, s\Out, m\Out, s\Out~: entiers}{}
-			\Let h \Gets secondes DIV 3600
-			\Let m \Gets (secondes MOD 3600) DIV 60
-			\Let s \Gets secondes MOD 60
+		\LComment {Échange le contenu de 2 variables.}
+		\Module{swap}{a\InOut, b\InOut~: entiers}{}
+			\Decl aux~: entiers
+			\Let aux \Gets a
+			\Let a \Gets b
+			\Let b \Gets aux
 		\EndModule
 	\end{pseudo}
 	}
 \end{frame}
 
-\subsubsection{Solution}
+\subsection{Tri bulle}
 
-\begin{frame}{Solution}
-	À présent, on a tout pour écrire la solution à notre problème
+\begin{frame}{Tri bulle}
+	Il s’agit d’un tri par \textbf{permutations} ayant pour but d’amener à
+	chaque étape à la «~surface~» du sous-tableau non trié (on entend par
+	là l’élément d’indice minimum) la valeur la plus petite, appelée la
+	\textbf{bulle}. 
+	
+	\bigskip
+	
+	La caractéristique de cette méthode est que les
+	comparaisons ne se font qu’entre éléments consécutifs du tableau.
+\end{frame}
+
+\begin{frame}{Tri bulle}
+	\begin{itemize}
+		\item
+		Prenons pour exemple un tableau de taille 14. 
+		\item
+		En partant de la fin du tableau, on le parcourt vers la 
+		gauche en comparant chaque couple de valeurs consécutives. 
+		\item
+		Quand deux valeurs sont dans le désordre, on les permute. 
+		\item
+		Le premier parcours s’achève lorsqu’on arrive à l’élément
+		d’indice 1 qui contient alors la «~bulle~»,
+		c'est-à-dire la plus petite valeur du tableau, soit 1~:
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Tri bulle}
+	\begin{center}
+	\begin{tabular}{*{14}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+		 1 &
+		 2 &
+		 3 &
+		 4 &
+		 5 &
+		 6 &
+		 7 &
+		 8 &
+		 9 &
+		 10 &
+		 11 &
+		 12 &
+		 13 &
+		 14
+		\\
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 1} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 3} &
+		{ 6} &
+		{ 5} &
+		{\cellcolor{gray!25}4}\\\hline
+	\end{tabular}
+	\end{center}
+	
+	
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 1} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 3} &
+		{ 6} &
+		{\cellcolor{gray!25}4} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 1} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 3} &
+		{\cellcolor{gray!25}4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Tri bulle}
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 1} &
+		{ 7} &
+		{12} &
+		{11} &
+		{\cellcolor{gray!25}3} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 1} &
+		{ 7} &
+		{12} &
+		{\cellcolor{gray!25}3} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 1} &
+		{ 7} &
+		{\cellcolor{gray!25}3} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+	
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 1} &
+		{\cellcolor{gray!25}3} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{\cellcolor{gray!25}1} &
+		{ 3} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\tablehead{}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{\cellcolor{gray!25}1} &
+		{ 8} &
+		{ 3} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Tri bulle}
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{15} &
+		{\cellcolor{gray!25}1} &
+		{ 4} &
+		{ 8} &
+		{ 3} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{12} &
+		{\cellcolor{gray!25}1} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 3} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+	
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{ 5} &
+		{\cellcolor{gray!25}1} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 3} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+	
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		{10} &
+		{\cellcolor{gray!25}1} &
+		{ 5} &
+		{12} &
+		{15} &
+		{ 4} &
+		{ 8} &
+		{ 3} &
+		{ 7} &
+		{12} &
+		{11} &
+		{ 4} &
+		{ 6} &
+		{ 5}\\\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		\cellcolor{gray!25}1 & 
+		10 & 
+		5 & 
+		12 & 
+		15 &
+		4 &
+		8 &
+		3 &
+		7 &
+		12 &
+		11 &
+		4 &
+		6 &
+		5
+		\\\hline
+	\end{tabular}
+	\end{center}
+
+	Ceci achève le premier parcours. 
+\end{frame}
+
+\begin{frame}{Tri bulle}
+	On recommence à présent le même	processus dans le sous-tableau 
+	débutant au deuxième élément, ce qui donnera le contenu suivant~:
+
+	\begin{center}
+	\begin{tabular}{|*{14}{>{\centering\arraybackslash}m{0.4cm}|}}
+		\hline
+		1 & 3 & 10 & 5 & 12 & 15 & 4 & 8 & 4 & 7 & 12 & 11 & 5 & 6
+		\\\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Tri bulle}
+	Comme pour le tri par recherche des minima successifs, à l’issue de
+	l’étape $i$ de l’algorithme, on obtient un sous-tableau trié
+	(entre les indices 1 et \textit{i }) et un tableau non encore trié
+	(entre les indices $i + 1$ et $n$). 
+	
+	Le tri est donc	achevé à l’issue de l’étape $n - 1$. 
+	
+	Cependant, on notera que
+	petit à petit, outre le déplacement de la bulle, les éléments plus
+	petits évoluent progressivement vers la gauche, et les plus gros vers
+	la droite, de sorte qu’il est fréquent que le nombre d’étapes effectif
+	est inférieur au nombre d’étapes théorique.
+\end{frame}
+
+\begin{frame}{Tri bulle~: algorithme}
+	Dans cet algorithme, la variable \code{indiceBulle} est à
+	la fois le compteur d’étapes et aussi l’indice de l’élément récepteur
+	de la bulle à la fin d’une étape donnée.
 
 	\bigskip
 	
 	\cadre{
 	\begin{pseudo}
-		\LComment Lit deux moments (h-m-s) et affiche le moment de la différence entre les deux.
-		\Module{différenceEntreHeures}{}{} \RComment Pas de paramètres !
-			\Decl h1, m1, s1, h2, m2, s2~: entiers \RComment Les 2 moments à soustraire
-			\Decl secondes1, secondes2~: entiers \RComment Ces 2 moments en secondes
-			\Decl diffSecondes~: entier \RComment La différence en secondes
-			\Decl diffH, diffM, diffS~: entiers \RComment La différence en H-M-S
-			\Read h1, m1, s1, h2, m2, s2
-			\Let secondes1 \Gets hmsVersSec( h1, m1, s1 )
-			\Let secondes2 \Gets hmsVersSec( h2, m2, s2 )
-			\Let diffSecondes \Gets secondes2 – secondes1
-			\Stmt secVersHMS( diffSecondes, diffH, diffM, diffS )
-			\Write diffH, diffM, diffS
+	\LComment Trie le tableau reçu en paramètre (via un tri bulle).
+		\Module{triBulle}{tab\InOut~: tableau[1 à n] d’entiers}{}
+			\Decl indiceBulle, i~: entiers
+			\For{indiceBulle \K{de} 1 \K{à} n}
+				\For{i \K{de} n – 1 \K{à} indiceBulle \K{par} – 1}
+					\If{tab[i] > tab[i + 1]}
+						\Stmt swap( tab[i], tab[i + 1] )
+						\RComment voir algorithme précédent
+					\EndIf
+				\EndFor
+			\EndFor
 		\EndModule
 	\end{pseudo}
 	}
 \end{frame}
 
-\begin{frame}{Solution}
-	Dans la solution ci-dessus, 
-	quelle est ou quelles sont la/les variable(s) locale(s) 
-	dont on pourrait se passer moyennant une réécriture de
-	l'algorithme ?
+\subsection{Cas particuliers}
+
+\begin{frame}{Tri partiel}
+	Parfois, on n’est pas intéressé par un tri complet de l’ensemble mais on
+	veut uniquement les «~$k$~» plus petites (ou plus grandes) valeurs. Le
+	tri par recherche des minima et le tri bulle sont particulièrement
+	adaptés à cette situation ; il suffit de les arrêter plus tôt. Par
+	contre, le tri par insertion est inefficace car il ne permet pas un
+	arrêt anticipé.
 \end{frame}
 
-\subsection{Blocs}
-
-\begin{frame}{Blocs}
-	\begin{itemize}
-	\item
-	Un bloc est l’écriture d’une portion de module
-	à l’extérieur de celui-ci. C’est un simple
-	{\textit{déplacement}}
-	de lignes de codes vers un autre endroit du texte de
-	l'algorithme.
+\begin{frame}{Sélection des meilleurs}
+	Une autre situation courante est la suivante~: un ensemble de valeurs
+	sont traitées (lues, calculées, ...) et il ne faut garder que les
+	$k$ plus petites (ou plus grandes).
 	
-	\bigskip
+	L'algorithme est plus simple à écrire si on utilise
+	une position supplémentaire en fin de tableau. 
 	
-	\item
-	La raison de découper un module en blocs
-	peut être le souci de clarifier un algorithme en le découpant en étapes
-	bien distinctes.
-	
-	\bigskip
-	
-	\item
-	Les variables
-	d’un bloc ne sont donc pas des variables locales du bloc dans lequel
-	elles apparaissent, mais bien des variables locales du module auquel
-	appartient ce bloc.
-	\end{itemize}
+	Notons aussi qu’il faut
+	tenir compte du cas où il y a moins de valeurs que le nombre de valeurs
+	voulues ; c’est pourquoi on ajoute une variable indiquant le nombre
+	exact de valeurs dans le tableau.
 \end{frame}
 
-\begin{frame}{Blocs}
-	\begin{itemize}
-	\item
-	L’appel de l’exécution des instructions se trouvant
-	dans un bloc est similaire à celui d’un module avec paramètres, on
-	écrit simplement le nom du bloc comme s’il s’agissait d’une
-	instruction.
-	\end{itemize}
-\end{frame}
+\begin{frame}{Exemple~: les $k$ plus petites valeurs}
 
-\begin{frame}{Blocs}
-	Pour exemple, le module additionnerFractions (première version dans le
-	chapitre 3) pourrait se découper ainsi~:
+		On lit un ensemble de valeurs strictement positives (un 0 indique la fin
+		de la lecture) et on ne garde que les $k$ plus petites valeurs.
 
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\LComment Lit les contenus de 2 fractions et affiche leur somme
-		\Module{additionnerFractions}{}{}
-			\Stmt déclaration
-			\Stmt lectureDonnées
-			\Stmt calculs
-			\Stmt écritureRésultat
-		\EndModule
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{Blocs}
-	\cadre{
-	\begin{pseudo}
-	\Block{déclaration}
-		\Decl num1, den1, num2, den2, numRes, denRes~: entiers
-	\EndBlock
-	\end{pseudo}
-	}
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\Block{lectureDonnées}
-		\Read num1, den1, num2, den2
-	\EndBlock
-	\end{pseudo}
-	}
-\end{frame}
-
-\begin{frame}{Blocs}
-	\cadre{
-	\begin{pseudo}
-	\Block{calculs}
-		\Let numRes \Gets num1 * den2 + num2 * den1
-		\Let denRes \Gets den1 * den2
-	\EndBlock
-	\end{pseudo}
-	}
-
-	\bigskip
-	
-	\cadre{
-	\begin{pseudo}
-	\Block{écritureRésultat}
-		\Write numRes, "/", denRes \RComment la fraction n'est pas simplifiée
-	\EndBlock
-	\end{pseudo}
-	}
-\end{frame}
-
-\subsection{Qu'est-ce qu'un algorithme de qualité ?}
-
-\begin{frame}{Algorithme de qualité}
-	\begin{itemize}
-	\item
-	Nous voulons tous produire du code de qualité mais
-	qu'est-ce que cette notion recouvre vraiment ?
-	\item
-	Qu'est-ce qui permet de juger de la qualité
-	d'un code ? 
-	\item
-	De nombreux critères existent. 
-	\end{itemize}
-	
-	\bigskip
-	
-	Citons ici,
-	parmi les plus pertinents, ceux qui sont le plus liés à ce
-	cours.
-\end{frame}
-
-\begin{frame}{Algorithme de qualité}
-	\begin{itemize}
-	\item
-		La \textbf{validité}~: le code doit
-	réaliser les tâches pour lesquelles 
-	il a été écrit, même dans tous les
-	cas particuliers imaginés.
-	
-	\bigskip
-	
-	\item 
-		L'\textbf{extensibilité} (ou évolutivité)~:
-	le code doit être écrit de telle sorte qu'un changement
-	mineur dans le problème n'implique
-	qu'un changement mineur dans le code.
-	
-	\bigskip
-	
-	\item
-		La \textbf{réutilisabilité}~: c'est
-	la capacité de réutiliser 
-	un bout de code d’un projet dans un autre projet de 
-	façon aisée et sûre.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Algorithme de qualité}
-	\begin{itemize}
-	\item
-		La \textbf{lisibilité}~: 
+		\bigskip
 		
-	Au niveau global, on doit facilement comprendre la structure
-	générale du code afin de pouvoir aisément comprendre où se trouve 
-	la portion de	code qui nous intéresse. 
-	
-	Au niveau local, on doit pouvoir comprendre
-	aisément chaque bout de code.
+		\cadre{
+		\begin{pseudo}
+			\Module{meilleurs}{plusPetits\InOut~: tableau[1 à k + 1] d’entiers, nbValeurs\Out~: entier}{}
+				\Decl val~: entier
+				\Let nbValeurs \Gets 0
+				\Read val
+				\While{val ${\neq}$ 0}
+					\Stmt insérer( val, plusPetits, nbValeurs )
+					\Read val
+				\EndWhile
+			\EndModule
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Exemple~: les $k$ plus petites valeurs}
+	\cadre{
+	\begin{pseudo}
+		\Module{insérer}{val\In~: entier, plusPetits\InOut~: tableau[1 à k + 1] d’entiers, nbValeurs\InOut~: entier}{}
+				\Decl i~: entiers
+				\Let i \Gets nbValeurs
+				\Read val
+				\While{i > 0 ET val < plusPetits[i]}
+					\Let plusPetits[i + 1] \Gets plusPetits[i]
+					\Let i \Gets i - 1
+				\EndWhile
+				\Let plusPetits[i + 1] \Gets val
+				\If{nbValeurs < k}
+					\Let nbValeurs \Gets nbValeurs + 1
+				\EndIf
+			\EndModule
+		\end{pseudo}
+		}
+\end{frame}
+
+\subsection{Recherche dichotomique}
+
+\begin{frame}{Recherche dichotomique}
+	La recherche dichotomique a pour essence de réduire à
+	chaque étape la taille de l’ensemble de recherche de moitié, jusqu’à ce
+	qu’il ne reste qu’un seul élément dont la valeur devrait être celle
+	recherchée, sauf bien entendu en cas d’inexistence de cette valeur dans
+	l’ensemble de départ. 
 	
 	\bigskip
 	
-	\item 
-		L'\textbf{efficience}~: 
-	ce critère s'intéresse à la bonne utilisation des
-	ressources informatiques. Est-ce que le programme va tourner
-	suffisamment vite, utiliser peu de mémoire ?
+	Nous l’expliquons pour un tableau ordonné mais
+	elle peut s’appliquer aussi avec des changements mineurs pour
+	d'autres structures (par exemple la liste ordonnée que
+	nous étudierons plus tard).
+\end{frame}
+
+\begin{frame}{Recherche dichotomique}
+	Soit \code{val} la valeur recherchée dans une zone
+	délimitée par les indices \code{indiceGauche} et
+	\code{indiceDroit}. 
+	
+	\bigskip
+	
+	On commence par déterminer l’élément
+	médian, c’est-à-dire celui qui se trouve « au milieu » de la zone de
+	recherche ; son indice sera déterminé par la formule
+
+	{\centering
+	\code{indiceMedian}\textsf{$\leftarrow$}\code{(indiceGauche +	indiceDroit) DIV 2}}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique}
+	N.B.~: cet élément médian n'est pas tout à fait au milieu dans 
+	le cas d'une zone contenant un nombre pair d'éléments.
+	\begin{itemize}
+		\item
+		On compare alors \code{val}
+		avec la valeur de cet élément médian ; il est possible qu’on ait trouvé
+		la valeur cherchée; sinon, on partage la zone de recherche en deux
+		parties~: 
+		\begin{itemize}
+			\item
+			une qui \textbf{ne contient certainement pas}
+			la valeur cherchée et 
+			\item
+			une qui \textbf{pourrait la
+			contenir}. 
+		\end{itemize}
+		\item
+		C’est cette deuxième partie qui 
+		devient la nouvelle zone de recherche. 
+		\item
+		On réitère le processus jusqu’à ce que la valeur cherchée soit trouvée ou
+		que la zone de recherche soit réduite à sa plus simple expression,
+		c’est-à-dire un seul élément.
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{déclarationInitialisation}
+			\Decl indiceDroit, indiceGauche, indiceMédian~: entiers
+			\Decl candidat~: T
+			\Decl trouvé~: booléen
+			\Empty
+			\Let indiceGauche \Gets 1
+			\Let indiceDroit \Gets n
+			\Let trouvé \Gets faux
+		\EndBlock
+	}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique}
+	\cadre{
+		\begin{pseudo}
+			\scriptsize{
+			\Module{rechercheDichotomique}{tab\InOut~: tableau[1 à n] de T, valeur\In~: T, pos\Out~: entier}{booléen}
+				\Stmt déclarationInitialisation
+				\While{NON trouvé ET indiceGauche {${\leq}$} indiceDroit}
+					\Let indiceMédian \Gets (indiceGauche + indiceDroit) DIV 2
+					\Let candidat \Gets tab[indiceMédian]
+					\Switch{}
+						\Case{candidat = valeur}
+							\Let trouvé \Gets vrai
+						\Case{candidat < valeur}
+							\Let indiceGauche \Gets indiceMédian + 1
+							\RComment on garde la partie droite
+						\Case{candidat > valeur}
+							\Let indiceDroit \Gets indiceMédian – 1
+							\RComment on garde la partie gauche
+					\EndSwitch
+				\EndWhile
+				\Stmt testTrouvé
+				\Return trouvé
+			\EndModule
+			}
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Block{testTrouvé}
+				\If{trouvé}
+					\Let pos \Gets indiceMédian
+				\Else
+					\Let pos \Gets indiceGauche
+					\RComment dans le cas où la valeur n’est pas trouvée,
+					\Empty 
+					\RComment on vérifiera que indiceGauche donne la valeur 
+					\Empty
+					\RComment où elle pourrait être insérée.
+				\EndIf
+		\EndBlock
+	}
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique~: Exemple de recherche fructueuse}
+
+		Supposons que l’on recherche la valeur	\textbf{23} dans un
+		tableau de 20 entiers. 
+		
+		La zone ombrée représente à chaque fois la partie de recherche, 
+		qui est au départ le tableau dans son entièreté.
+		
+		\bigskip
+		
+		Au départ,
+		\code{indiceGauche} vaut 1 et
+		\code{indiceDroit}	vaut 20.
+			
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			{\cellcolor{gray!25} 1} &
+			{\cellcolor{gray!25} 3} &
+			{\cellcolor{gray!25} 5} &
+			{\cellcolor{gray!25} 7} &
+			{\cellcolor{gray!25} 7} &
+			{\cellcolor{gray!25} 9} &
+			{\cellcolor{gray!25} 9} &
+			{\cellcolor{gray!25}10} &
+			{\cellcolor{gray!25}10} &
+			{\cellcolor{gray!25}15} &
+			{\cellcolor{gray!25}16} &
+			{\cellcolor{gray!25}20} &
+			{\cellcolor{gray!25}23} &
+			{\cellcolor{gray!25}23} &
+			{\cellcolor{gray!25}25} &
+			{\cellcolor{gray!25}28} &
+			{\cellcolor{gray!25}28} &
+			{\cellcolor{gray!25}28} &
+			{\cellcolor{gray!25}29} &
+			{\cellcolor{gray!25}29}\\\hline
+		\end{tabular}
+		\end{center}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique~: Exemple de recherche fructueuse}
+	
+		\textit{Première étape}~:
+		
+		\code{indiceMedian} \textsf{←} 
+		\code{(1 + 20) DIV	2}, c’est-à-dire 10. 
+		
+		Comme la valeur en
+		position 10 est 15, la valeur cherchée doit se trouver à sa droite, et
+		on prend comme nouvelle zone de recherche celle délimitée par
+		\code{indiceGauche} qui vaut 11 et
+		\code{indiceDroit} qui vaut 20.
+		
+		\bigskip
+		
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			\multicolumn{1}{|m{0.49700004cm}|}{ 1} &
+			{  3} &
+			{  5} &
+			{  7} &
+			{  7} &
+			{  9} &
+			{  9} &
+			{ 10} &
+			{ 10} &
+			{ 15} &
+			{\cellcolor{gray!25} 16} &
+			{\cellcolor{gray!25} 20} &
+			{\cellcolor{gray!25} 23} &
+			{\cellcolor{gray!25} 23} &
+			{\cellcolor{gray!25} 25} &
+			{\cellcolor{gray!25} 28} &
+			{\cellcolor{gray!25} 28} &
+			{\cellcolor{gray!25} 28} &
+			{\cellcolor{gray!25} 29} &
+			{\cellcolor{gray!25} 29}\\\hline
+		\end{tabular}
+		\end{center}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique~: Exemple de recherche fructueuse}
+		\textit{Deuxième étape}~:
+			
+		\code{indiceMedian} \textsf{←} 
+		\code{(11 + 20) DIV 2}, c’est-à-dire 15. 
+		
+		Comme on y trouve la
+		valeur 25, on garde les éléments situées à la gauche de celui-ci ; la
+		nouvelle zone de recherche est [11, 14].
+		
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			\multicolumn{1}{|m{0.49700004cm}|}{ 1} &
+			{  3} &
+			{  5} &
+			{  7} &
+			{  7} &
+			{  9} &
+			{  9} &
+			{ 10} &
+			{ 10} &
+			{ 15} &
+			{\cellcolor{gray!25} 16} &
+			{\cellcolor{gray!25} 20} &
+			{\cellcolor{gray!25} 23} &
+			{\cellcolor{gray!25} 23} &
+			{ 25} &
+			{ 28} &
+			{ 28} &
+			{ 28} &
+			{ 29} &
+			{ 29}\\\hline
+		\end{tabular}
+		\end{center}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique~: Exemple de recherche fructueuse}
+		\textit{Troisième étape}~:
+		
+		\code{indiceMedian} \textsf{←} 
+		\code{(11 + 14) DIV 2}, c’est-à-dire 12 où se trouve l’élément
+		20. 
+		
+		La zone de recherche devient
+		\code{indiceGauche} vaut 13 et
+		\code{indiceDroit} vaut 14.
+
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			\multicolumn{1}{|m{0.49700004cm}|}{ 1} &
+			{  3} &
+			{  5} &
+			{  7} &
+			{  7} &
+			{  9} &
+			{  9} &
+			{ 10} &
+			{ 10} &
+			{ 15} &
+			{ 16} &
+			{ 20} &
+			{\cellcolor{gray!25} 23} &
+			{\cellcolor{gray!25} 23} &
+			{ 25} &
+			{ 28} &
+			{ 28} &
+			{ 28} &
+			{ 29} &
+			{ 29}\\\hline
+		\end{tabular}
+		\end{center}
+\end{frame}
+
+\begin{frame}{Recherche dichotomique~: Exemple de recherche fructueuse}
+		\textit{Quatrième étape~:}
+		
+		\code{indiceMedian} \textsf{←} 
+		\code{(13 + 14) DIV 2}, c’est-à-dire 13 où se trouve la valeur
+		cherchée ; la recherche est terminée.
+\end{frame}
+
+\begin{frame}{Recherche dichotomique~: Exemple de recherche infructueuse}
+	Recherchons à présent la valeur \textbf{8}. 
+
+	Les étapes de la recherche vont donner successivement
+		
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			\multicolumn{1}{|m{0.4cm}|}{\cellcolor{gray!25} 1} &
+			{\cellcolor{gray!25}  3} &
+			{\cellcolor{gray!25}  5} &
+			{\cellcolor{gray!25}  7} &
+			{\cellcolor{gray!25}  7} &
+			{\cellcolor{gray!25}  9} &
+			{\cellcolor{gray!25}  9} &
+			{\cellcolor{gray!25} 10} &
+			{\cellcolor{gray!25} 10} &
+			{\cellcolor{gray!25} 15} &
+			{\cellcolor{gray!25} 16} &
+			{\cellcolor{gray!25} 20} &
+			{\cellcolor{gray!25} 23} &
+			{\cellcolor{gray!25} 23} &
+			{\cellcolor{gray!25} 25} &
+			{\cellcolor{gray!25} 28} &
+			{\cellcolor{gray!25} 28} &
+			{\cellcolor{gray!25} 28} &
+			{\cellcolor{gray!25} 29} &
+			{\cellcolor{gray!25} 29}\\\hline
+		\end{tabular}
+		\end{center}
+
+		\bigskip
+		
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			\multicolumn{1}{|m{0.4cm}|}{\cellcolor{gray!25} 1} &
+			{\cellcolor{gray!25}  3} &
+			{\cellcolor{gray!25}  5} &
+			{\cellcolor{gray!25}  7} &
+			{\cellcolor{gray!25}  7} &
+			{\cellcolor{gray!25}  9} &
+			{\cellcolor{gray!25}  9} &
+			{\cellcolor{gray!25} 10} &
+			{\cellcolor{gray!25} 10} &
+			{ 15} &
+			{ 16} &
+			{ 20} &
+			{ 23} &
+			{ 23} &
+			{ 25} &
+			{ 28} &
+			{ 28} &
+			{ 28} &
+			{ 29} &
+			{ 29}\\\hline
+		\end{tabular}
+		\end{center}
+
+\end{frame}
+
+\begin{frame}{Recherche dichotomique~: Exemple de recherche infructueuse}
+		
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			\multicolumn{1}{|m{0.4cm}|}{ 1} &
+			{  3} &
+			{  5} &
+			{  7} &
+			{  7} &
+			{\cellcolor{gray!25}  9} &
+			{\cellcolor{gray!25}  9} &
+			{\cellcolor{gray!25} 10} &
+			{\cellcolor{gray!25} 10} &
+			{ 15} &
+			{ 16} &
+			{ 20} &
+			{ 23} &
+			{ 23} &
+			{ 25} &
+			{ 28} &
+			{ 28} &
+			{ 28} &
+			{ 29} &
+			{ 29}\\\hline
+		\end{tabular}
+		\end{center}
+
+		\bigskip
+		
+		\begin{center}
+		\begin{tabular}{*{20}{>{\centering\sffamily\itshape\arraybackslash}m{0.4cm}}}
+			 1 &
+			 2 &
+			 3 &
+			 4 &
+			 5 &
+			 6 &
+			 7 &
+			 8 &
+			 9 &
+			 ~~10 &
+			 ~~11 &
+			 ~~12 &
+			 ~~13 &
+			 ~~14 &
+			 ~~15 & 
+			 ~~16 &
+			 ~~17 &
+			 ~~18 &
+			 ~~19 &
+			 ~~20
+			 \\
+		\end{tabular}
+		\begin{tabular}{|*{20}{>{\centering\arraybackslash}m{0.4cm}|}}
+			\hline
+			\multicolumn{1}{|m{0.49700004cm}|}{ 1} &
+			{  3} &
+			{  5} &
+			{  7} &
+			{  7} &
+			{\cellcolor{gray!25}  9} &
+			{  9} &
+			{ 10} &
+			{ 10} &
+			{ 15} &
+			{ 16} &
+			{ 20} &
+			{ 23} &
+			{ 23} &
+			{ 25} &
+			{ 28} &
+			{ 28} &
+			{ 28} &
+			{ 29} &
+			{ 29}\\\hline
+		\end{tabular}
+		\end{center}
+		
+		\bigskip
+
+		Arrivé à ce stade, la zone de recherche s’est réduite à un seul élément.
+		Ce n’est pas celui qu’on recherche mais c’est à cet endroit qu’il se
+		serait trouvé ; c’est donc là qu’on pourra éventuellement
+		l'insérer. Le paramètre de sortie prend la valeur 6.
 \end{frame}

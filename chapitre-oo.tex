@@ -1,0 +1,1839 @@
+\section{L'orienté objet}
+%\leconwithtoc
+
+\subsection{Objectif}
+
+\begin{frame}{Objectif}
+	Dans ce chapitre, nous présentons les bases de la programmation orientée
+	objet. 
+	
+	Nous commençons par expliquer les motivations qui ont amené ce
+	type de programmation avant d'entrer dans le vif du
+	sujet en explicitant le concept
+	d'\textit{encapsulation}. 
+	
+	Les autres piliers de
+	l'orienté objet (\textit{héritage} et
+	\textit{polymorphisme}) ne seront pas vus cette année.
+\end{frame}
+
+\subsection{Motivation}
+
+\begin{frame}{Motivation}
+	Face à la complexité, la démarche est toujours la même~: découper le
+	problème en sous-problèmes (qui peuvent à leur tour être découpés) ce
+	qui permet
+
+	\begin{itemize}
+		\item 
+			d'attaquer chaque problème séparément en évitant la
+			surcharge cognitive ;
+		\item 
+			de répartir le travail entre plusieurs personnes ;
+		\item 
+			de pouvoir réutiliser du travail déjà produit si un sous-problème est
+			déjà apparu dans le cadre d'un autre problème ;
+		\item 
+			de produire un code plus lisible car s'exprimant avec
+			des termes de plus haut niveau, 
+			plus proches du problème à résoudre.
+		\end{itemize}
+	\end{frame}
+
+\begin{frame}{Motivation}
+			Ainsi, là où un tri devra être fait, 
+			on trouvera le mot «~trier~» qui fera référence 
+			à la partie de code qui s’occupe du tri. 
+			
+			Cela va dans le sens d’une plus grande «~abstraction~» du code~: 
+			un code qui s’éloigne du langage simpliste 
+			compris par le processeur pour s’approcher de la
+			pensée humaine et des termes du problème à résoudre.
+\end{frame}
+
+\begin{frame}{Motivation}
+	Les langages de programmation ont suivi cette approche en permettant
+	toujours plus d’abstraction. 
+	
+	Dans un chapitre précédent, on vous a	présenté 
+	\begin{itemize}
+		\item
+		la notion de module qui permet de découper la tâche à réaliser
+		en sous-tâches ainsi que 
+		\item
+		la notion de structure qui permet de regrouper des données.
+	\end{itemize}
+	
+	Il s'agit là de deux approches	dissociées. 
+\end{frame}
+
+\begin{frame}{Motivation}
+	C'est cette lacune que se propose de combler
+	l'orienté objet~: 
+	\begin{itemize}
+		\item
+		permettre de définir des \textbf{objets} 
+		\begin{itemize}
+			\item
+			(composés de \textbf{données} et
+			\item
+			\textbf{d'instructions}) 
+		\end{itemize}
+		\item
+		qui sont proches du problème
+		à résoudre. 
+		\item
+		Cela va permettre une meilleure lisibilité et une plus
+		grande concision du code. 
+	
+	\end{itemize}
+	
+	\bigskip
+	
+	Ainsi on pourra définir les notions de date,
+	d'employé, de fournisseur, de plateau de jeu, de pion,
+	de livre, d'emprunteur, de carte à jouer, de chambre,
+	de réservation, de vol, de produit, de stock, de ristourne, de facture,
+	de panier d'achats, de compte en banque, de banque, de
+	client, de portefeuille d'actions, ...
+\end{frame}
+
+\subsection{La notion d'objet}
+
+\begin{frame}{Définition}
+	Un \textbf{objet} est une entité logicielle qui~:
+	
+		\begin{itemize}
+		\item 
+			a une \textbf{identité~}; c'est-à-dire que nous pouvons
+			identifier un objet par un nom (tout comme une variable possède un
+			nom).
+		\item 
+			est capable de sauvegarder un \textbf{état}, c'est à
+			dire un ensemble d'informations dans des variables
+			internes;
+		\item 
+			répond à des \textbf{messages} précis en déclenchant des activations
+			internes appropriées qui peuvent changer l'état de
+			l'objet. Ces opérations sont appelées des
+			\textbf{méthodes}. Ce sont des fonctions liées à des objets et qui
+			précisent le \textbf{comportement} de ces objets.
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{État}
+	Un objet contient de l'information, des données qui
+	définissent son état.
+
+	\textbf{Exemples}	
+	\begin{itemize}
+	\item 
+		Pour un produit, l'état peut être~:
+		l'intitulé du produit, son code barre, son prix, ... 
+	\item 
+		Pour un employé, on peut avoir~: son nom, son prénom, son adresse, sa
+		date d'embauche, son salaire mensuel, sa fonction, son
+		téléphone, ... 
+	\item 
+		Une carte à jouer a une couleur et une valeur.
+	\item 
+		L'état d'une date est le jour du
+		calendrier qu'elle représente.
+	\item 
+		L'état d'une heure est le moment de la
+		journée qu'elle représente.
+	\end{itemize}
+\end{frame}
+	
+\begin{frame}{État}
+		L'état d'un objet est mémorisé via des
+		variables qu'on appelle des \textbf{attributs}.
+
+\end{frame}
+	
+\begin{frame}{Attributs~: définition}
+	Les \textbf{attributs} d'un objet sont
+	l'ensemble des informations se présentant sous forme
+	de variables et permettant de représenter l'état
+	d'un objet.
+	
+	\bigskip
+
+	Nous verrons plus loin la syntaxe précise 
+	pour définir les attributs d'un objet.
+
+\end{frame}
+	
+\begin{frame}{Attributs~: exemple}
+	\begin{itemize}
+		\item 
+			L'intitulé d'un produit peut être
+			représenté par une chaine. C'est également le cas des
+			nom(s) et prénom(s) d'un employé.
+		\item 
+			La date d'embauche peut être représentée par un «~objet
+			date~» (une date est rarement un type primitif du langage utilisé). Un
+			attribut d'un objet peut être lui même un objet.
+		\item 
+			Un moment de la journée peut aussi être un objet représenté par trois
+			entiers\footnote{Toutefois, on verra que ce n'est
+			peut-être pas la meilleure solution.}~: les heures, les minutes et les
+			secondes (en supposant qu'on désire une précision de
+			l'ordre de la seconde).
+		\item 
+			L'adresse d'un employé peut être
+			représentée par une seule chaine mais également par un «~objet
+			adresse~» (qui contiendrait~: une rue, un numéro, un code postal\dots).
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Attention}
+	\textbf{Remarque~: }Certaines parties de
+		l'état peuvent évoluer au fil du temps.
+		D'autres parties sont immuables. 
+		Ainsi l'adresse d'une personne peut changer
+		mais pas sa date de naissance.
+\end{frame}
+
+\begin{frame}{Exercices - attributs}
+	\begin{enumerate}
+		\item 
+			Quel(s) attribut(s) prendriez-vous pour représenter
+			(l'état d') une date ?
+		\item 
+			Et pour un dé à 6 faces ?
+		\item 
+			Et pour un produit de magasin ?
+		\item 
+			Et pour une télévision ?
+			(on peut en trouver vraiment beaucoup !)
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Comportement}
+	Le \textbf{comportement} d'un objet est défini par
+	l'ensemble des messages ou requêtes auxquels il peut répondre.
+
+	Pour ce faire, il exécute un module qui pourra
+	éventuellement retourner une information à l'émetteur
+	du message.
+	
+	Les messages peuvent interroger l'objet, le modifier,
+	lui demander d'agir sur son environnement (afficher du
+	texte, modifier un fichier\dots). 
+\end{frame}
+
+\begin{frame}{Comportement~: exemples}
+	\begin{itemize}
+		\item
+			Quels «~messages~» peut-on envoyer à une date ? 
+			\pause
+			On peut lui demander (entre autres) :
+			\begin{itemize}
+			\item
+				des informations sur le jour du mois, le mois, l'année,
+				le jour de la semaine ;
+			\item
+				si elle est antérieure ou non à une autre date ;
+			\item
+				si elle fait partie d'une année bissextile ;
+			\item
+				le nombre de jours qui la sépare de la fin de l'année ;
+			\item 
+				de passer au jour suivant, à la semaine suivante\dots
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Comportement~: exemples}
+	\begin{itemize}
+		\item 
+			Et pour un stock de produits ? On peut 
+			\pause
+			\begin{itemize}
+			\item
+				lui demander la quantité disponible d'un produit donné ;
+			\item
+				lui annoncer l'arrivée d'une quantité
+				donnée d'un produit donné ;
+			\item
+				lui indiquer qu'un produit n'existe
+				plus (à retirer du stock) ;
+			\item 
+				lui demander d'enlever une certaine quantité
+				d'un produit du stock.
+			\end{itemize}
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Comportement~: exemples}
+	\begin{itemize}
+		\item
+			Et pour un employé ? On peut
+			\pause
+			\begin{itemize}
+			\item 
+				lui demander son adresse, son salaire ou sa fonction\dots
+			\item 
+				augmenter son salaire ;
+			\item 
+				le changer de fonction ;
+			\item 
+				le licencier 
+				(penser à prévoir une date de départ dans l'état !).
+			\end{itemize}
+		\pause
+		\item 
+			Pour un moment de la journée on peut demander s'il se
+			situe le matin ou pas\dots	
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercices - comportement}
+	\begin{enumerate}
+		\item
+			Quel comportement voyez-vous pour un téléviseur ?
+		\item
+			Et pour un produit de magasin ?
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Méthode}
+	Un message lance l'exécution d'un
+	module appelé \textbf{méthode} dans le jargon de
+	l'orienté objet.
+\end{frame}
+
+\begin{frame}{Méthode~: Exemples}
+	\begin{itemize}
+		\item
+			Pour permettre à une date de passer au jour suivant, nous allons définir
+			une méthode qui incrémente le jour du mois en tenant compte
+			d'un possible basculement au mois suivant ou à
+			l'année suivante.
+		\item
+			Pour calculer le bénéfice d'un produit, nous allons définir
+			une méthode qui, à partir du prix d'achat et du prix de vente,
+			calcule le bénéfice.
+		\item 
+			Pour permettre à un moment d'indiquer
+			s'il est le matin ou pas, nous allons définir une
+			méthode comme celle-ci (nous verrons plus tard comment
+			l'associer aux objets)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Méthode~: Exemples}
+	\cadre{
+	\begin{pseudo}
+		\LComment On suppose que 'heure' est un des attributs utilisés
+		\LComment pour représenter l'état (le moment dans la journée)
+		\Method{estMatin}{}{booléen}
+			\Return heure < 12 
+			\LComment on considère que midi est situé l'après-midi
+		\EndMethod
+	\end{pseudo}
+	}
+	
+	\medskip
+	Cet exemple devrait vous sembler familier à deux exceptions près
+
+	\begin{itemize}
+		\item
+			on utilise le mot «~\textit{méthode}~» en lieu et place de
+			«~\textit{module}~» ;
+		\item
+			les attributs (l'heure ici) ne sont pas passés en
+			paramètre. 
+			
+			Un objet connait déjà son état et donc la valeur de ses
+			attributs. 
+			
+			Nous verrons plus loin la syntaxe précise.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercices - méthodes}
+	\begin{enumerate}
+	\item 
+		Dans le comportement d'un téléviseur, on retrouve
+		«~éteindre~» et «~allumer~». 
+		À quoi ressemblerait le code de ces méthodes ?
+	\item 
+		Écrivez la méthode qui permet de passer au jour suivant.
+	\item 
+		Écrivez la méthode qui calcule 
+		le bénéfice réalisé lors de la vente d'un produit.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Activer un comportement}
+	Pour activer un comportement d'un objet, 
+	il faut lui envoyer un message 
+	(ou dit autrement, appeler une de ses méthodes). 
+	
+	\bigskip
+	
+	La syntaxe que nous allons utiliser 
+	(c'est la plus courante) est la notation pointée.
+	
+	\bigskip
+
+	\cadre{
+	\begin{pseudo}
+		\Stmt nomObjet.nomMéthode()
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Activer un comportement~: exemple}
+		Supposons que le nom «~maintenant~» 
+		désigne un objet contenant un moment de la journée 
+		(on verra comment réaliser cela). 
+		
+		\bigskip
+		
+		Si on veut savoir si on est le matin, on peut écrire
+		
+		\bigskip
+
+		\cadre{
+		\begin{pseudo}
+			\If{maintenant.estMatin()}
+				\Stmt ...
+			\EndIf
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Exercice – activer un comportement}
+	Écrire la portion de code qui allume une télévision 
+	(désignée par «~maTélévision~») 
+	et puis l'éteint aussitôt après.		
+\end{frame}
+
+\begin{frame}{Les paramètres d'un comportement}
+		Activer un comportement revient à appeler une méthode de
+		l'objet. 
+		
+		\bigskip
+		
+		Souvent il est nécessaire
+		d'envoyer à l'objet des informations
+		complémentaires pour préciser notre demande ce qui se fait via
+		l'utilisation des paramètres.
+\end{frame}
+
+\begin{frame}{Les paramètres d'un comportement~: Exemple}
+		Si on veut modifier le salaire d'un employé, 
+		il faut que notre message contienne le nouveau salaire. 
+		
+		Autrement dit, 
+		il faut communiquer ce nouveau salaire à la méthode 
+		de changement du salaire.
+		
+		\bigskip
+		
+		Ce qui donne la méthode suivante~:
+
+		\cadre{
+		\begin{pseudo}
+			\Method{modifierSalaire}{nouveauSalaire~: entier}{}
+				\Stmt salaire \Gets nouveauSalaire
+			\EndMethod
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Exercices – paramètres du comportement}
+	\begin{itemize}
+	\item 
+		Prenons un objet représentant un produit de magasin. 
+		Nous supposerons qu'un produit a un \textit{numéro}, 
+		un  \textit{libellé}, un \textit{prixAchat}, 
+		un \textit{prix de vente} et une \textit{quantitéEnStock}.
+		
+		\bigskip
+		
+		Donnez les \textbf{entêtes} des méthodes suivantes 
+		qui permettent de~:
+		\begin{itemize}
+		\item 
+			obtenir le prix de vente
+		\item 
+			calculer le bénéfice
+		\item 
+			donner la quantité restant en stock
+		\item 
+			dire si le produit est en rupture de stock.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercices – paramètres du comportement}
+	\begin{itemize}
+	\item 
+		Prenons un objet représentant une date du calendrier grégorien. 
+		Donnez les entêtes des méthodes suivantes qui permettent de~:
+		\begin{itemize}
+		\item
+			demander le nom du jour correspondant à une date (par exemple lundi, mardi, ...)
+		\item 
+			savoir si une date est antérieure à une autre
+		\item 
+			connaitre le nombre de jours (absolu) séparant deux dates.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercices – paramètres du comportement}
+	\begin{itemize}
+	\item 
+		Soit deux dates $date1$ et $date2$ ; écrivez la
+		portion de code qui utilise les méthodes ci-dessus pour
+		\begin{itemize}
+			\item 
+				vérifier quelle date précède l'autre;
+			\item 
+				calculer le nombre de jours d'écart entre ces deux
+				dates.
+		\end{itemize}
+		
+	\item 
+		Précédemment, vous avez défini l'ensemble du
+		comportement d'un téléviseur. Écrivez les entêtes des
+		méthodes correspondant à ce comportement ainsi qu'une
+		portion de code qui les utilise.
+	\end{itemize}
+\end{frame}
+
+\subsection{L'encapsulation}
+
+\begin{frame}{L'encapsulation}
+	Un objet possède un état qui est représenté par des attributs. 
+	
+	Les bonnes pratiques de la programmation orientée objet préconisent
+	fortement que les attributs d'un objet soient
+	invisibles en dehors de l'objet. 
+	
+	Ils ne pourront être accédés qu'au travers 
+	du comportement de l'objet, 
+	c'est-à-dire via ses méthodes.
+\end{frame}
+
+\begin{frame}{L'encapsulation~: définition}
+	\textbf{Lorsque les détails de l'implémentation
+		d'un objet sont masqués aux autres objets, on dit
+		qu'il y a \textbf{encapsulation} des données et du
+		comportement des objets.}
+\end{frame}
+
+\begin{frame}{L'encapsulation~: Pourquoi une telle recommandation ?}
+	Le but est de garantir la cohérence de l'état de l'objet. 
+	
+	Si on pouvait accéder directement à un attribut 
+	(et donc le modifier), 
+	on pourrait y mettre une valeur incohérente. 
+	
+	Par exemple, on pourrait dire que les minutes d'un moment 
+	valent -3 ou 75 ou encore que le jour d'une date est 32 !
+	
+	\bigskip
+	
+	Dès lors, il nous faudra préciser pour chaque \textbf{membre} 
+	(attributs et méthodes) d'un objet s'il est
+	\textbf{privé} (inconnu de l'extérieur) ou
+	\textbf{public} (connu de l'extérieur). 
+\end{frame}
+
+\begin{frame}{L'encapsulation}
+	\begin{itemize}
+		\item
+		Le bon usage impose que tous les attributs soient rendus privés 
+		et que les méthodes restent publiques. 
+		\item
+		Toutefois, on pourra trouver également des méthodes privées. 
+		
+		Ce sera notamment le cas si plusieurs méthodes d'un objet 
+		ont une partie commune ; 
+		il sera intéressant de la \textit{factoriser}, 
+		c-à-d en faire une méthode privée (ex~: un calcul de maximum).
+		\item
+		Puisqu'un attribut est privé,
+		il est courant pour chacun des attributs de rencontrer 
+		une méthode destinée à connaitre la valeur de cet attribut 
+		et une autre qui permet de la modifier.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Accesseur et mutateur}
+	{definitions~:}
+	\begin{itemize}
+		\item
+		\textbf{Accesseur}~: méthode dont le but est de fournir la valeur d'un attribut.
+		\item
+		\textbf{Mutateur}~: méthode dont le but est de modifier la valeur d'un attribut.
+	\end{itemize}
+	
+	Par convention, ces méthodes sont nommées \textit{getNom} et 
+	\textit{setNom} où «~nom~» est le nom de l'attribut.
+	
+	Pour un attribut booléen, on pourra préférer \textit{estNom} ou \textit{isNom} 
+	au lieu de \textit{getNom}. 
+\end{frame}
+
+\begin{frame}{Accesseur et mutateur~: exemple}
+	Écrivons l'accesseur et le mutateur pour l'attribut 
+	«~heure~» d'un moment de la journée.
+	
+	\bigskip
+
+	\cadre{
+	\begin{pseudo}
+		\Method{getHeure}{}{entier}
+			\Return heure
+		\EndMethod
+	\end{pseudo}
+	}
+	
+	\bigskip
+
+	\cadre{
+	\begin{pseudo}
+		\Method{setHeure}{uneHeure~: entier}{}
+			\Stmt heure \Gets uneHeure
+		\EndMethod
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Que faire si le paramètre est invalide ?}
+	Dans l'exemple précédent, 
+	que se passerait-il si le paramètre \textit{uneHeure} vaut 25 ? 
+	
+	\pause
+	
+	\bigskip
+	
+	Une valeur aberrante serait affectée à l'attribut \textit{heure}.
+
+	\pause
+	
+	Dans le cas de paramètres invalides, 
+	la plus mauvaise solution est de ne rien faire. 
+	
+	Le programme continuerait en croyant que tout s’est bien
+	passé et il court à la catastrophe. 
+	
+	Il est préférable qu’un programme s'interrompe 
+	plutôt que de fournir une mauvaise réponse. 
+\end{frame}
+
+\begin{frame}{Que faire si le paramètre est invalide ?}
+	Cette année, nous nous contenterons d'indiquer
+	clairement dans nos codes qu'il s'agit d'une situation anormale 
+	via la primitive \textit{erreur} qui arrête le déroulement du
+	programme avec une courte explication du problème.
+	
+	\bigskip
+
+	La syntaxe que nous allons retenir est
+	
+	\bigskip
+
+	\cadre{
+	\begin{pseudo}
+		\Stmt \K{erreur} "explication de l'erreur"
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Que faire si le paramètre est invalide ?}
+	Ce qui donne~:	
+	
+	\cadre{
+	\begin{pseudo}
+		\Method{setHeure}{uneHeure~: entier}{}
+			\If{uneHeure < 0 OU uneHeure > 23}
+				\Stmt \K{erreur} "heure invalide"
+			\EndIf
+			\Stmt heure \Gets uneHeure
+		\EndMethod
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Exercice - encapsulation}
+		Sans le savoir, vous avez déjà défini des accesseurs et des 
+		mutateurs pour le téléviseur. 
+		
+		\begin{itemize}
+			\item
+			Lesquels ? 
+			\item
+			En suivant la convention de nom pour les accesseurs et les mutateurs, 
+			quels noms auraient-ils dû porter ?
+		\end{itemize}
+\end{frame}
+
+\subsection{La notion de classe et d'instance}
+
+\begin{frame}{La notion de classe et d'instance}
+	Pour pouvoir utiliser des objets nous allons devoir les définir
+	(expliciter leur état et leur comportement). 
+	
+	Cette définition est commune à tous les objets similaires. 
+	
+	\bigskip
+	
+	Par exemple tous les moments ont un même comportement 
+	et un même type d'état 
+	(des heures, des minutes et des secondes).
+\end{frame}
+
+\begin{frame}{La notion de classe et d'instance~: définitions}
+	\begin{itemize}
+	\item
+		Une \textbf{classe} est un ensemble d'objets qui ont en
+		commun les mêmes méthodes et qui partagent les mêmes types
+		d'attributs.
+	
+	\bigskip
+	
+	\item
+		Une \textbf{instance}
+		d'une classe est un objet particulier
+		d'une classe qui peut activer les méthodes de la
+		classe et qui a des valeurs particulières pour ses attributs.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{La notion de classe et d'instance}
+	Définir une classe revient à définir un nouveau type de
+	données. 
+	
+	\bigskip
+	
+	En gros, on peut dire qu'un \textbf{objet
+	est à une classe ce qu'une variable est à un type}.
+	
+	\bigskip
+	
+	Comprenons bien que les objets d'une même classe ont le
+	même «~type~» d'état mais pas le même état proprement
+	dit. 
+	
+	Deux objets «~moment~» représentent tous deux un moment 
+	(heures, minutes, secondes) de la journée mais pas (forcement) 
+	le même ! 
+	
+	Ils auront donc les mêmes attributs mais
+	avec des valeurs différentes !
+\end{frame}
+
+\begin{frame}{Définition d'une classe}
+	Nous devons d'abord définir une classe avant de pouvoir
+	en instancier les objets que nous voulons utiliser. 
+	
+	Précisons la syntaxe utilisée pour définir une classe~:
+
+	\cadre{
+	\begin{pseudo}
+		\Class{NomDeLaClasse}
+			\Private
+				\LComment liste des attributs (donc privés par convention)
+			\Public
+				\LComment liste des méthodes publiques
+			\Private
+				\LComment liste des méthodes privées
+		\EndClass
+		\LComment Par souci de lisibilité, on pourra indiquer uniquement 
+		les signatures des
+		\LComment méthodes et donner le code complet des méthodes à 
+		la suite de la classe.
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Définition d'une classe~: exemple}
+		la classe Moment qui représente un moment de la journée.
+
+		\cadre{
+		\begin{pseudo}
+			\Class{Moment}
+				\Private
+					\Decl heure~: entier
+					\Decl minute~: entier
+					\Decl seconde~: entier
+				\Public
+					\MethodSign{getHeure}{}{entier}
+					\MethodSign{getMinute}{}{entier}
+					\MethodSign{getSeconde}{}{entier}
+					\MethodSign{setHeure}{uneHeure~: entier}{}
+					\MethodSign{setMinute}{uneMinute~: entier}{}
+					\MethodSign{setSeconde}{uneSeconde~: entier}{}
+					\MethodSign{estMatin}{}{booléen}
+			\EndClass
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Définition d'une classe~: exemple}
+		la classe Moment qui représente un moment de la journée.
+
+		\cadre{
+		\begin{pseudo}
+			\Method{estMatin}{}{booléen}
+				\Return heure < 12
+			\EndMethod
+			\Empty
+			\LComment + les accesseurs et les mutateurs		
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Instanciation d'une classe}
+	«~Instancier~» signifie créer un objet d'une classe.
+	
+	\bigskip
+	
+	Cela s'écrit avec l'instruction	\textit{nouveau}. 
+	
+	\bigskip
+	
+	Pour lui donner un nom, 
+	on l'assigne à une variable déclarée du type de la
+	classe.
+
+	\cadre{
+	\begin{pseudo}
+		\Decl nomObjet~: nomClasse 
+		\RComment déclaration de l'objet
+		\Let nomObjet \Gets \K{nouveau} nomClasse() 
+		\RComment instanciation de l'objet
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Instanciation d'une classe~: Exemple}
+	pour créer un moment de la journée~:
+		
+		\cadre{
+		\begin{pseudo}
+			\scriptsize{
+			\Module{test}{}{}
+				\Decl midi~: Moment
+				\RComment déclaration
+				\Let midi \Gets \K{nouveau} Moment()
+				\RComment instanciation
+				\Stmt midi.setHeure( 12 )
+				\RComment mutateur
+				\Stmt midi.setMinute( 0 )
+				\RComment " "
+				\Stmt midi.setSeconde( 0 )
+				\RComment " "
+				\If{midi.estMatin()}
+					\Write "Midi est considéré comme
+					étant encore le matin"
+				\Else 
+					\Write "Midi est considéré comme
+					étant l'après-midi"
+				\EndIf
+			\EndModule
+		}
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Instanciation d'une classe}
+	Différence entre les objets et les types de bases~: 
+	\begin{itemize}
+		\item
+		Lorsqu'on déclare une	variable d'un type de base, cela alloue
+		automatiquement un espace mémoire pour cette variable.
+		\item
+		C'est différent avec les objets~: la déclaration
+		n'entraine qu'une réservation mémoire
+		pour une «~référence~» vers un objet. 
+		
+		Celui-ci n'existe pas encore. 
+		
+		Il sera créé (et sa mémoire
+		allouée) via une instruction spécifique (\textit{nouveau}). 
+		
+		On parle de variable «\textit{~dynamique~}». 
+		
+		Le nom est alors une «~référence~» vers l’objet. 
+		\item
+		Les avantages de cette dissociation seront
+		évidents lorsque nous parlerons de la notion de \textit{constructeur}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Instanciation d'une classe}
+			Après la déclaration, on a~:
+		\begin{center}
+		\begin{tabular}{m{2.2089999cm}}
+		\centering\arraybslash  midi\\\hline
+		\multicolumn{1}{|m{2.2089999cm}|}{\centering\arraybslash
+		\itshape rien}\\\hline
+		\end{tabular}
+		\end{center}
+\end{frame}
+
+\begin{frame}{Instanciation d'une classe}
+		Après l'instanciation (ou création), on a~:
+		\begin{center}
+		\begin{tabular}{m{2.578cm}m{2.261cm}|m{3.162cm}|}
+		\centering  midi &
+		\multicolumn{1}{m{2.261cm}}{~
+		} &
+		\multicolumn{1}{m{3.162cm}}{\centering\arraybslash
+		 Moment}\\\hhline{-~-}
+		\multicolumn{1}{|m{2.578cm}|}{~
+		} &
+		\centering \sffamily → &
+		\centering\arraybslash  heure = ?\\\hhline{-~~}
+		~
+		 &
+		~
+		 &
+		\centering\arraybslash  minute = ?\\
+		~
+		 &
+		~
+		 &
+		\centering\arraybslash  seconde = ?\\\hhline{~~-}
+		\end{tabular}
+		\end{center}
+		
+		Remarquez qu'il n'y a pas d'initialisation par défaut, pour le moment.
+\end{frame}
+
+\begin{frame}{Instanciation d'une classe}
+		Après l'action des mutateurs, on a~:
+		\begin{center}
+		\begin{tabular}{m{2.578cm}m{2.261cm}|m{3.162cm}|}
+		\centering  midi &
+		\multicolumn{1}{m{2.261cm}}{~
+		} &
+		\multicolumn{1}{m{3.162cm}}{\centering\arraybslash
+		 Moment}\\\hhline{-~-}
+		\multicolumn{1}{|m{2.578cm}|}{~
+		} &
+		\centering \sffamily → &
+		\centering\arraybslash  heure = 12\\\hhline{-~~}
+		~
+		 &
+		~
+		 &
+		\centering\arraybslash  minute = 0\\
+		~
+		 &
+		~
+		 &
+		\centering\arraybslash  seconde = 0\\\hhline{~~-}
+		\end{tabular}
+		\end{center}
+\end{frame}
+
+\begin{frame}{Exercices – classe et instance}
+	\begin{enumerate}
+		\item 
+			Pour les produits, vous avez déjà écrit les attributs et les en-têtes des
+			méthodes. Regroupez le tout en une classe \textit{Produit}
+			\textbf{en respectant les notations que vous venez de voir.}
+		\item 
+			Écrivez un module qui affiche le prix d'achat d'un produit, son prix 
+			de vente hors TVA et son prix de vente TVA comprise.
+	\end{enumerate}		
+\end{frame}
+
+\subsection{Les constructeurs}
+
+\begin{frame}{Les constructeurs}
+	L'encapsulation nous permet de contrôler
+	l'état de l'objet et de
+	l'empêcher de tomber dans un état invalide. 
+	
+	\bigskip
+	
+	Mais qu'en est-il de l'état de départ ?
+	
+	Est-il valide ?
+	
+	\bigskip
+	
+	Il serait bon, lorsqu'on crée un objet (via
+	\textit{nouveau}) de pouvoir indiquer l'état
+	initial de l'objet et que cet état puisse être validé.
+	C'est le rôle précis des constructeurs.
+\end{frame}
+
+\begin{frame}{Les constructeurs}
+	Un \textbf{constructeur} est une méthode particulière permettant
+	d'initialiser les attributs d'un
+	objet lors de sa création effective. Elle porte le même nom que sa
+	classe et ne retourne pas de valeur.
+\end{frame}
+
+\begin{frame}{Les constructeurs}
+	Il peut y avoir plusieurs constructeurs ce qui permet
+	d'offrir plusieurs possibilités d'indiquer l'état initial de
+	l'objet. Toutefois, nous limiterons au maximum le nombre 
+	de constructeurs dans une classe.
+	
+	\bigskip
+	
+	Remarquez que cela demande de définir plusieurs méthodes 
+	qui portent le même nom. 
+	
+	C'est ce qu'on appelle la	\textbf{surcharge}. 
+	
+	Des méthodes homonymes (c-à-d de même nom) doivent
+	pouvoir être différenciées via leur signature (la liste de leurs
+	paramètres).
+\end{frame}
+
+\begin{frame}{Les constructeurs~: Exemple}
+	Écrivons des constructeurs pour un moment de la journée~:
+
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Class{Moment}
+			\Private
+				\LComment pas de changement
+				\Decl heure~: entier
+				\Decl minute~: entier
+				\Decl seconde~: entier
+			\Public
+				\ConstrSign{Moment}{uneHeure, uneMinute, uneSeconde~: entiers}
+				\ConstrSign{Moment}{uneHeure, uneMinute~: entiers}
+				\RComment 0 seconde par défaut
+				\ConstrSign{Moment}{uneHeure~: entier}
+				\RComment initialiser à une heure pile
+				\Empty
+				\LComment pas de changement au niveau des méthodes~:
+				\MethodSign{getHeure}{}{entier}
+				\MethodSign{getMinute}{}{entier}
+				\MethodSign{getSeconde}{}{entier}
+				\MethodSign{setHeure}{uneHeure~: entier}{}
+				\MethodSign{setMinute}{uneMinute~: entier}{}
+				\MethodSign{setSeconde}{uneSeconde~: entier}{}
+				\MethodSign{estMatin}{}{booléen}
+		\EndClass
+		}
+		\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Les constructeurs~: Exemple}
+	\cadre{
+	\begin{pseudo}
+		\scriptsize{
+		\Constr{Moment}{uneHeure, uneMinute, uneSeconde~: entiers}
+			\Stmt setHeure(uneHeure)
+			\Stmt setMinute(uneMinute)
+			\Stmt setSeconde(uneSeconde)
+		\EndConstr
+		
+		\Empty
+		\Constr{Moment}{uneHeure, uneMinute~: entiers}
+			\Stmt setHeure(uneHeure)
+			\Stmt setMinute(uneMinute)
+			\Stmt setSeconde(0)
+		\EndConstr
+		
+		\Empty
+		\Constr{Moment}{uneHeure~: entier}
+			\Stmt setHeure(uneHeure)
+			\Stmt setMinute(0)
+			\Stmt setSeconde(0)
+		\EndConstr
+		}
+					
+		\Empty
+		\LComment + les accesseurs, les mutateurs et les autres méthodes
+	
+	\end{pseudo}
+	}
+\end{frame}
+
+\begin{frame}{Les constructeurs~: Logique vs Java}
+	Contrairement à ce qu'on peut trouver dans certains langages, 
+	comme Java par exemple, nous n'autorisons pas ici d'appel 
+	d'un constructeur d'une classe \textit{A} dans un autre constructeur 
+	de cette même classe \textit{A}.
+	
+	\bigskip
+	
+	Par contre, il est courant en logique qu'un constructeur 
+	appelle les mutateurs afin d'effectuer les tests sans 
+	avoir à les dupliquer.
+	Mais c'est une démarche que vous éviterez de faire dans
+	des langages comme Java par exemple 
+	(cela vous sera expliqué plus tard).
+	
+\end{frame}
+
+\begin{frame}{Les constructeurs~: appels}
+	Lorsqu'on instancie un objet, les paramètres
+	qu'on donne déterminent le constructeur qui est
+	effectivement utilisé pour initialiser l'état de
+	l'objet.
+
+	\textbf{Exemple}~: Instancions quelques moments de la journée.
+	
+	\cadre{
+	\begin{pseudo}
+		\Let heureDépart \Gets \K{nouveau} Moment(14, 23, 56)
+		\Let heureLever \Gets \K{nouveau} Moment(9, 30)
+		\Let heureGouter \Gets \K{nouveau} Moment(17)
+	\end{pseudo}
+	}
+\end{frame}
+
+
+\begin{frame}{Les constructeurs}
+	Le fait qu'un objet est instancié via la primitive
+	\textit{nouveau} et pas implicitement à la déclaration permet de
+	postposer sa construction effective au moment où
+	l'état initial qu'on veut lui donner
+	sera connu (ce qui peut résulter d'un calcul). On est
+	ainsi assuré que tous les objets manipulés sont valides ce qui permet
+	d’éviter les situations où une méthode fait des dégâts suite à la
+	manipulation d’un objet invalide.
+\end{frame}
+
+\begin{frame}{Exercices - constructeur}
+		\begin{enumerate}
+			\item {
+				Écrivez un ou des constructeur(s) pour un \textit{Produit}}
+			\item {
+				Adaptez le module écrit plus haut pour qu'il affiche le prix hors TVA
+				puis le prix TVA comprise du produit n°105176 (Lego réveil figurine policier)
+				au prix d'achat de 25\texteuro, au prix de vente de 30\texteuro et 
+				dont il y a 10 exemplaires en stock.}
+		\end{enumerate}
+\end{frame}
+
+\subsection{Du choix de la représentation de l'état}
+
+\begin{frame}{Du choix de la représentation de l'état}
+	Lorsqu'on définit une classe, il faut choisir les
+	attributs qui vont permettre de représenter l'état des
+	objets. Cela peut paraitre immédiat mais il n'en est
+	rien.
+\end{frame}
+
+\begin{frame}{Du choix de la représentation de l'état~: exemple}
+	Pour un moment de la journée, nous avons choisi
+	d'utiliser trois attributs entiers (les heures, les
+	minutes et les secondes). Nous aurions tout aussi bien pu choisir
+	d'utiliser un seul entier représentant le nombre de
+	secondes écoulées depuis minuit.
+	
+	\bigskip
+	
+	Ces deux représentations sont tout-à-fait équivalentes en terme de
+	potentiel mais la grande différence est l'efficacité
+	du code des méthodes. 
+\end{frame}
+
+\begin{frame}{Du choix de la représentation de l'état}
+	Prenons deux méthodes symptomatiques~: celle qui donne
+	l'heure et celle qui compare deux moments de la
+	journée. La première est beaucoup plus simple à écrire et plus rapide
+	avec la première représentation alors que la seconde méthode est plus
+	simple à écrire et plus rapide avec la seconde représentation.
+	
+	\bigskip
+	
+	Dès lors, quelle représentation choisir ? Il faut examiner, pour chaque
+	représentation possible, le nombre de méthodes qui sont efficaces mais
+	aussi imaginer la fréquence de leur utilisation (ce qui est difficile
+	et changeant). Heureusement, ce choix n'est pas
+	définitif. Si on change d'avis, on peut changer la
+	représentation. Il faudra bien sûr réécrire les méthodes de la classe
+	mais il ne faudra rien changer au reste du code, c-à-d les lignes du
+	code utilisant la classe. C’est d’ailleurs là une des grandes forces de
+	la programmation orientée objet.
+\end{frame}
+
+\begin{frame}{Exercices – représentation de l'état}
+		\begin{enumerate}
+			\item 
+				Compléter la classe Moment en écrivant la méthode «~getHeure~» et celle
+				qui compare deux moments pour les deux représentations imaginées
+				ci-dessus.
+			\item 
+				Écrire le module qui crée deux moments de la journée et vérifie si le
+				premier est avant le second. Ce code dépend-il des attributs choisis
+				pour définir la classe Moment ?
+		\end{enumerate}
+\end{frame}
+
+\begin{frame}{Remarque}
+	Précédemment, nous avons défini un \textbf{accesseur} comme une méthode
+	permettant d’accéder à la valeur d’un attribut. 
+	
+	Mais c’est au	développeur de définir quels sont les attributs ; 
+	c’est totalement caché à l’utilisateur de la classe. 
+	
+	On voit donc bien que cette notion
+	d’accesseur n’a pleinement de sens qu’en interne, pour le développeur
+	de la classe. 
+	
+	Pour l’utilisateur il s’agit d’une méthode comme les autres.
+\end{frame}
+
+\subsection{La mort d'un objet}
+
+\begin{frame}{La mort d'un objet}
+	On sait que déclarer une variable ou créer un objet réserve de l’espace
+	en mémoire. On ne s’est jamais demandé quand cet espace mémoire est
+	libéré.
+	
+	\bigskip
+	
+	Pour les variables locales d’un module ou d'une
+	méthode, la réponse est simple~: l’espace mémoire est récupéré
+	lorsqu’on arrive à la fin du module ou de la méthode.
+	
+	\bigskip
+	
+	Pour les objets, c’est un peu plus compliqué. L’espace réservé pour
+	contenir la référence (voir paragraphe suivant) est bien libéré à la
+	fin du module puisque la variable cesse d’exister. Par contre l’espace
+	réservé dynamiquement pour contenir l’objet lui-même (par la primitive
+	\textit{nouveau}) est toujours là et bien là !
+	
+\end{frame}
+
+\begin{frame}{La mort d'un objet}
+	Mais alors, il n’est plus référencé et donc plus utilisable ? Pas
+	forcément. En effet, il est possible qu’il soit référencé par plusieurs
+	références. Si certaines sont détruites, il se peut que d’autres
+	continuent à exister. Ce sera le cas, par exemple, si l’objet constitue
+	la valeur de retour de la méthode ; sa référence à l’intérieur du
+	module est détruite mais il sera toujours accessible par une référence
+	du module appelant.
+	
+	\bigskip
+	
+	Mais que faire quand on n’a plus besoin d’un objet ? On trouve
+	typiquement deux approches dans les langages OO.
+\end{frame}
+
+\begin{frame}{La mort d'un objet~: destruction explicite de l’objet}
+	C’est auprogrammeur lui-même de détruire explicitement un objet
+	et ainsi de permettre au système de récupérer l’espace mémoire. 
+	
+	\bigskip
+	
+	Cette technique offre au programmeur un grand contrôle sur l’utilisation
+	de la mémoire mais offre malheureusement quelques inconvénients.
+	
+	\bigskip
+
+	\begin{itemize}
+		\item 
+			Cela demande une grande attention lors de la programmation afin de
+			récupérer tout l’espace qui peut l’être. Dans le cas contraire, on
+			gaspille de la mémoire.
+		\item 
+			Dans l’autre sens, il ne faut pas trop détruire. Si, par mégarde, on
+			détruit un objet qui est encore référencé et qu'on
+			utilise cette référence, le comportement du programme est imprévisible
+			(la mémoire peut avoir été utilisée pour autre chose).
+		\item 
+			Un objet peut contenir des références à d’autres objets. La destruction
+			est alors un processus non trivial qui peut sensiblement alourdir et
+			obscurcir le code.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{La mort d'un objet~: utilisation d’un garbage collector (ramasse-miettes)}
+	Cette autre approche (choisie notamment par Java) enlève au programmeur
+	toute (ou presque) responsabilité quant à la gestion de la mémoire. De
+	temps en temps, ou lorsque le besoin s’en fait sentir, un composant du
+	système appelé \textit{garbage collector} se met au travail. Son rôle
+	est justement de récupérer l’espace qui n’est plus utilisé. Pour cela,
+	il considère que tout objet qui n'est plus accessible
+	(parce que plus aucune référence ne permet d’y accéder) peut être
+	détruit.
+	
+	\bigskip
+	
+	Par facilité et parce que cela correspond au cours de Java que vous
+	suivez cette année, nous adopterons dans ce cours cette seconde
+	approche, c'est à dire qu'il ne faut
+	pas se préoccuper de ce problème ;-)
+
+\end{frame}
+
+\subsection{Quelques éléments de syntaxe}
+
+\begin{frame}{Quelques éléments de syntaxe}
+	Clarifions certaines notations liées aux objets.
+
+	\begin{itemize}	
+		\item {
+			On peut directement afficher un objet. Cela affiche son état,
+			c'est-à-dire les valeurs de ses attributs dans
+			l'ordre où ils apparaissent dans la définition de la
+			classe.
+			\\
+			\bigskip
+			\cadre{
+			\begin{pseudo}
+				\Decl rendezVous~: Moment
+				\Let rendezVous \Gets \K{nouveau} Moment(14, 23, 56)
+				\Write rendezVous 
+				\RComment affichera 14, 23 et 56 dans un format lisible quelconque
+			\end{pseudo}
+			}
+		}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+	\begin{itemize}	
+		\item {
+			Un nom d'objet est en fait une \textbf{référence} à
+			l'objet. Ainsi l'affectation ne copie
+			pas l'objet mais sa référence. Au final, nous avons
+			deux noms identifiant le même objet}
+			\\
+			\bigskip
+			\cadre{
+			\begin{pseudo}
+				\Decl moment1, moment2~: Moment
+				\Let moment1 \Gets \K{nouveau} Moment(14, 23, 56)
+				\Let moment2 \Gets moment1
+				\RComment moment1 et moment2 désignent le même objet
+				\Stmt moment2.setHeure( 12 )
+				\Write moment1.getHeure() 
+				\RComment affiche 12 !!!
+			\end{pseudo}
+			}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+			\begin{center}
+			\tablehead{}
+			\begin{supertabular}{m{2cm}m{2cm}|m{2.5cm}|m{2cm}m{2cm}}
+			\hhline{-~-~-}
+			\multicolumn{1}{|m{2cm}|}{\centering  moment1}
+			&
+			\centering \sffamily → &
+			\centering  Heure = \sout{14} 12 &
+			\multicolumn{1}{m{2cm}|}{\centering \sffamily
+			←} &
+			\multicolumn{1}{m{2.5cm}|}{\centering\arraybslash
+			 moment2}\\\hhline{-~~~-}
+			~
+			 &
+			~
+			 &
+			\centering  minute = 23 &
+			~
+			 &
+			~
+			\\
+			~
+			 &
+			~
+			 &
+			\centering  seconde = 56 &
+			~
+			 &
+			~
+			\\\hhline{~~-~~}
+			\end{supertabular}
+			\end{center}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+	\begin{itemize}	
+		\item 
+			Le signe «~=~» permet de tester que deux noms référencent le même objet.
+			Pour tester que deux objets différents sont dans le même état, on
+			utilise la méthode «~égal~».
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+			\cadre{
+			\begin{pseudo}
+				\Decl moment1, moment2, moment3~: Moment
+				\Empty
+				\Let moment1 \Gets {nouveau} Moment( 14, 23, 56 )
+				\Let moment2 \Gets moment1 
+				\LComment moment1 et moment2 désignent le même objet
+				\Empty
+				\Let moment3 \Gets {nouveau} Moment( 14, 23, 56 )
+				\Write moment1 = moment2
+				\RComment vrai
+				\Write moment1 = moment3 
+				\RComment faux
+				\Write moment1.égal(moment2) 
+				\RComment vrai
+				\Write moment1.égal(moment3) 
+				\RComment vrai
+				\Empty 
+				\Stmt moment2.setHeure( 12 )
+				\Write moment1.égal(moment2) 
+				\RComment vrai
+				\Write moment1.égal(moment3) 
+				\RComment faux
+			\end{pseudo}
+			}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+	\begin{itemize}
+		\item 
+			\textbf{Un attribut privé n'est pas connu en dehors de la
+			classe.}
+			
+			Précisons~: un attribut privé n'est connu que
+			des instances de cette classe, ce qui signifie qu'il
+			est également connu par tous les autres objets de la même
+			classe.
+			
+			\smallskip
+			\textbf{Exemple}~: 	
+			écrivons la méthode qui teste si un moment précède un
+			autre (en supposant que l'état est représenté par un
+			seul entier, totalSecondes, le nombre de secondes depuis minuit)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+			\cadre{
+			\begin{pseudo}
+				\Method{estAntérieur}{autre~: Moment}{booléen}
+					\Return totalSecondes < autre.totalSecondes
+					\LComment c'est équivalent à \textit{retourner} 
+					\LComment totalSecondes < autre.getTotalSecondes()
+				\EndMethod
+			\end{pseudo}
+			}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+	\begin{itemize}
+		\item 
+			Lorsqu'il est déclaré, un nom d'objet
+			ne référence encore aucun objet. Cela s'indique par la
+			valeur «~rien~». On peut aussi utiliser cette valeur pour enlever toute
+			référence vers un objet.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Quelques éléments de syntaxe}
+			\cadre{
+			\begin{pseudo}
+				\Decl moment~: Moment
+				\RComment moment = rien
+				\Let moment \Gets \K{nouveau} Moment( 14, 23, 56 )
+				\RComment moment ${\neq}$ rien
+				\Let moment \Gets rien
+				\RComment moment = rien
+			\end{pseudo}
+			}
+\end{frame}
+
+\begin{frame}{Exercice~: méthode égal}
+		Écrire la méthode \textit{égal()} pour la classe \textit{Moment}.
+		
+		N.B.~: On supposera par la suite qu'une telle méthode
+		existe par défaut pour toutes les nouvelles classes.
+\end{frame}
+
+\subsection{Représentation modélisée d'une classe}
+
+\begin{frame}{Représentation modélisée d'une classe}
+	Un dessin étant souvent plus lisible qu'un texte, on
+	peut représenter graphiquement une classe. Une notation courante est
+	celle utilisée en UML(Unified
+	Modeling Langage). On vous en parlera plus en détail au cours
+	d'Analyse. 
+	
+	\bigskip
+	
+	Pour faire simple, une classe est
+	représentée par un rectangle composé de 3 zones~: la première pour le
+	nom de la classe, la deuxième pour les attributs et la troisième pour
+	les méthodes. On indique par un signe «~+~» (resp. «~-~») que le membre
+	est public (resp. privé)
+\end{frame}
+
+\begin{frame}{Représentation modélisée d'une classe}
+		\textbf{Exemple}
+	
+	\begin{center}
+	\begin{tabular}{|m{7cm}|}
+	\hline
+	\centering\arraybslash \bfseries Moment\\\hline
+	{ {}- heure~: entier}
+	
+	{ {}- minute~: entier}
+	
+	 {}- seconde~: entier\\\hline
+	{ + getHeure() \textsf{→} entier}
+	
+	{ + setHeure( uneHeure~: entier )}
+	
+	{ + avancer1Heure()}
+	
+	 ...\\\hline
+	\end{tabular}
+	\end{center}
+
+	\bigskip
+
+	Remarquons qu'on indique la signature des méthodes mais
+	pas le code associé. En fonction du niveau de détail désiré, on
+	pourrait aussi omettre les paramètres et types de retour.
+\end{frame}
+
+\subsection{Un exemple complet~: une durée}
+
+\begin{frame}{Un exemple complet~: une durée}
+	Examinons un exemple complet. 
+	
+	Vous avez écrit quelques modules manipulant des heures (conversion du format
+	HMS en nombre de secondes depuis minuit, conversion inverse, différence
+	entre 2 heures, …). 
+	
+	Il est souvent utile, lorsqu’on développe un
+	algorithme, d’avoir à sa disposition un tel type de données au même
+	titre que les types prédéfinis. 
+	
+	Faisons-le !
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée}
+	Avant tout, il faut bien préciser ce que l’on veut décrire. L’«~heure~»
+	est un concept multifacettes. Parle-t-on de l’heure comme moment dans
+	la journée ou de l’heure comme représentant une durée ? Dans le premier
+	cas, elle ne peut dépasser 24h et la différence entre 2 heures n’a pas
+	de sens (ou plus précisément n’est pas une heure, mais une durée !).
+	Dans le deuxième cas, on n’a pas ces contraintes. Nous allons ici
+	adopter la deuxième approche et pour bien la distinguer, nous allons
+	plutôt appeler cela une \textbf{durée}.
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: les méthodes}
+	La première question à se poser est celle des services qu’on veut
+	fournir, c’est-à-dire des méthodes publiques de la classe. On doit
+	pouvoir \textit{construire} une durée. On doit pouvoir connaitre le
+	nombre de jours, d’heures, minutes ou secondes correspondant à une durée. On doit
+	pouvoir effectuer des calculs avec des durées (addition, soustraction).
+	Enfin, on doit pouvoir comparer des durées. Arrêtons-nous là, mais en
+	pratique, on pourrait trouver encore bon nombre d’autres méthodes qu’il
+	serait intéressant de fournir. Ce qui nous donne jusqu’à présent~:
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: les méthodes}
+		\cadre{
+		\begin{pseudo}
+		\scriptsize{
+			\Class{Durée}
+				\Private
+					\LComment rien encore
+				\Public
+					\ConstrSign{Durée}{secondes~: entier}
+					\ConstrSign{Durée}{heure, minute, seconde~: entiers}
+					\MethodSign{getJour}{}{entier}
+					\RComment nb de jours dans une durée
+					\MethodSign{getHeure}{}{entier}
+					\RComment entier entre 0 et 23 inclus
+					\MethodSign{getMinute}{}{entier}
+					\RComment entier entre 0 et 59 inclus
+					\MethodSign{getSeconde}{}{entier}
+					\RComment entier entre 0 et 59 inclus
+					\MethodSign{getTotalHeures}{}{entier}
+					\RComment Le nombre total d’heures
+					\MethodSign{getTotalMinutes}{}{entier}
+					\RComment Le nombre total de minutes
+					\MethodSign{getTotalSecondes}{}{entier}
+					\RComment Le nombre total de secondes
+					\MethodSign{ajouter}{autreDurée~: Durée}{}
+					\MethodSign{différence}{autreDurée~: Durée}{Durée}
+					\MethodSign{égale}{autreDurée~: Durée}{booléen}
+					\MethodSign{plusPetit}{autreDurée~: Durée}{booléen}
+			\EndClass
+		}
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée}
+	\textbf{Quelques remarques}
+		\begin{itemize}
+			\item {
+				On a deux constructeurs, ce qui offre plus de souplesse pour initialiser
+				un objet. Ceci est un exemple supplémentaire du concept de
+				«\textbf{~surcharge~}».}
+			\item {
+				Faisons bien la distinction entre les méthodes
+				\textit{getXXX()} et \textit{getTotalXXX()}. Par
+				exemple, la méthode \textit{getMinute()} retourne la valeur
+				de la composante «~minutes~» dans une représentation HMS tandis que la
+				méthode \textit{getTotalMinutes()} retourne le nombre total
+				de minutes entières pour cette durée. Ex~: pour 1h23’12’’,
+				\textit{getMinute()} retourne 23 et
+				\textit{getTotalMinutes()} retourne 83. Idem avec 
+				les jours, les heures	et les secondes.}
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée}
+	\begin{itemize}
+			\item {
+				Les méthodes \textit{getTotalXXX()} retournent le nombre
+				(toujours entier) de XXX contenus dans la durée. 
+				
+				Exemple, avec la durée
+				0h23’52'’, \textit{getTotalMinutes()}
+				retourne 23 et pas 24 (autrement dit, il n’y a pas d’arrondi vers le
+				haut).}
+			\item {
+				Il n’y a pas de \textit{mutateur }(\textit{setXXX()}). Ce qui
+				signifie qu’on ne peut pas changer directement la valeur de l’objet
+				après son initialisation. On aurait pu en définir mais nous
+				n'avons pas jugé utile de le faire dans ce cas
+				précis.}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée}
+	\begin{itemize}
+			\item {
+				La méthode \textit{ajouter()} ne retourne rien. En effet,
+				elle ajoute la durée à l’objet sur lequel est appelée la méthode. C’est
+				un choix ; on aurait aussi pu dire que la méthode ne modifie pas
+				l’objet mais en retourne un autre qui représente la somme. Dans ce cas,
+				on l’aurait plutôt appelée «\textit{~plus( )}~».}
+			\item {
+				La méthode \textit{différence()}, elle, renvoie toujours une
+				durée (positive).}
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: les attributs}
+	La question suivante est~: «~Comment représenter une durée en interne~?~». 
+	Plusieurs possibilités existent. 
+	
+	Par exemple~:	
+		\begin{itemize}
+			\item 
+				via le nombre d’heures, de minutes et de secondes
+			\item 
+				via le nombre total de secondes
+			\item 
+				via une chaine, par exemple au format «~HH~:MM~:SS~» où HH pourrait
+				éventuellement excéder 23.
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée}
+	Le premier choix semble le plus évident mais réfléchissons-y de plus
+	près. D’une part, pourquoi se limiter aux heures. 
+	
+	On pourrait
+	introduire un champ ‘\textit{jour}’ (après tout on a bien
+	une méthode \textit{getJour()}). 
+	
+	\bigskip
+	
+	Quel critère doit vraiment nous permettre de décider ? 
+	
+	Il faut une
+	représentation qui soit suffisante (tout est représenté) et qui
+	permette d’écrire des méthodes lisibles et si possible efficaces
+	(c'est-à-dire où le calcul est rapide). 
+	
+	Selon ces
+	critères, la deuxième représentation est de loin la meilleure. Ce qui
+	nous donne~:
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée}
+		\cadre{
+		\begin{pseudo}
+			\Class{Durée}
+				\Private
+					\Decl totalSecondes~: entier
+				\Public
+					\LComment idem
+			\EndClass
+		\end{pseudo}
+		}		
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+	On est à présent prêt pour écrire le code des méthodes. Ce qui nous
+	donne pour la classe dans son entièreté~:
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+	\cadre{
+		\begin{pseudo}
+			\scriptsize{
+			\Class{Durée}
+				\Private
+					\Decl totalSecondes~: entier
+				\Public
+					\ConstrSign{Durée}{secondes~: entier}
+					\ConstrSign{Durée}{heure, minute, seconde~: entiers}
+					\Empty
+					\MethodSign{getJour}{}{entier}
+					\RComment nb de jours dans une durée
+					\MethodSign{getHeure}{}{entier}
+					\RComment entier entre 0 et 23 inclus
+					\MethodSign{getMinute}{}{entier}
+					\RComment entier entre 0 et 59 inclus
+					\MethodSign{getSeconde}{}{entier}
+					\RComment entier entre 0 et 59 inclus
+					\Empty
+					\MethodSign{getTotalHeures}{}{entier}
+					\RComment Le nombre total d’heures
+					\MethodSign{getTotalMinutes}{}{entier}
+					\RComment Le nombre total de minutes
+					\MethodSign{getTotalSecondes}{}{entier}
+					\RComment Le nombre total de secondes
+					\Empty
+					\MethodSign{ajouter}{autreDurée~: Durée}{}
+					\MethodSign{différence}{autreDurée~: Durée}{Durée}
+					\MethodSign{égale}{autreDurée~: Durée}{booléen}
+					\MethodSign{plusPetit}{autreDurée~: Durée}{booléen}
+			\EndClass
+			}
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+		\cadre{
+		\begin{pseudo}
+			\Constr{Durée}{secondes~: entier}
+				\If{secondes < 0}
+					\Stmt \K{erreur} "paramètre négatif"
+				\EndIf
+				\Let totalSecondes \Gets secondes
+			\EndConstr
+			\Empty
+			\Constr{Durée}{heure, minute, seconde~: entiers}
+				\If{heure < 0 OU minute < 0 OU seconde < 0}
+					\Stmt \K{erreur} "un des paramètres est négatif"
+				\EndIf
+				\Let totalSecondes \Gets 3600*heure + 60*minute + seconde
+			\EndConstr
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+		\cadre{
+		\begin{pseudo}
+			\LComment Retourne le nombre de jours dans une 
+			représentation JJ/HH:MM:SS
+			\Method{getJour}{}{entier}
+				\Return totalSecondes DIV (3600*24)
+			\EndMethod
+			\Empty
+			\LComment Retourne le nombre d'heures dans une 
+			représentation JJ/HH:MM:SS
+			\Method{getHeure}{}{entier}
+				\LComment On doit enlever les jours éventuels
+				\Return (totalSecondes DIV 3600) MOD 24
+			\EndMethod
+	\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+		\cadre{
+		\begin{pseudo}
+			\LComment Retourne le nombre de minutes dans une 
+			représentation JJ/HH:MM:SS
+			\Method{getMinute}{}{entier}
+				\LComment On doit enlever les heures éventuelles
+				\Return (totalSecondes DIV 60) MOD 60
+			\EndMethod
+			\Empty
+			\LComment Retourne le nombre de secondes dans une 
+			représentation JJ/HH:MM:SS
+			\Method{getSeconde}{}{entier}
+				\LComment On doit enlever les minutes éventuelles
+				\Return totalSecondes  MOD 60
+			\EndMethod
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+	\cadre{
+		\begin{pseudo}
+		
+			\LComment Retourne le nombre entier d’heures complètes
+			\Method{getTotalHeures}{}{entier}
+				\Return totalSecondes DIV 3600
+			\EndMethod
+			\Empty
+			\LComment Retourne le nombre entier de minutes complètes
+			\Method{getTotalMinutes}{}{entier}
+				\Return totalSecondes DIV 60
+			\EndMethod
+			\Empty
+			\LComment Retourne le nombre entier de secondes complètes
+			\Method{getTotalSecondes}{}{entier}
+				\Return totalSecondes
+			\EndMethod
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+	\cadre{
+		\begin{pseudo}
+			\Method{ajouter}{autreDurée~: Durée}{}
+				\Let totalSecondes \Gets totalSecondes + autreDurée.totalSecondes
+			\EndMethod
+			\Empty
+			\Method{différence}{autreDurée~: Durée}{Durée}
+				\Return \K{nouvelle} Durée(valeurAbsolue(totalSecondes - autreDurée.totalSecondes))
+			\EndMethod
+			\Empty
+			\Method{égale}{autreDurée~: Durée}{booléen}
+				\Return totalSecondes = autreDurée.totalSecondes
+			\EndMethod
+			\Empty
+			\Method{plusPetit}{autreDurée~: Durée}{booléen}
+				\Return totalSecondes < autreDurée.totalSecondes
+			\EndMethod
+		\end{pseudo}
+		}
+\end{frame}
+
+\begin{frame}{Un exemple complet~: une durée~: l'implémentation}
+	Et c’est tout ! 
+	
+	\bigskip
+	
+	Chaque méthode est très petite. 
+	
+	\bigskip
+	
+	C’est une constante en
+	orienté objet~: écrire de petites méthodes qui font chacune une et une
+	seule chose bien précise.
+\end{frame}
+
+%\end{comment}
